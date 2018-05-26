@@ -52,6 +52,7 @@ export default class HomePage extends Component {
         );
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
