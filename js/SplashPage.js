@@ -8,8 +8,7 @@ const {width, height} = Dimensions.get('window');
 export default class SplashPage extends Component {
 
     componentWillUpdate(){
-
-    };
+    }
 
     componentDidUpdate(){
        this.requestReadPermission();
