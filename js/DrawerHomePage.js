@@ -11,14 +11,6 @@ import {
 export default class DrawerHomePage extends Component {
     static navigationOptions = {
         drawerLabel: '首页',
-        drawerIcon: ({tintColor}) => {
-            return (
-                <Image
-                    source={require('../img/icon_home.png')}
-                    style={[{width: 24, height: 24}, {tintColor: tintColor}]}
-                />
-            );
-        },
     };
 
     render() {

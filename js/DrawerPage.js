@@ -10,11 +10,11 @@ import {DrawerNavigator} from 'react-navigation';
 
 const Drawer = DrawerNavigator({
         Home: {
-            screen: DrawerHomePage,
-        },
-        Left: {
-            screen: DrawerLeftPage
+            screen: DrawerHomePage
         }
+        // Left: {
+        //     screen: DrawerLeftPage
+        // }
     },{
         drawerWidth: 300,
         drawerPosition: 'left',
