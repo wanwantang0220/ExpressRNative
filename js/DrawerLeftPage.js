@@ -7,6 +7,7 @@ import {
     Image
 } from 'react-native';
 export default class DrawerLeftPage extends Component {
+
     static navigationOptions = {
         //标题
         drawerLabel:'购物车',

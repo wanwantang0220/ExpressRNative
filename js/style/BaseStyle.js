@@ -1,16 +1,16 @@
 import {StyleSheet} from 'react-native'
 
 
-const GrayColor = '#9D9D9D'
-const GrayBlackColor = '#666666'
-const White = '#ffffff'
-const Translucent = 'rgba(125,125,125,0.6)'
-const MainBg = '#f5f5f5'
-const GrayWhiteColor = '#f5f5f5'
-const MikeWhiteColor = '#f0ffff'
-const BlackTextColor = '#444444'
-const BlackColor = '#000000'
-const WhiteTextColor = '#ffffff'
+const GrayColor = '#9D9D9D';
+const GrayBlackColor = '#666666';
+const White = '#ffffff';
+const Translucent = 'rgba(125,125,125,0.6)';
+const MainBg = '#f5f5f5';
+const GrayWhiteColor = '#f5f5f5';
+const MikeWhiteColor = '#f0ffff';
+const BlackTextColor = '#444444';
+const BlackColor = '#000000';
+const WhiteTextColor = '#ffffff';
 
 const BaseStyles = StyleSheet.create({
     baseWhiteText: {
@@ -22,10 +22,10 @@ const BaseStyles = StyleSheet.create({
         color: BlackTextColor,
     },
     baseIcon: {
-        width:26,
+        width: 26,
         height: 26,
     }
-})
+});
 
 export {
     MainBg,

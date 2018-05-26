@@ -1,12 +1,19 @@
+/**
+ * 我的订单
+ **/
+
 import React, {Component} from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, StyleSheet, View, Text} from "react-native";
 
-const {width, height} = Dimensions.get('window');
 
-export default class LoginPage extends Component {
+export default class SettingPage extends Component {
+
+    static navigationOptions = {
+        //标题
+        drawerLabel: '设置',
+    };
 
     componentWillUpdate() {
-
     };
 
     componentDidUpdate() {
@@ -16,7 +23,7 @@ export default class LoginPage extends Component {
 
         return (
             <View>
-                <Text>登录</Text>
+                <Text>我的订单</Text>
             </View>
         )
     }

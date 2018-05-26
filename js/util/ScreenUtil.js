@@ -7,3 +7,9 @@ export const uiHeightPx = 640;
 export default function px2dp(uiElementPx) {
     return uiElementPx * deviceHeightDp / uiHeightPx;
 }
+
+
+export {
+    deviceHeight,
+    deviceWidth
+}
