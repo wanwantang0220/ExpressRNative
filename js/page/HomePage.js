@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Image, StatusBar, Dimensions
+    Image, StatusBar, Dimensions, PixelRatio
 } from 'react-native';
 import NaviBarView from "../component/NaviBarView";
 import {White} from "../style/BaseStyle";
@@ -48,6 +48,93 @@ export default class HomePage extends Component {
                 }}>
                     <Text>打开侧滑栏</Text>
                 </TouchableOpacity>
+
+
+                <View style={{flexDirection: 'row', marginLeft: 15, marginRight: 15, marginTop: 20}}>
+                    <TouchableOpacity
+                        style={[styles.viewBg, {flex: 1, marginLeft: 15}]}
+                        activeOpacity={0.85}
+                        underlayColor='white'
+                        onPress={() => this.props.navigation.navigate('WaitingOrder')}>
+                        <Text style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'}}>
+                            接单
+                        </Text>
+                        <Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>1/10</Text>
+                        <Text style={{marginLeft: 15, marginTop: 15, color: '#7A7A7A'}}>......</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.viewBg, {flex: 1, marginLeft: 10, marginRight: 10}]}
+                        activeOpacity={0.85}
+                        underlayColor='white'
+                        onPress={() => this.props.navigation.navigate('PrintOrder')}>
+                        <Text style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'}}>
+                            打单
+                        </Text>
+                        <Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>1/10</Text>
+                        <Text style={{marginLeft: 15, marginTop: 15, color: '#7A7A7A'}}>......</Text>
+                    </TouchableOpacity>
+
+                    {/*<TouchableOpacity*/}
+                        {/*style={[styles.viewBg, {flex: 1, marginRight: 15}]}*/}
+                        {/*activeOpacity={0.85}*/}
+                        {/*underlayColor='white'*/}
+                        {/*onPress={() => this.props.navigation.navigate('AliPay')}>*/}
+                        {/*<Text style={{*/}
+                            {/*marginLeft: 15,*/}
+                            {/*marginTop: 15,*/}
+                            {/*fontSize: 20,*/}
+                            {/*fontWeight: 'bold',*/}
+                            {/*color: '#333333'*/}
+                        {/*}}>支付宝支付</Text>*/}
+                        {/*<Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>1/10</Text>*/}
+                        {/*<Text style={{marginLeft: 15, marginTop: 15, color: '#7A7A7A'}}>......</Text>*/}
+                    {/*</TouchableOpacity>*/}
+                </View>
+
+                <View style={{flexDirection: 'row', marginLeft: 15, marginRight: 15, marginTop: 10}}>
+                    <TouchableOpacity
+                        style={[styles.viewBg, {flex: 1, marginLeft: 15}]}
+                        onPress={() => this.props.navigation.navigate('Maps')}>
+
+                        <Text style={{
+                            marginLeft: 15,
+                            marginTop: 15,
+                            fontSize: 20,
+                            fontWeight: 'bold',
+                            color: '#333333'
+                        }}>高德地图</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.viewBg, {flex: 1, marginLeft: 10, marginRight: 15}]}
+                        onPress={() => this.props.navigation.navigate('JPush')}>
+                        <Text style={{
+                            marginLeft: 15,
+                            marginTop: 15,
+                            fontSize: 20,
+                            fontWeight: 'bold',
+                            color: '#333333'
+                        }}>极光推送</Text>
+                        <Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>10</Text>
+                    </TouchableOpacity>
+                    {/*<TouchableOpacity*/}
+                        {/*style={[styles.viewBg, {flex: 1, marginRight: 10}]}*/}
+                        {/*onPress={() => this.props.navigation.navigate('Umeng')}>*/}
+                        {/*<Text style={{*/}
+                            {/*marginLeft: 15,*/}
+                            {/*marginTop: 15,*/}
+                            {/*fontSize: 20,*/}
+                            {/*fontWeight: 'bold',*/}
+                            {/*color: '#333333'*/}
+                        {/*}}>友盟统计</Text>*/}
+                        {/*<Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>10</Text>*/}
+                    {/*</TouchableOpacity>*/}
+                </View>
+                <View style={{width: deviceWidth, flexDirection: 'row'}}>
+                    <TouchableOpacity style={[styles.viewTextBg, {marginTop: 20, marginLeft: 50}]}
+                                      onPress={() => this.props.navigation.navigate('Bluetooth')}>
+                        <Text style={{color: '#333333', textAlign: 'center',}}>2018/5/28 </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -85,5 +172,36 @@ const styles = StyleSheet.create({
         height: 26,
         alignSelf: 'center',
         marginRight: 20,
+    },
+    image: {
+        width: deviceWidth,
+        height: 180,
+        // 设置图片填充模式
+        // resizeMode: 'stretch'
+    },
+    bannerBg: {
+        width: deviceWidth,
+        height: 150,
+    },
+    viewBg: {
+        width: 120,
+        height: 120,
+        backgroundColor: '#ffffff',
+        shadowColor: '#CFCFCF',
+        borderRadius: 25,
+        elevation: 50,
+    },
+    viewTextBg: {
+        width: 220,
+        height: 30,
+        backgroundColor: '#ffffff',
+        borderColor: '#080808',
+        justifyContent: 'center',
+        borderRadius: 15,
+        borderStyle: 'solid',
+        borderLeftWidth: 1 / PixelRatio.get(),
+        borderRightWidth: 1 / PixelRatio.get(),
+        borderBottomWidth: 1 / PixelRatio.get(),
+        borderTopWidth: 1 / PixelRatio.get(),
     }
 });

@@ -1,19 +1,14 @@
-import React, {Component} from 'react';
-import {
-    View,
-    Text,
-    TouchableOpacity,
-    StyleSheet,
-    Image, StatusBar, Dimensions
-} from 'react-native';
+
 import HomePage from "./page/HomePage";
 import {StackNavigator} from "react-navigation";
-
-const {width, height} = Dimensions.get('window');
+import WaitingOrderPager from "./page/WaitingOrderPager";
 
 const DrawHomePage = StackNavigator({
     Home: {
         screen: HomePage
+    },
+    WaitingOrder:{
+        screen:WaitingOrderPager
     }
 
 });

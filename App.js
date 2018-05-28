@@ -6,35 +6,44 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+    Platform,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
+import SplashPage from "./js/SplashPage";
+import LoginPage from "./js/LoginPage";
+import {Navigator} from "react-native-deprecated-custom-components";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
+      return (
+          <Navigator
+              initialRoute={{ name: '欢迎界面', component: SplashPage }}
+              renderScene={(route, navigator) =>{
+                  //返回按钮
+                  navigator.goBack = function () {
+                      navigator.pop();
+                  };
+                  //退出整个app
+                  navigator.exitApp = function () {
+                      let routes = navigator.getCurrentRoutes();
+                      for (var i = 0; i < routes.length; i++) {
+                          navigator.pop();
+                      }
+                  };
+
+                  let Component = route.component;
+                  return <Component {...route.passProps} navigator={navigator} />
+              }}
+          />
+      );
   }
 }
 
