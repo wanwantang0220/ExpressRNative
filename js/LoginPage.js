@@ -15,7 +15,7 @@ import {White} from "./style/BaseStyle";
 import DrawerPage from "./DrawerPage";
 import EditView from "./component/EditView";
 import HttpManager from "./data/http/HttpManager";
-
+import {storage} from './data/storage/Storage';
 
 export default class LoginPage extends Component {
 
@@ -39,13 +39,13 @@ export default class LoginPage extends Component {
                     <View style={{flex: 1}}/>
                     <View style={{flex: 1}}>
                         <EditView
-                            name='请输入用户名'
+                            name='18961812572'
                             onChangeText={(text) => {
                                 this.userName = text;
                             }}/>
 
                         <EditView
-                            name='请输入密码'
+                            name='zd521036'
                             onChangeText={(text) => {
                                 this.password = text;
                             }}/>
@@ -74,11 +74,12 @@ export default class LoginPage extends Component {
 
         this.httpManager.requestLogin(object, (responseText) => {
 
-            console.log("responseText", responseText);
-            if (responseText.errCode == "000000") {
+            console.log("responseText.object.staffInfo", responseText.object.staffInfo);
+            if (responseText.errCode === "000000") {
                 this.setState = {
-                    userinfo: responseText
+                    userinfo: responseText.object.staffInfo
                 };
+                storage.save('userInfo', responseText.object.staffInfo);
                 this.onLoginSuccess();
             } else {
                 alert(responseText.errDesc);

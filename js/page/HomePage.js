@@ -4,11 +4,13 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Image, StatusBar, Dimensions, PixelRatio
+    Image, StatusBar, Dimensions, PixelRatio,YellowBox
 } from 'react-native';
 import NaviBarView from "../component/NaviBarView";
 import {White} from "../style/BaseStyle";
 import {deviceWidth} from "../util/ScreenUtil";
+import {storage} from '../data/storage/Storage';
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 export default class HomePage extends Component {
 
@@ -17,9 +19,16 @@ export default class HomePage extends Component {
         header: null,
     };
 
+    componentDidMount () {
+        storage.load('userInfo', (data) => {
+            alert(data.perName)
+        })
+    }
+
+
     render() {
         return (
-            <View style={styles.container}>
+            <View style={[styles.container]}>
                 <StatusBar
                     animated={true}
                     backgroundColor="black"
@@ -34,11 +43,11 @@ export default class HomePage extends Component {
                         }}>
                         <Image
                             source={require('../../img/icon_menu.png')}
-                            style={styles.toolbar_left_img}
+                            style={[styles.toolbar_left_img]}
                             tintColor={White}/>
                     </TouchableOpacity>
-                    <View style={styles.toolbar_middle}>
-                        <Text style={styles.toolbar_middle_text}>首页</Text>
+                    <View style={[styles.toolbar_middle]}>
+                        <Text style={[styles.toolbar_middle_text]}>首页</Text>
                     </View>
 
                 </View>

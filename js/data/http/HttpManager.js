@@ -78,7 +78,7 @@ export default class HttpManager {
 
         console.log("data", JsonUtil.jsonToStr(data));
         fetch(url, fetchOptions)
-            .then((response) => response.text())
+            .then((response) => response.json())
             .then((responseText) => {
                 callback(responseText);
             }).done();
