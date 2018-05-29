@@ -6,9 +6,11 @@ import JsonUtil from "./JsonUtil";
 /*基础链接头*/
 const BaseUrl = "https://manager.xilaikd.com/xilaireceiver_s";
 /*待打单*/
-const Wait_Accept_Order = "/order/queryWaitAcceptOrder";
+const WAIT_ACCEPT_ORDER = "/order/queryWaitAcceptOrder";
 
-const Login = "/user/login";
+const LOGIN = "/user/login";
+const ADDRESS_LIST = "/addressBook/queryBySearchFilter";
+
 
 export default class HttpManager {
 
@@ -17,17 +19,18 @@ export default class HttpManager {
      * @param start
      * @param count
      */
-    getWaitOrder(start, count) {
+    getWaitOrder(data,callback) {
 
+        const  url = BaseUrl + WAIT_ACCEPT_ORDER;
         return new Promise((resolve, reject) => {
-            this.fetchNetData(BaseUrl + Wait_Accept_Order + "?start=" + start + "&count=" + count)
+            this.postNetData(url,data)
                 .then((data) => {
                     if (data != null) {
-                        if (data.code != null && typeof data.code == 'number') {
-                            reject(ErrorAnayle.getErrorBean(data.code))
-                        } else if (data.count != null && data.count > 0) {
-                            resolve(data);
-                        } else {
+                        if(data.errCode==="000000"){
+                            callback(data.object);
+                        }else if(data.errDesc != null && data.errDesc!=""){
+                            reject(ErrorAnayle.getErrorMsg(data.errDesc))
+                        }else{
                             reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
                         }
                     } else {
@@ -59,6 +62,32 @@ export default class HttpManager {
         })
     }
 
+
+    /*请求数据=本地加网络*/
+    postNetData(url,data) {
+        let header = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JsonUtil.jsonToStr(data)
+        };
+        return new Promise((resolve, reject) => {
+            fetch(url,header)
+                .then((response) => response.json())
+                .then((responseData) => {
+                    resolve(responseData);
+                })
+                .catch((error) => {
+                    reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                })
+                .done();
+        })
+    }
+
+
+
     /**
      * 登录
      * @param data
@@ -66,7 +95,7 @@ export default class HttpManager {
      */
     requestLogin(data,callback) {
 
-        const url = BaseUrl + Login;
+        const url = BaseUrl + LOGIN;
         const fetchOptions = {
             method: 'POST',
             headers: {
@@ -85,6 +114,36 @@ export default class HttpManager {
 
     }
 
+    /**
+     * 地址列表
+     * @param object
+     * @param param2
+     */
+    requestAddresses(data, callback) {
+        const  url = BaseUrl + ADDRESS_LIST;
+        return new Promise((resolve, reject) => {
+            this.postNetData(url,data)
+                .then((data) => {
+                    if (data != null) {
+                        if(data.errCode==="000000"){
+                            callback(data.object);
+                        }else if(data.errDesc != null && data.errDesc!=""){
+                            reject(ErrorAnayle.getErrorMsg(data.errDesc))
+                        }else{
+                            reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                        }
+                    } else {
+                        reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                    }
+                }).catch((error) => {
+                if (error != null && error instanceof ErrorBean) {
+                    reject(error)
+                } else {
+                    reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                }
+            })
+        })
+    }
 }
 
 

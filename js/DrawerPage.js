@@ -10,6 +10,7 @@ import {DrawerNavigator, DrawerItems} from 'react-navigation';
 import {deviceWidth} from "./util/ScreenUtil";
 import MyOrderListPage from "./page/MyOrderListPage";
 import SettingPage from "./page/SettingPage";
+import AddressPage from "./page/AddressPage";
 
 const Drawer = DrawerNavigator({
     DrawHome: {
@@ -18,6 +19,9 @@ const Drawer = DrawerNavigator({
     MyOrder: {
         title: "我的订单",
         screen: MyOrderListPage
+    },
+    Address:{
+        screen: AddressPage
     },
     Setting: {
         screen: SettingPage

@@ -10,6 +10,8 @@ import NaviBarView from "../component/NaviBarView";
 import {White} from "../style/BaseStyle";
 import {deviceWidth} from "../util/ScreenUtil";
 import {storage} from '../data/storage/Storage';
+import HomeCell from "../component/HomeCell";
+import HttpManager from "../data/http/HttpManager";
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 export default class HomePage extends Component {
@@ -19,14 +21,20 @@ export default class HomePage extends Component {
         header: null,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
+
     componentDidMount () {
-        storage.load('userInfo', (data) => {
-            alert(data.perName)
-        })
     }
 
 
     render() {
+
+        const {homePageState} = this.props;
+
         return (
             <View style={[styles.container]}>
                 <StatusBar
@@ -82,22 +90,6 @@ export default class HomePage extends Component {
                         <Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>1/10</Text>
                         <Text style={{marginLeft: 15, marginTop: 15, color: '#7A7A7A'}}>......</Text>
                     </TouchableOpacity>
-
-                    {/*<TouchableOpacity*/}
-                        {/*style={[styles.viewBg, {flex: 1, marginRight: 15}]}*/}
-                        {/*activeOpacity={0.85}*/}
-                        {/*underlayColor='white'*/}
-                        {/*onPress={() => this.props.navigation.navigate('AliPay')}>*/}
-                        {/*<Text style={{*/}
-                            {/*marginLeft: 15,*/}
-                            {/*marginTop: 15,*/}
-                            {/*fontSize: 20,*/}
-                            {/*fontWeight: 'bold',*/}
-                            {/*color: '#333333'*/}
-                        {/*}}>支付宝支付</Text>*/}
-                        {/*<Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>1/10</Text>*/}
-                        {/*<Text style={{marginLeft: 15, marginTop: 15, color: '#7A7A7A'}}>......</Text>*/}
-                    {/*</TouchableOpacity>*/}
                 </View>
 
                 <View style={{flexDirection: 'row', marginLeft: 15, marginRight: 15, marginTop: 10}}>
@@ -111,7 +103,7 @@ export default class HomePage extends Component {
                             fontSize: 20,
                             fontWeight: 'bold',
                             color: '#333333'
-                        }}>高德地图</Text>
+                        }}>下单</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[styles.viewBg, {flex: 1, marginLeft: 10, marginRight: 15}]}
@@ -122,21 +114,11 @@ export default class HomePage extends Component {
                             fontSize: 20,
                             fontWeight: 'bold',
                             color: '#333333'
-                        }}>极光推送</Text>
+                        }}>消息</Text>
                         <Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>10</Text>
                     </TouchableOpacity>
-                    {/*<TouchableOpacity*/}
-                        {/*style={[styles.viewBg, {flex: 1, marginRight: 10}]}*/}
-                        {/*onPress={() => this.props.navigation.navigate('Umeng')}>*/}
-                        {/*<Text style={{*/}
-                            {/*marginLeft: 15,*/}
-                            {/*marginTop: 15,*/}
-                            {/*fontSize: 20,*/}
-                            {/*fontWeight: 'bold',*/}
-                            {/*color: '#333333'*/}
-                        {/*}}>友盟统计</Text>*/}
-                        {/*<Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>10</Text>*/}
-                    {/*</TouchableOpacity>*/}
+
+
                 </View>
                 <View style={{width: deviceWidth, flexDirection: 'row'}}>
                     <TouchableOpacity style={[styles.viewTextBg, {marginTop: 20, marginLeft: 50}]}

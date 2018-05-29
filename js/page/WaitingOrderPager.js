@@ -54,8 +54,13 @@ export default class WaitingOrderPager extends Component {
      * 请求数据
      */
     requestData() {
-        let start = 0;
-        this.httpManager.getWaitOrder(start,itemCount)
+
+        let object = {
+            "object": {}
+        };
+        this.httpManager.getWaitOrder(object, (response) =>{
+            console.log("response", response);
+        });
     }
 }
 

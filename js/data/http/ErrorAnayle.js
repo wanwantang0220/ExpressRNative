@@ -12,9 +12,18 @@ const NEED_PERMISSION = 1000;  //数据未授权
 
 class ErrorAnayle {
 
+    static getErrorMsg(msg){
+        let errorBean = new ErrorBean();
+        if (msg != null && msg !== '') {
+            errorBean.setErrorCode('-1');
+            errorBean.setErrorMsg("msg");
+            return errorBean;
+        }
+    }
+
     static getErrorBean(code) {
         let errorBean = new ErrorBean();
-        if (code != null && typeof code == 'number') {
+        if (code != null && typeof code === 'number') {
             errorBean.setErrorCode(code);
             switch (code) {
                 case Nuknown_Error:

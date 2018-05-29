@@ -72,14 +72,16 @@ export default class LoginPage extends Component {
             "object": params
         };
 
-        this.httpManager.requestLogin(object, (responseText) => {
+        this.httpManager.requestLogin(object, (response) => {
 
-            console.log("responseText.object.staffInfo", responseText.object.staffInfo);
-            if (responseText.errCode === "000000") {
+            console.log("response.object.staffInfo", response.object.staffInfo);
+            if (response.errCode === "000000") {
                 this.setState = {
-                    userinfo: responseText.object.staffInfo
+                    userinfo: response.object.staffInfo
                 };
-                storage.save('userInfo', responseText.object.staffInfo);
+                storage.save('userInfo', response.object.staffInfo);
+                storage.save('sessionId',response.object.sessionId);
+                storage.save('ssoToken',response.object.ssoToken);
                 this.onLoginSuccess();
             } else {
                 alert(responseText.errDesc);
