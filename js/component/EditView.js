@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     ToolbarAndroid,
     AppRegistry,
@@ -9,6 +9,7 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
+
 export default class EditView extends Component {
 
     constructor(props) {
@@ -18,15 +19,17 @@ export default class EditView extends Component {
 
     render() {
         return (
-            <View style={LoginStyles.TextInputView}>
-                <TextInput style={LoginStyles.TextInput}
-                           placeholder={this.props.name}
-                           onChangeText={
-                               (text) => {
-                                   this.setState({text});
-                                   this.props.onChangeText(text);
-                               }
-                           }
+            <View>
+                <TextInput
+                    style={LoginStyles.TextInput}
+                    placeholder={this.props.name}
+                    underlineColorAndroid="transparent"
+                    onChangeText={
+                        (text) => {
+                            this.setState({text});
+                            this.props.onChangeText(text);
+                        }
+                    }
                 />
             </View>
         );
@@ -37,11 +40,11 @@ export default class EditView extends Component {
 const LoginStyles = StyleSheet.create({
     TextInputView: {
         marginTop: 10,
-        height:50,
+        height: 50,
         backgroundColor: '#ffffff',
-        borderRadius:5,
-        borderWidth:0.3,
-        borderColor:'#000000',
+        borderRadius: 5,
+        borderWidth: 0.3,
+        borderColor: '#000000',
         flexDirection: 'column',
         justifyContent: 'center',
     },
@@ -60,6 +63,7 @@ const LoginStyles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingLeft: 10
+        paddingLeft: 10,
+        marginTop: 10
     },
 });

@@ -13,6 +13,8 @@ import {
 import {deviceHeight, deviceWidth} from "./util/ScreenUtil";
 import {White} from "./style/BaseStyle";
 import DrawerPage from "./DrawerPage";
+import EditView from "./component/EditView";
+import HttpManager from "./data/http/HttpManager";
 
 
 export default class LoginPage extends Component {
@@ -20,9 +22,11 @@ export default class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            userpwd: ""
+            userName: "18961812572",
+            password: "zd521036",
+            userinfo: {}
         };
+        this.httpManager = new HttpManager();
     }
 
     render() {
@@ -31,38 +35,65 @@ export default class LoginPage extends Component {
             <View style={styles.flex}>
                 <ImageBackground
                     style={[styles.flex]}
-                    source={require('../img/icon_splash.png')}
-                >
+                    source={require('../img/icon_splash.png')}>
                     <View style={{flex: 1}}/>
                     <View style={{flex: 1}}>
-                        <TextInput
-                            style={[styles.textinput]}
-                            editable={true}
-                            placeholder="请输入用户名"
-                            underlineColorAndroid="transparent"
-                            onChangeText={(username) => this.setState({username})}
-                            maxLength={40}/>
+                        <EditView
+                            name='请输入用户名'
+                            onChangeText={(text) => {
+                                this.userName = text;
+                            }}/>
 
-                        <TextInput
-                            style={[styles.textinput, {marginTop: 10}]}
-                            underlineColorAndroid="transparent"
-                            editable={true}
-                            placeholder="请输入密码"
-                            onChangeText={(userpwd) => this.setState({userpwd})}
-                            maxLength={40}/>
+                        <EditView
+                            name='请输入密码'
+                            onChangeText={(text) => {
+                                this.password = text;
+                            }}/>
 
                         <Text style={[styles.text2]}>忘记密码</Text>
                         <TouchableOpacity
                             style={[styles.viewTextBg, {marginTop: 120}]}
-                            onPress={() => this.props.navigator.push({
-                                component: DrawerPage,
-                            })}>
-                            <Text style={{color: White, textAlign: 'center', fontSize: 18}}>登录</Text>
+                            onPress={this.pressLogin}>
+                            <Text style={{color: White, textAlign: 'center', fontSize: 16}}>登录</Text>
                         </TouchableOpacity>
                     </View>
                 </ImageBackground>
             </View>
         )
+    }
+
+
+    pressLogin = () => {
+        let params = {
+            "username": "18961812572",//this.userName,
+            "password": "zd521036" //this.password
+        };
+        let object = {
+            "object": params
+        };
+
+        this.httpManager.requestLogin(object, (responseText) => {
+
+            console.log("responseText", responseText);
+            if (responseText.errCode == "000000") {
+                this.setState = {
+                    userinfo: responseText
+                };
+                this.onLoginSuccess();
+            } else {
+                alert(responseText.errDesc);
+            }
+
+        });
+    };
+
+    onLoginSuccess() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                component: DrawerPage,
+            });
+        }
     }
 }
 
@@ -108,7 +139,7 @@ const styles = StyleSheet.create({
     text2: {
         color: White,
         textAlign: 'right',
-        fontSize: 16,
+        fontSize: 14,
         marginTop: 10,
         marginRight: 50
     }
