@@ -9,6 +9,8 @@ import {White} from "../style/BaseStyle";
 import {deviceWidth} from "../util/ScreenUtil";
 import TitleView from "../component/TitleView";
 import HttpManager from "../data/http/HttpManager";
+import RefreshListView from "../component/refresh/RefreshListView";
+import RefreshState from "../component/refresh/RefreshState";
 
 
 export default class AddressPage extends Component {
@@ -28,17 +30,18 @@ export default class AddressPage extends Component {
     constructor(props){
         super(props);
         this.state={
-            refreshing : true,
-            isInit : false,
-            mData:{}
+            mData:[],
+            startPage: 1,   // 从第几页开始加载
+            pageSize: 10,   // 每页加载多少条数据
         };
         this.httpManager  = new HttpManager();
 
+    }
+
+    componentDidMount() {
         this.requestData();
     }
 
-    componentDidUpdate() {
-    }
 
     render() {
 
@@ -54,20 +57,43 @@ export default class AddressPage extends Component {
                     this.props.navigation.pop();
                 }}/>
 
-                <Text>地址簿</Text>
+                <RefreshListView
+                    ref={(ref) => {this.listView = ref}}
+                    data={this.state.mData}
+                    renderItem={this.renderItem}
+                    keyExtractor={(item) => item.id}
+                    ListEmptyComponent={this.renderEmptyView}
+                    onHeaderRefresh={() => { this.requestData() }}
+                    onFooterRefresh={() => { this.requestData() }}
+                />
             </View>
         )
     }
 
+    /// 渲染一个空白页，当列表无数据的时候显示。这里简单写成一个View控件
+    renderEmptyView = (item) => {
+        return <View><Text>暂无数据</Text></View>
+    };
+
+    renderItem = (item) => {
+        return (
+            <Text>tece</Text>
+        )
+    };
+
+
+
     requestData(){
-        //{"object":{"object":{"active":"1","addUserPhone":"15961853707","addUserType":"2","addrType":"1"},"orderBy":"","pageRow":10,"startPage":1}}
+        let that = this;
         let params = {
             "addUserPhone": "18961812572",
             "addUserType": "2" ,
             "addrType":"1"
         };
         let object2={
-            "object":params
+            "object":params,
+            "pageRow":this.state.pageSize,
+            "startPage":this.state.startPage
         };
         let object = {
             "object": object2
@@ -75,7 +101,36 @@ export default class AddressPage extends Component {
 
         this.httpManager.requestAddresses(object,(response)=>{
             console.log("response",response);
-            alert(response.list);
+            let mlist = [];
+            for (let idx in response.list.length) {
+                let item = response.list[idx];
+                mlist.push(item)
+            }
+            // 获取总的条数
+            let totalCount = response.totalRow;
+
+            // 当前已经加载的条数
+            let currentCount = this.state.mData.length;
+
+            // 根据已经加载的条数和总条数的比较，判断是否还有下一页
+            let footerState = RefreshState.Idle;
+            let startPage = this.state.startPage;
+            if (currentCount + mlist.length < totalCount) {
+                // 还有数据可以加载
+                footerState = RefreshState.CanLoadMore;
+                // 下次加载从第几条数据开始
+                startPage = startPage+ mlist.length;
+            } else {
+                footerState = RefreshState.NoMoreData;
+            }
+            // 更新movieList的值
+            let mList = this.state.movieList.concat(mlist);
+            that.setState({
+                movieList: mList,
+                startPage: startPage
+            });
+            that.listView.endRefreshing(footerState);
+
         });
 
     }

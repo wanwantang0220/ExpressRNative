@@ -124,6 +124,7 @@ export default class HttpManager {
         return new Promise((resolve, reject) => {
             this.postNetData(url,data)
                 .then((data) => {
+                    console.log("response address list ",data);
                     if (data != null) {
                         if(data.errCode==="000000"){
                             callback(data.object);
