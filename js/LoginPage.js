@@ -1,14 +1,28 @@
 import React, {Component} from 'react';
-import {Dimensions, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View,PixelRatio} from "react-native";
+import {
+    Dimensions,
+    Image,
+    ImageBackground,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+    PixelRatio
+} from "react-native";
 import {deviceHeight, deviceWidth} from "./util/ScreenUtil";
 import {White} from "./style/BaseStyle";
+import DrawerPage from "./DrawerPage";
 
 
 export default class LoginPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { text: 'Useless Placeholder' };
+        this.state = {
+            username: "",
+            userpwd: ""
+        };
     }
 
     render() {
@@ -19,24 +33,31 @@ export default class LoginPage extends Component {
                     style={[styles.flex]}
                     source={require('../img/icon_splash.png')}
                 >
-                    <View style={{flex:1}}/>
-                    <View style={{flex:1}}>
-                <TextInput
-                    style={[styles.textinput]}
-                    editable = {true}
-                    placeholder="请输入用户名"
-                    underlineColorAndroid="transparent"
-                    maxLength = {40}/>
+                    <View style={{flex: 1}}/>
+                    <View style={{flex: 1}}>
+                        <TextInput
+                            style={[styles.textinput]}
+                            editable={true}
+                            placeholder="请输入用户名"
+                            underlineColorAndroid="transparent"
+                            onChangeText={(username) => this.setState({username})}
+                            maxLength={40}/>
 
-                <TextInput
-                    style={[styles.textinput,{marginTop:10}]}
-                    underlineColorAndroid="transparent"
-                    editable = {true}
-                    placeholder="请输入密码"
-                    maxLength = {40}/>
-                        <TouchableOpacity style={[styles.viewTextBg, {marginTop: 100}]}
-                                          onPress={() => this.props.navigation.navigate('Bluetooth')}>
-                            <Text style={{color: White, textAlign: 'center',fontSize:18}}>登录</Text>
+                        <TextInput
+                            style={[styles.textinput, {marginTop: 10}]}
+                            underlineColorAndroid="transparent"
+                            editable={true}
+                            placeholder="请输入密码"
+                            onChangeText={(userpwd) => this.setState({userpwd})}
+                            maxLength={40}/>
+
+                        <Text style={[styles.text2]}>忘记密码</Text>
+                        <TouchableOpacity
+                            style={[styles.viewTextBg, {marginTop: 120}]}
+                            onPress={() => this.props.navigator.push({
+                                component: DrawerPage,
+                            })}>
+                            <Text style={{color: White, textAlign: 'center', fontSize: 18}}>登录</Text>
                         </TouchableOpacity>
                     </View>
                 </ImageBackground>
@@ -46,7 +67,7 @@ export default class LoginPage extends Component {
 }
 
 const styles = StyleSheet.create({
-    flex:{
+    flex: {
         flex: 1,
     },
     container: {
@@ -54,7 +75,7 @@ const styles = StyleSheet.create({
         width: deviceWidth,
         height: deviceHeight,
     },
-    textinput:{
+    textinput: {
         width: 280,
         height: 35,
         backgroundColor: '#ffffff',
@@ -63,27 +84,33 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         paddingTop: 0,
         paddingBottom: 0,
-        textAlign:'left',
-        textAlignVertical:'center',
-        alignSelf:'center',
-        justifyContent:'center',
-        alignItems:'flex-start',
-        paddingLeft:10
+        textAlign: 'left',
+        textAlignVertical: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        paddingLeft: 10
     },
-    viewTextBg:{
+    viewTextBg: {
         width: 280,
         height: 35,
-        borderColor: '#080808',
+        borderColor: '#ffffff',
         borderRadius: 15,
         borderStyle: 'solid',
-        alignSelf:'center',
-        color:White,
-        justifyContent:'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
         borderLeftWidth: 1 / PixelRatio.get(),
         borderRightWidth: 1 / PixelRatio.get(),
         borderBottomWidth: 1 / PixelRatio.get(),
         borderTopWidth: 1 / PixelRatio.get(),
 
-
+    },
+    text2: {
+        color: White,
+        textAlign: 'right',
+        fontSize: 16,
+        marginTop: 10,
+        marginRight: 50
     }
+
 });

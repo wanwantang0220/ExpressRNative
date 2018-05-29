@@ -11,7 +11,7 @@ import {deviceWidth} from "./util/ScreenUtil";
 import MyOrderListPage from "./page/MyOrderListPage";
 import SettingPage from "./page/SettingPage";
 
-const DrawerPage = DrawerNavigator({
+const Drawer = DrawerNavigator({
     DrawHome: {
         screen: DrawerHomePage
     },
@@ -63,16 +63,16 @@ const DrawerPage = DrawerNavigator({
         )
     },
 });
-module.exports = DrawerPage;
+// module.exports = DrawerPage;
 
-// export default class DrawerPage extends Component {
-//
-//     render() {
-//         return (
-//             <Drawer/>
-//         );
-//     }
-// }
+export default class DrawerPage extends Component {
+
+    render() {
+        return (
+            <Drawer/>
+        );
+    }
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
