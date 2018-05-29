@@ -102,7 +102,7 @@ export default class AddressPage extends Component {
         this.httpManager.requestAddresses(object,(response)=>{
             console.log("response",response);
             let mlist = [];
-            for (let idx in response.list.length) {
+            for (let idx in response.list) {
                 let item = response.list[idx];
                 mlist.push(item)
             }
@@ -124,9 +124,9 @@ export default class AddressPage extends Component {
                 footerState = RefreshState.NoMoreData;
             }
             // 更新movieList的值
-            let mList = this.state.movieList.concat(mlist);
+            let mList = this.state.mData.concat(mlist);
             that.setState({
-                movieList: mList,
+                mData: mList,
                 startPage: startPage
             });
             that.listView.endRefreshing(footerState);
