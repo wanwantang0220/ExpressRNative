@@ -33,7 +33,7 @@ export default class AddressPage extends Component {
         this.state = {
             mData: [],
             startPage: 1,   // 从第几页开始加载
-            pageSize: 10,   // 每页加载多少条数据
+            pageSize: 6,   // 每页加载多少条数据
         };
         this.httpManager = new HttpManager();
 
@@ -70,10 +70,10 @@ export default class AddressPage extends Component {
                     }}
                     ListEmptyComponent={this.renderEmptyView}
                     onHeaderRefresh={() => {
-                        this.requestData()
+                        this.requestRefreshData(true, false)
                     }}
                     onFooterRefresh={() => {
-                        this.requestData()
+                        this.requestRefreshData(false, true)
                     }}>
                 </RefreshListView>
             </View>
@@ -87,15 +87,31 @@ export default class AddressPage extends Component {
 
     renderItem = (item) => {
         return (
-            <AddressItemCell  address={item.item} onPress={() => {
+            <AddressItemCell address={item.item} onPress={() => {
                 alert(item.item.name);
             }}/>
         )
     };
 
 
-    requestData() {
-        let that = this;
+    /**
+     *
+     * @param isrefresh  刷新
+     * @param isloadmore 加载更多
+     */
+    requestRefreshData(isrefresh, isloadmore) {
+        if (isrefresh) {
+            let startpage=1 , mdata=[];
+            this.setState({
+                mData: mdata,
+                startPage: startpage
+            });
+            this.setState({title: 'React'});
+
+            this.state.mData=[];
+            this.state.startPage=1;
+        }
+
         let params = {
             "addUserPhone": "18961812572",
             // "addUserType": "2" ,
@@ -109,6 +125,8 @@ export default class AddressPage extends Component {
         let object = {
             "object": object2
         };
+
+        console.log("startPage", this.state.startPage);
 
         this.httpManager.requestAddresses(object, (response) => {
             console.log("response", response);
@@ -130,17 +148,17 @@ export default class AddressPage extends Component {
                 // 还有数据可以加载
                 footerState = RefreshState.CanLoadMore;
                 // 下次加载从第几条数据开始
-                startPage = startPage + mlist.length;
+                startPage = startPage + 1;
             } else {
                 footerState = RefreshState.NoMoreData;
             }
             // 更新movieList的值
-            let mList = this.state.mData.concat(mlist);
-            that.setState({
-                mData: mList,
+            let mData = this.state.mData.concat(mlist);
+            this.setState({
+                mData: mData,
                 startPage: startPage
             });
-            that.listView.endRefreshing(footerState);
+            this.listView.endRefreshing(footerState);
 
         });
 

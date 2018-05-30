@@ -76,9 +76,9 @@ export default class LoginPage extends Component {
 
             console.log("response.object.staffInfo", response.object.staffInfo);
             if (response.errCode === "000000") {
-                this.setState = {
+                this.setState({
                     userinfo: response.object.staffInfo
-                };
+                });
                 storage.save('userInfo', response.object.staffInfo);
                 storage.save('sessionId',response.object.sessionId);
                 storage.save('ssoToken',response.object.ssoToken);

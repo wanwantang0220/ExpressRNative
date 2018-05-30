@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#ffffff',
         padding: 10,
         borderBottomWidth: 1,
         borderColor: SeparatorColor
@@ -44,19 +44,21 @@ const styles = StyleSheet.create({
     rightContainer: {
         flex: 1,
         paddingLeft: 10,
-        paddingTop: 5,
-        paddingBottom: 5
+        paddingTop: 15,
+        paddingBottom: 15
     },
     title: {
+        flex:1,
         fontSize: 16,
         fontWeight: 'bold',
         color: '#333333',
         textAlign: 'left',
     },
     year: {
+        flex:1,
         textAlign: 'left',
         color: '#777777',
-        marginTop: 10,
+        marginTop: 20,
     },
     horizontalView: {
         flexDirection: 'row',
