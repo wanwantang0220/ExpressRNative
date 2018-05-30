@@ -74,10 +74,9 @@ export default class AddressAllPage extends Component {
     };
 
     renderItem = (item) => {
+        const navigator = this.props.navigator;
         return (
-            <AddressItemCell address={item.item} onPress={() => {
-                alert(item.item.name);
-            }}/>
+            <AddressItemCell address={item.item} navigator={navigator}/>
         )
     };
 
@@ -102,8 +101,8 @@ export default class AddressAllPage extends Component {
 
         let params = {
             "addUserPhone": "18961812572",
-            // "addUserType": "2" ,
-            // "addrType":"1"
+            "addUserType": "2" ,
+            "addrType":""
         };
         let object2 = {
             "object": params,

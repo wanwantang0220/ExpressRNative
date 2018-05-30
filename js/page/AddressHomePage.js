@@ -19,9 +19,9 @@ export default class AddressHomePage extends Component {
 
     static navigationOptions = {
         //标题
-        drawerLabel: '新的地址簿',
+        drawerLabel: '地址簿',
         //标题
-        title: "新的地址簿",
+        title: "地址簿",
         headerTitleStyle: {
             flex: 1,
             textAlign: "center",
@@ -40,6 +40,8 @@ export default class AddressHomePage extends Component {
 
 
     render() {
+
+        const navigator = this.props.navigation;
 
         return (
             <View style={[styles.container]}>
@@ -67,9 +69,9 @@ export default class AddressHomePage extends Component {
                             tabStyle={{height: 39}}
                             underlineHeight={2}/>}>
 
-                    <AddressAllPage tabLabel="    全部    " />
-                    <AddressReceiverPage tabLabel="    收件    " />
-                    <AddressSenderPage tabLabel="    发件    " />
+                    {/*<AddressAllPage tabLabel="    全部    "  navigator={navigator}/>*/}
+                    <AddressReceiverPage tabLabel="    收件    " navigator={navigator}/>
+                    <AddressSenderPage tabLabel="    发件    " navigator={navigator}/>
                 </ScrollableTabView>
 
             </View>

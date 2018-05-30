@@ -24,9 +24,9 @@ const Drawer = DrawerNavigator({
     AddressHome:{
       screen:AddressHomePage
     },
-    Address:{
-        screen: AddressPage
-    },
+    // Address:{
+    //     screen: AddressPage
+    // },
     Setting: {
         screen: SettingPage
     }

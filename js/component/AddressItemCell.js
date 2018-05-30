@@ -1,14 +1,23 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, View, Image, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, Image, Text, StyleSheet,Alert} from 'react-native';
 import {ColorTextGrey, SeparatorColor, White} from "../style/BaseStyle";
+import HttpManager from "../data/http/HttpManager";
 
 export default class AddressItemCell extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+        this.httpManager = new HttpManager();
+
+    }
+
     render() {
-        let {address,onPress} = this.props;
+        let {address,navigator} = this.props;
         const addressdetail = address.proviceCityRegionTxt + address.addrDetail;
         return (
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={this.onSelectPress.bind(this)}>
                 <View style={styles.container}>
                     <View style={styles.rightContainer}>
                         <Text style={styles.title}>{address.name}</Text>
@@ -19,6 +28,29 @@ export default class AddressItemCell extends Component {
             </TouchableOpacity>
         )
     }
+
+    onSelectPress(){
+        const address = this.props.address;
+        const navigator = this.props.navigator;
+        Alert.alert('提示','是否要编辑或删除',
+            [
+                {text:"编辑", onPress:this.opEditSelected.bind(this)},
+                {text:"删除", onPress:this.opDeleteSelected.bind(this)},
+            ]
+        );
+    }
+
+
+    opEditSelected(){
+        const address = this.props.address;
+        const navigator = this.props.navigator;
+        navigator.navigate('AddressEdit',{ address: address });
+    }
+
+
+    opDeleteSelected(){
+
+    }
 }
 
 const styles = StyleSheet.create({
@@ -27,8 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         padding: 10,
         borderBottomWidth: 1,
-        borderColor: SeparatorColor,
-        color:White
+        borderColor: SeparatorColor
     },
     thumbnail: {
         width: 110,

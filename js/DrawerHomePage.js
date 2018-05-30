@@ -2,6 +2,7 @@
 import HomePage from "./page/HomePage";
 import {StackNavigator} from "react-navigation";
 import WaitingOrderPager from "./page/WaitingOrderPager";
+import AddressEditPage from "./page/address/AddressEditPage";
 
 const DrawHomePage = StackNavigator({
     Home: {
@@ -9,6 +10,9 @@ const DrawHomePage = StackNavigator({
     },
     WaitingOrder:{
         screen:WaitingOrderPager
+    },
+    AddressEdit:{
+        screen:AddressEditPage
     }
 
 });
