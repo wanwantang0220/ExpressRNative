@@ -3,19 +3,15 @@
  **/
 
 import React, {Component} from 'react';
-import {Dimensions, Image, StyleSheet, View, Text, StatusBar, TouchableOpacity} from "react-native";
-import NaviBarView from "../component/NaviBarView";
-import {BackgroundColor, BackgroundColorLight, GrayColor, White} from "../style/BaseStyle";
-import {deviceWidth} from "../util/ScreenUtil";
-import TitleView from "../component/TitleView";
-import HttpManager from "../data/http/HttpManager";
-import RefreshListView from "../component/refresh/RefreshListView";
-import RefreshState from "../component/refresh/RefreshState";
-import AddressItemCell from "../component/AddressItemCell";
-import LinearGradient from "react-native-linear-gradient";
+import { StyleSheet, View} from "react-native";
+import RefreshListView from "../../component/refresh/RefreshListView";
+import AddressItemCell from "../../component/AddressItemCell";
+import {deviceWidth} from "../../util/ScreenUtil";
+import HttpManager from "../../data/http/HttpManager";
+import RefreshState from "../../component/refresh/RefreshState";
+import {White} from "../../style/BaseStyle";
 
-
-export default class AddressPage extends Component {
+export default class AddressAllPage extends Component {
 
     static navigationOptions = {
         //标题
@@ -49,17 +45,7 @@ export default class AddressPage extends Component {
 
         return (
             <View style={[styles.container]}>
-                <StatusBar
-                    animated={true}
-                    backgroundColor="black"
-                    barStyle='light-content'/>
-                <NaviBarView backgroundColor="black"/>
-                <TitleView title='地址簿' onBack={() => {
-                    this.props.navigation.pop();
-                }}/>
 
-                <LinearGradient colors={[ BackgroundColorLight, White]} style={styles.lineargradient}>
-                </LinearGradient>
                 <RefreshListView
                     ref={(ref) => {
                         this.listView = ref
@@ -198,9 +184,5 @@ const styles = StyleSheet.create({
         height: 26,
         alignSelf: 'center',
         marginRight: 20,
-    },
-    lineargradient:{
-        width:deviceWidth,
-        height:20
     }
 });

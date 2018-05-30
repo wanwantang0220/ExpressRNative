@@ -1,26 +1,20 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, View, Image, Text, StyleSheet} from 'react-native';
-import {SeparatorColor} from "../style/BaseStyle";
+import {ColorTextGrey, SeparatorColor, White} from "../style/BaseStyle";
 
 export default class AddressItemCell extends Component {
 
     render() {
-        let {key,address,onPress} = this.props;
+        let {address,onPress} = this.props;
+        const addressdetail = address.proviceCityRegionTxt + address.addrDetail;
         return (
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.container}>
                     <View style={styles.rightContainer}>
                         <Text style={styles.title}>{address.name}</Text>
-                        <Text style={styles.year}>{address.phone}</Text>
-                        <View style={styles.horizontalView}>
-                            <Text style={styles.titleTag}>地址：</Text>
-                            <Text style={styles.name}>{address.proviceCityRegionTxt}</Text>
-                        </View>
-                        <View style={styles.horizontalView}>
-                            <Text style={styles.titleTag}>详情：</Text>
-                            <Text style={styles.name}>{address.addrDetail}</Text>
-                        </View>
+                        <Text style={styles.phone}>{address.phone}</Text>
                     </View>
+                            <Text style={styles.address}>{addressdetail}</Text>
                 </View>
             </TouchableOpacity>
         )
@@ -29,12 +23,12 @@ export default class AddressItemCell extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: '#ffffff',
         padding: 10,
         borderBottomWidth: 1,
-        borderColor: SeparatorColor
+        borderColor: SeparatorColor,
+        color:White
     },
     thumbnail: {
         width: 110,
@@ -43,22 +37,23 @@ const styles = StyleSheet.create({
     },
     rightContainer: {
         flex: 1,
+        flexDirection:'row',
         paddingLeft: 10,
-        paddingTop: 15,
-        paddingBottom: 15
+        paddingTop: 5,
+        paddingBottom: 5
     },
     title: {
-        flex:1,
+        flex:2,
         fontSize: 16,
         fontWeight: 'bold',
         color: '#333333',
         textAlign: 'left',
     },
-    year: {
+    phone: {
         flex:1,
-        textAlign: 'left',
+        fontSize: 14,
         color: '#777777',
-        marginTop: 20,
+        textAlign: 'right',
     },
     horizontalView: {
         flexDirection: 'row',
@@ -67,12 +62,13 @@ const styles = StyleSheet.create({
     titleTag: {
         color: '#666666',
     },
-    score: {
-        color: '#ff8800',
-        fontWeight: 'bold',
-    },
-    name: {
-        color: '#333333',
-        flex: 1
+    address: {
+        flex:1,
+        fontSize: 14,
+        color: ColorTextGrey,
+        textAlign: 'left',
+        paddingLeft: 10,
+        paddingTop: 5,
+        paddingBottom: 5
     },
 });
