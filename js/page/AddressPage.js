@@ -11,6 +11,7 @@ import TitleView from "../component/TitleView";
 import HttpManager from "../data/http/HttpManager";
 import RefreshListView from "../component/refresh/RefreshListView";
 import RefreshState from "../component/refresh/RefreshState";
+import AddressItemCell from "../component/AddressItemCell";
 
 
 export default class AddressPage extends Component {
@@ -19,27 +20,27 @@ export default class AddressPage extends Component {
         //标题
         drawerLabel: '地址簿',
         //标题
-        title:"地址簿",
-        headerTitleStyle:{
+        title: "地址簿",
+        headerTitleStyle: {
             flex: 1,
-            textAlign:"center",
+            textAlign: "center",
         },
-        headerRight:<View/>
+        headerRight: <View/>
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            mData:[],
+        this.state = {
+            mData: [],
             startPage: 1,   // 从第几页开始加载
             pageSize: 10,   // 每页加载多少条数据
         };
-        this.httpManager  = new HttpManager();
+        this.httpManager = new HttpManager();
 
     }
 
     componentDidMount() {
-        this.requestData();
+        this.listView.beginHeaderRefresh();
     }
 
 
@@ -53,19 +54,28 @@ export default class AddressPage extends Component {
                     barStyle='light-content'
                 />
                 <NaviBarView backgroundColor="black"/>
-                <TitleView title='地址簿' onBack={()=>{
+                <TitleView title='地址簿' onBack={() => {
                     this.props.navigation.pop();
                 }}/>
 
                 <RefreshListView
-                    ref={(ref) => {this.listView = ref}}
+                    ref={(ref) => {
+                        this.listView = ref
+                    }}
+                    colors={['red', '#ffd500', '#0080ff', '#99e600']}
                     data={this.state.mData}
                     renderItem={this.renderItem}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => {
+                        return item._id || item.uuid;
+                    }}
                     ListEmptyComponent={this.renderEmptyView}
-                    onHeaderRefresh={() => { this.requestData() }}
-                    onFooterRefresh={() => { this.requestData() }}
-                />
+                    onHeaderRefresh={() => {
+                        this.requestData()
+                    }}
+                    onFooterRefresh={() => {
+                        this.requestData()
+                    }}>
+                </RefreshListView>
             </View>
         )
     }
@@ -77,30 +87,31 @@ export default class AddressPage extends Component {
 
     renderItem = (item) => {
         return (
-            <Text>tece</Text>
+            <AddressItemCell  address={item.item} onPress={() => {
+                alert(item.item.name);
+            }}/>
         )
     };
 
 
-
-    requestData(){
+    requestData() {
         let that = this;
         let params = {
             "addUserPhone": "18961812572",
-            "addUserType": "2" ,
-            "addrType":"1"
+            // "addUserType": "2" ,
+            // "addrType":"1"
         };
-        let object2={
-            "object":params,
-            "pageRow":this.state.pageSize,
-            "startPage":this.state.startPage
+        let object2 = {
+            "object": params,
+            "pageRow": this.state.pageSize,
+            "startPage": this.state.startPage
         };
         let object = {
             "object": object2
         };
 
-        this.httpManager.requestAddresses(object,(response)=>{
-            console.log("response",response);
+        this.httpManager.requestAddresses(object, (response) => {
+            console.log("response", response);
             let mlist = [];
             for (let idx in response.list) {
                 let item = response.list[idx];
@@ -119,7 +130,7 @@ export default class AddressPage extends Component {
                 // 还有数据可以加载
                 footerState = RefreshState.CanLoadMore;
                 // 下次加载从第几条数据开始
-                startPage = startPage+ mlist.length;
+                startPage = startPage + mlist.length;
             } else {
                 footerState = RefreshState.NoMoreData;
             }

@@ -37,8 +37,8 @@ export default class TitleView extends Component {
                     <Image
                         source={require('../../img/icon_back.png')}
                         style={[styles.toolbar_left_img]}
-                        tintColor={White}/>
-                    <Text style={[styles.toolbar_left_text]}>返回</Text>
+                       />
+                    {/*<Text style={[styles.toolbar_left_text]}>返回</Text>*/}
                 </TouchableOpacity>
                 <View style={[styles.toolbar_middle]}>
                     <Text style={[styles.toolbar_middle_text]}>{title}</Text>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         width: 26,
         height: 26,
         alignSelf: 'center',
-        marginLeft: 6,
+        marginLeft: 10,
     },
     toolbar_middle: {
         flex: 1,

@@ -5,6 +5,7 @@ import JsonUtil from "./JsonUtil";
 
 /*基础链接头*/
 const BaseUrl = "https://manager.xilaikd.com/xilaireceiver_s";
+// const BaseUrl = "http://10.10.10.166:1882";
 /*待打单*/
 const WAIT_ACCEPT_ORDER = "/order/queryWaitAcceptOrder";
 

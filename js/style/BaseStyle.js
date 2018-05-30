@@ -11,6 +11,9 @@ const MikeWhiteColor = '#f0ffff';
 const BlackTextColor = '#444444';
 const BlackColor = '#000000';
 const WhiteTextColor = '#ffffff';
+const ThemeColor = '#268dcd';
+const SeparatorColor = '#e0e0e0';
+const BackgroundColor = '#f3f3f3';
 
 const BaseStyles = StyleSheet.create({
     baseWhiteText: {
@@ -39,4 +42,7 @@ export {
     BlackTextColor,
     WhiteTextColor,
     BaseStyles,
+    ThemeColor,
+    SeparatorColor,
+    BackgroundColor
 }
