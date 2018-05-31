@@ -21,7 +21,7 @@ export default class TouchableView extends Component {
     }
 
     render() {
-        if (Platform.OS == 'ios') {
+        if (Platform.OS === 'ios') {
             return (
                 <TouchableOpacity
                     onPress={this.props.onPress}>

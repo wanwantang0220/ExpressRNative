@@ -3,18 +3,18 @@
  **/
 
 import React, {Component} from 'react';
-import {Dimensions, Image, StyleSheet, View, Text, StatusBar, TextInput} from "react-native";
-import {BackgroundColorLight, BlackColor, White} from "../../style/BaseStyle";
-import NaviBarView from "../../component/NaviBarView";
-import TitleView from "../../component/TitleView";
+import {Button, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {BlackColor, ColorEnd, ColorStart} from "../../style/BaseStyle";
 import LinearGradient from "react-native-linear-gradient";
-import {deviceWidth} from "../../util/ScreenUtil";
 import Line from "../../component/Line";
-
+import styles from "../../style/Css";
+import HttpManager from "../../data/http/HttpManager";
+import {storage} from '../../data/storage/Storage';
+import {show} from "../../util/ToastUtils";
 
 export default class AddressEditPage extends Component {
 
-    static navigationOptions = ({ navigation }) => ({
+    static navigationOptions = ({navigation}) => ({
         //标题
         drawerLabel: '编辑地址',
         //标题
@@ -26,82 +26,115 @@ export default class AddressEditPage extends Component {
         headerRight: <View/>
     });
 
+    constructor(props) {
+        super(props);
+        const {params} = this.props.navigation.state;
 
+        this.state = {
+            userinfo: {},
+            address: params.address,
+            name: params.address.name,
+            phone: params.address.phone,
+            proviceCityRegionTxt: params.address.proviceCityRegionTxt,
+            addrDetail: params.address.addrDetail
+        };
+        storage.load("userInfo", (data) => {
+            this.setState({
+                userinfo: data
+            })
+        });
 
-    componentWillUpdate() {
-    };
-
-    componentDidUpdate() {
+        this.httpManager = new HttpManager();
     }
+
 
     render() {
 
-        const { params } = this.props.navigation.state;
-        console.log("params",params);
+        const {params} = this.props.navigation.state;
+        console.log("params", params);
 
         return (
-            <View>
-                <StatusBar
-                    animated={true}
-                    backgroundColor="black"
-                    barStyle='light-content'/>
-
-                <LinearGradient colors={[ BackgroundColorLight, White]} style={styles.lineargradient}>
-                </LinearGradient>
-
-                <View style={[styles.cardview]}>
-                    <View  style={[styles.item]}>
-                        <Text style={[styles.item_left]}>姓名</Text>
-                        <TextInput style={[styles.item_right]} placeholder={params.address.name} underlineColorAndroid="transparent"/>
+            <View style={{flex: 1}}>
+                <View style={[styles.address_edit_cardview]}>
+                    <View style={[styles.address_edit_item]}>
+                        <Text style={[styles.address_edit_item_left]}>姓名</Text>
+                        <TextInput style={[styles.address_edit_item_right]}
+                                   value={this.state.name}
+                                   underlineColorAndroid="transparent"
+                                   onChangeText={(text) => this.setState({name: text})}/>
                     </View>
                     <Line color={BlackColor}/>
-                    <View  style={[styles.item]}>
-                        <Text style={[styles.item_left]}>姓名</Text>
-                        <TextInput style={[styles.item_right]} placeholder={params.address.name} underlineColorAndroid="transparent"/>
+                    <View style={[styles.address_edit_item]}>
+                        <Text style={[styles.address_edit_item_left]}>联系方式</Text>
+                        <TextInput style={[styles.address_edit_item_right]}
+                                   value={this.state.phone}
+                                   underlineColorAndroid="transparent"
+                                   onChangeText={(text) => this.setState({phone: text})}/>
+                    </View>
+                    <Line color={BlackColor}/>
+                    <View style={[styles.address_edit_item]}>
+                        <Text style={[styles.address_edit_item_left]}>所在区域</Text>
+                        <TextInput style={[styles.address_edit_item_right]}
+                                   value={this.state.proviceCityRegionTxt}
+                                   underlineColorAndroid="transparent"
+                                   onChangeText={(text) => this.setState({proviceCityRegionTxt: text})}/>
+                    </View>
+                    <Line color={BlackColor}/>
+                    <View style={[styles.address_edit_item]}>
+                        <Text style={[styles.address_edit_item_left]}>详细地址</Text>
+                        <TextInput style={[styles.address_edit_item_right]}
+                                   value={this.state.addrDetail}
+                                   underlineColorAndroid="transparent"
+                                   onChangeText={(text) => this.setState({addrDetail: text})}/>
                     </View>
                 </View>
+
+                <LinearGradient colors={[ColorStart, ColorEnd]}
+                                style={[styles.address_edit_lineargradient, {marginTop: 30}]}
+                                start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}>
+                    <TouchableOpacity
+                        activeOpacity={0.75}
+                        onPress={this.pressSave.bind(this)}>
+                        <Text style={[styles.btn_text]}>保存</Text>
+                    </TouchableOpacity>
+                </LinearGradient>
+                <Text onPress={this.hello.bind(this)}> 你好 !! </Text>
+
             </View>
         )
     }
+
+    pressSave() {
+        const address = this.state.address;
+        const name = this.state.name;
+        const phone = this.state.phone;
+        const proviceCityRegionTxt = this.state.proviceCityRegionTxt;
+        const addrDetail = this.state.addrDetail;
+
+
+        const addUserName = this.state.userinfo.perName;
+        const addUserPhone = this.state.userinfo.phone;
+
+        let params = {
+            "uuid": address.uuid,
+            "name": name,
+            "phone": phone,
+            "proviceCityRegionTxt": proviceCityRegionTxt,
+            "addrDetail": addrDetail,
+            "addrType": "",
+            "addUserType": "2",
+            "longitude": "",
+            "latitude": "",
+            "addUserPhone": addUserPhone,
+            "addUserName": addUserName
+        };
+        let object = {
+            "object": params
+        };
+        this.httpManager.postEditAddress(object, (response) => {
+            console.log("address edit response", response);
+            show('修改成功');
+        })
+    }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    cardview:{
-        width: deviceWidth-20,
-        height: 200,
-        backgroundColor: 'white',
-        borderRadius: 5,
-        elevation: 3,
-        marginTop:10,
-        marginRight:10,
-        marginLeft:10
-    },
-    item:{
-        flex:1,
-        flexDirection:'row',
-        width:deviceWidth,
-        height:45,
-        marginStart:10,
-        marginEnd:10,
-        marginTop:10
-    },
-    item_left:{
-        flex:1,
-        width:100,
-        height:45,
-        justifyContent: 'center',
-        color:BlackColor,
-        fontWeight: 'bold',
-    },
-    item_right:{
-        flex:3,
-        width:100,
-        height:45,
-        justifyContent: 'center',
-    }
-});

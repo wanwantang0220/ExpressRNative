@@ -11,7 +11,7 @@ const WAIT_ACCEPT_ORDER = "/order/queryWaitAcceptOrder";
 
 const LOGIN = "/user/login";
 const ADDRESS_LIST = "/addressBook/queryBySearchFilter";
-
+const ADDRESS_EDIT = "/addressBook/update";
 
 export default class HttpManager {
 
@@ -20,18 +20,18 @@ export default class HttpManager {
      * @param start
      * @param count
      */
-    getWaitOrder(data,callback) {
+    getWaitOrder(data, callback) {
 
-        const  url = BaseUrl + WAIT_ACCEPT_ORDER;
+        const url = BaseUrl + WAIT_ACCEPT_ORDER;
         return new Promise((resolve, reject) => {
-            this.postNetData(url,data)
+            this.postNetData(url, data)
                 .then((data) => {
                     if (data != null) {
-                        if(data.errCode==="000000"){
+                        if (data.errCode === "000000") {
                             callback(data.object);
-                        }else if(data.errDesc != null && data.errDesc!=""){
+                        } else if (data.errDesc != null && data.errDesc != "") {
                             reject(ErrorAnayle.getErrorMsg(data.errDesc))
-                        }else{
+                        } else {
                             reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
                         }
                     } else {
@@ -65,7 +65,7 @@ export default class HttpManager {
 
 
     /*请求数据=本地加网络*/
-    postNetData(url,data) {
+    postNetData(url, data) {
         let header = {
             method: 'POST',
             headers: {
@@ -75,7 +75,7 @@ export default class HttpManager {
             body: JsonUtil.jsonToStr(data)
         };
         return new Promise((resolve, reject) => {
-            fetch(url,header)
+            fetch(url, header)
                 .then((response) => response.json())
                 .then((responseData) => {
                     resolve(responseData);
@@ -88,13 +88,12 @@ export default class HttpManager {
     }
 
 
-
     /**
      * 登录
      * @param data
      * @param callback
      */
-    requestLogin(data,callback) {
+    requestLogin(data, callback) {
 
         const url = BaseUrl + LOGIN;
         const fetchOptions = {
@@ -121,17 +120,48 @@ export default class HttpManager {
      * @param param2
      */
     requestAddresses(data, callback) {
-        const  url = BaseUrl + ADDRESS_LIST;
+        const url = BaseUrl + ADDRESS_LIST;
         return new Promise((resolve, reject) => {
-            this.postNetData(url,data)
+            this.postNetData(url, data)
                 .then((data) => {
-                    console.log("response address list ",data);
+                    console.log("response address list ", data);
                     if (data != null) {
-                        if(data.errCode==="000000"){
+                        if (data.errCode === "000000") {
                             callback(data.object);
-                        }else if(data.errDesc != null && data.errDesc!=""){
+                        } else if (data.errDesc != null && data.errDesc != "") {
                             reject(ErrorAnayle.getErrorMsg(data.errDesc))
-                        }else{
+                        } else {
+                            reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                        }
+                    } else {
+                        reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                    }
+                }).catch((error) => {
+                if (error != null && error instanceof ErrorBean) {
+                    reject(error)
+                } else {
+                    reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                }
+            })
+        })
+    }
+
+    /**
+     * 编辑地址
+     * @param data
+     * @param callback
+     */
+    postEditAddress(data, callback) {
+        const url = BaseUrl + ADDRESS_EDIT;
+        return new Promise((resolve, reject) => {
+            this.postNetData(url, data)
+                .then((data) => {
+                    if (data != null) {
+                        if (data.errCode === "000000") {
+                            callback(data.object);
+                        } else if (data.errDesc != null && data.errDesc != "") {
+                            reject(ErrorAnayle.getErrorMsg(data.errDesc))
+                        } else {
                             reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
                         }
                     } else {

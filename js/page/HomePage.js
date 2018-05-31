@@ -95,14 +95,9 @@ export default class HomePage extends Component {
                 <View style={{flexDirection: 'row', marginLeft: 15, marginRight: 15, marginTop: 10}}>
                     <TouchableOpacity
                         style={[styles.viewBg, {flex: 1, marginLeft: 15}]}
+                        activeOpacity={0.85}
                         onPress={() => this.props.navigation.navigate('Maps')}>
-
-                        <Text style={{
-                            marginLeft: 15,
-                            marginTop: 15,
-                            fontSize: 20,
-                            fontWeight: 'bold',
-                            color: '#333333'
+                        <Text style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'
                         }}>下单</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
