@@ -22,6 +22,7 @@ export default class AddressHomePage extends Component {
         drawerLabel: '地址簿',
         //标题
         title: "地址簿",
+        drawerLockMode:'locked-closed',
         headerTitleStyle: {
             flex: 1,
             textAlign: "center",

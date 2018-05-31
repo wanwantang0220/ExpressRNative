@@ -32,18 +32,20 @@ export default class TitleView extends Component {
         return (
             <View style={[styles.toolbar, {backgroundColor: "white"}]}>
                 <TouchableOpacity
-                    style={{flexDirection:'row'}}
-                    onPress={() => {onBack()}}>
+                    style={{flexDirection: 'row'}}
+                    onPress={() => {
+                        onBack()
+                    }}>
                     <Image
                         source={require('../../img/icon_back.png')}
                         style={[styles.toolbar_left_img]}
-                       />
+                    />
                     {/*<Text style={[styles.toolbar_left_text]}>返回</Text>*/}
                 </TouchableOpacity>
                 <View style={[styles.toolbar_middle]}>
                     <Text style={[styles.toolbar_middle_text]}>{title}</Text>
                 </View>
-
+                <Text >测试</Text>
             </View>
         );
     }
@@ -65,9 +67,9 @@ const styles = StyleSheet.create({
     toolbar_middle: {
         flex: 1,
         alignItems: 'center',
-        marginRight:50
+        marginRight: 50
     },
-    toolbar_left_text:{
+    toolbar_left_text: {
         fontSize: 14,
         fontWeight: '300',
         color: BlackColor,

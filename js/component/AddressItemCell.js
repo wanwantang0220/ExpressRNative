@@ -44,7 +44,7 @@ export default class AddressItemCell extends Component {
     opEditSelected(){
         const address = this.props.address;
         const navigator = this.props.navigator;
-        navigator.navigate('AddressEdit',{ address: address });
+        navigator.push('AddressEdit',{ address: address });
     }
 
 

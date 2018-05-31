@@ -11,6 +11,7 @@ import styles from "../../style/Css";
 import HttpManager from "../../data/http/HttpManager";
 import {storage} from '../../data/storage/Storage';
 import {show} from "../../util/ToastUtils";
+import {NavigationActions} from 'react-navigation';
 
 export default class AddressEditPage extends Component {
 
@@ -19,6 +20,7 @@ export default class AddressEditPage extends Component {
         drawerLabel: '编辑地址',
         //标题
         title: "编辑地址",
+        drawerLockMode:'locked-closed',
         headerTitleStyle: {
             flex: 1,
             textAlign: "center",
@@ -98,10 +100,14 @@ export default class AddressEditPage extends Component {
                         <Text style={[styles.btn_text]}>保存</Text>
                     </TouchableOpacity>
                 </LinearGradient>
-                <Text onPress={this.hello.bind(this)}> 你好 !! </Text>
 
+                <Text onPress={this.goBack.bind(this)}>返回</Text>
             </View>
         )
+    }
+
+    goBack(){
+        this.props.navigation.goBack();
     }
 
     pressSave() {
@@ -134,6 +140,8 @@ export default class AddressEditPage extends Component {
         this.httpManager.postEditAddress(object, (response) => {
             console.log("address edit response", response);
             show('修改成功');
+            // this.props.navigation.back();
+            this.props.navigation.pop();
         })
     }
 }

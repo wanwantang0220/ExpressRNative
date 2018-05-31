@@ -1,16 +1,11 @@
 //根视图
 import React, {Component} from 'react';
-import {
-    StyleSheet,
-    View, ScrollView, Image, Dimensions
-} from 'react-native';
+import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import DrawerHomePage from './DrawerHomePage';
-import DrawerLeftPage from './DrawerLeftPage';
-import {DrawerNavigator, DrawerItems} from 'react-navigation';
+import {DrawerItems, DrawerNavigator} from 'react-navigation';
 import {deviceWidth} from "./util/ScreenUtil";
 import MyOrderListPage from "./page/MyOrderListPage";
 import SettingPage from "./page/SettingPage";
-import AddressPage from "./page/AddressPage";
 import AddressHomePage from "./page/AddressHomePage";
 
 const Drawer = DrawerNavigator({
