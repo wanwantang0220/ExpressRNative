@@ -7,10 +7,11 @@ import {deviceWidth} from "./util/ScreenUtil";
 import MyOrderListPage from "./page/MyOrderListPage";
 import SettingPage from "./page/SettingPage";
 import AddressHomePage from "./page/AddressHomePage";
+import HomePage from "./page/HomePage";
 
 const Drawer = DrawerNavigator({
     DrawHome: {
-        screen: DrawerHomePage
+        screen: HomePage
     },
     MyOrder: {
         title: "我的订单",
@@ -73,6 +74,7 @@ export default class DrawerPage extends Component {
     render() {
         return (
             <Drawer/>
+
         );
     }
 }

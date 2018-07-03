@@ -3,14 +3,13 @@
  **/
 
 import React, {Component} from 'react';
-import {Dimensions, Image, StyleSheet, View, Text, StatusBar} from "react-native";
-import {BackgroundColorLight, BlackTextColor, GrayBlackColor, White} from "../style/BaseStyle";
+import {StatusBar, StyleSheet, View} from "react-native";
+import {BackgroundColorLight, BlackTextColor, White} from "../style/BaseStyle";
 import NaviBarView from "../component/NaviBarView";
 import TitleView from "../component/TitleView";
 import LinearGradient from "react-native-linear-gradient";
-import ScrollableTabView, {DefaultTabBar,ScrollableTabBar} from 'react-native-scrollable-tab-view';
+import ScrollableTabView, {ScrollableTabBar} from 'react-native-scrollable-tab-view';
 import {deviceWidth} from "../util/ScreenUtil";
-import AddressAllPage from "./address/AddressAllPage";
 import AddressReceiverPage from "./address/AddressReceiverPage";
 import AddressSenderPage from "./address/AddressSenderPage";
 

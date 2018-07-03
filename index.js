@@ -1,6 +1,6 @@
 import {AppRegistry} from 'react-native';
-import App from './App';
+import Root from './js/Root';
 import DrawerPage from './js/DrawerPage';
 import SplashPage from './js/SplashPage';
 
-AppRegistry.registerComponent('ExpressRNative', () => App);
+AppRegistry.registerComponent('ExpressRNative', () => Root);

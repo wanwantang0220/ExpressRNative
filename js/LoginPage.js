@@ -22,8 +22,8 @@ export default class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "18961812572",
-            password: "zd521036",
+            userName: "8181135",
+            password: "365853",
             userinfo: {}
         };
         this.httpManager = new HttpManager();
@@ -39,13 +39,13 @@ export default class LoginPage extends Component {
                     <View style={{flex: 1}}/>
                     <View style={{flex: 1}}>
                         <EditView
-                            name='18961812572'
+                            name='8181135'
                             onChangeText={(text) => {
                                 this.userName = text;
                             }}/>
 
                         <EditView
-                            name='zd521036'
+                            name='365853'
                             onChangeText={(text) => {
                                 this.password = text;
                             }}/>
@@ -65,8 +65,8 @@ export default class LoginPage extends Component {
 
     pressLogin = () => {
         let params = {
-            "username": "18961812572",//this.userName,
-            "password": "zd521036" //this.password
+            "username": "8181135",//this.userName,
+            "password": "365853" //this.password
         };
         let object = {
             "object": params
