@@ -16,6 +16,9 @@ import DrawerPage from "./DrawerPage";
 import EditView from "./component/EditView";
 import HttpManager from "./data/http/HttpManager";
 import {storage} from './data/storage/Storage';
+import {connect} from "react-redux";
+import * as loginAction from './actions/loginAction';
+
 
 export default class LoginPage extends Component {
 
@@ -99,6 +102,28 @@ export default class LoginPage extends Component {
         }
     }
 }
+
+const mapStateToProps = (state) =>({
+    status: state.loginIn.status,
+    isSuccess: state.loginIn.isSuccess,
+    object: state.loginIn.object,
+});
+
+const mapDispatchToProps =(dispatch) =>({
+    loginIn: param => dispatch(loginAction.login(param))
+
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(LoginPage)
+
+
+
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
     flex: {
