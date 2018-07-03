@@ -18,9 +18,10 @@ import HttpManager from "./data/http/HttpManager";
 import {storage} from './data/storage/Storage';
 import {connect} from "react-redux";
 import * as loginAction from './actions/loginAction';
+import {StackActions,NavigationActions} from "react-navigation";
 
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
 
     constructor(props) {
         super(props);
@@ -30,6 +31,23 @@ export default class LoginPage extends Component {
             userinfo: {}
         };
         this.httpManager = new HttpManager();
+    }
+
+
+    shouldComponentUpdate(nextProps,nextState) {
+
+        if(nextProps.status === 'success' && nextProps.isSuccess){
+            const resetAction = StackActions.reset({
+                index:0,
+                actions:[NavigationActions.navigate({routerName:'Home'})]
+            });
+            console.log("status", nextProps.status);
+            this.props.navigation.dispatch(resetAction);
+            return false;
+        }else{
+            console.log("status", nextProps.status);
+        }
+        return true;
     }
 
     render() {
@@ -75,22 +93,26 @@ export default class LoginPage extends Component {
             "object": params
         };
 
-        this.httpManager.requestLogin(object, (response) => {
 
-            console.log("response.object.staffInfo", response.object.staffInfo);
-            if (response.errCode === "000000") {
-                this.setState({
-                    userinfo: response.object.staffInfo
-                });
-                storage.save('userInfo', response.object.staffInfo);
-                storage.save('sessionId',response.object.sessionId);
-                storage.save('ssoToken',response.object.ssoToken);
-                this.onLoginSuccess();
-            } else {
-                alert(responseText.errDesc);
-            }
+        let {loginIn} = this.props;
+        loginIn(object);
 
-        });
+        // this.httpManager.requestLogin(object, (response) => {
+        //
+        //     console.log("response.object.staffInfo", response.object.staffInfo);
+        //     if (response.errCode === "000000") {
+        //         this.setState({
+        //             userinfo: response.object.staffInfo
+        //         });
+        //         storage.save('userInfo', response.object.staffInfo);
+        //         storage.save('sessionId',response.object.sessionId);
+        //         storage.save('ssoToken',response.object.ssoToken);
+        //         this.onLoginSuccess();
+        //     } else {
+        //         alert(responseText.errDesc);
+        //     }
+        //
+        // });
     };
 
     onLoginSuccess() {

@@ -1,12 +1,13 @@
 import {BaseUrl} from "../data/HttpURL";
 import JsonUtil from "../data/http/JsonUtil";
-import {LOGIN_REGISTER, RESULT_OK} from "../data/ContastURL";
+import {LOGIN, RESULT_OK} from "../data/ContastURL";
 import {storage} from "../data/storage/Storage";
 import * as types from "../constant/ActionType";
 
 
 export function login(params) {
-    const url = BaseUrl + LOGIN_REGISTER;
+
+    const url = BaseUrl + LOGIN;
     const fetchOptions = {
         method: 'POST',
         headers: {
@@ -17,21 +18,17 @@ export function login(params) {
     };
 
     console.log("params", JsonUtil.jsonToStr(params));
-    return dispatch=>{
 
+    return dispatch=>{
         dispatch(isLogining());
         let result = fetch(url,fetchOptions)
             .then((response)=>response.json())
             .then((responseText)=> {
                 if(responseText.errCode === RESULT_OK){
                     //存储用户信息
-                    let authUser = responseText.object.authUser;
-                    let staffInfo = responseText.object.staffInfo;
-                    storage.save('userName', authUser.userName);
-                    storage.save('userId', authUser.userId);
-                    storage.save('staffInfo', staffInfo);
-                    //存储用户Token
-                    storage.save('cookie', 'SESSION=' + responseText.object.sessionId + ';SSOTOKEN=' + responseText.object.ssoToken);
+                    storage.save('userInfo', response.object.staffInfo);
+                    storage.save('sessionId',response.object.sessionId);
+                    storage.save('ssoToken',response.object.ssoToken);
                     dispatch(verCodeSuccess(true,responseText.object));
                 }else{
                     dispatch(verCodeError(false));

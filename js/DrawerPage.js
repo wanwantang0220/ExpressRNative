@@ -2,16 +2,15 @@
 import React, {Component} from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import DrawerHomePage from './DrawerHomePage';
-import {DrawerItems, DrawerNavigator} from 'react-navigation';
+import {createDrawerNavigator, DrawerItems, DrawerNavigator} from 'react-navigation';
 import {deviceWidth} from "./util/ScreenUtil";
 import MyOrderListPage from "./page/MyOrderListPage";
 import SettingPage from "./page/SettingPage";
 import AddressHomePage from "./page/AddressHomePage";
-import HomePage from "./page/HomePage";
 
-const Drawer = DrawerNavigator({
+const Drawer = createDrawerNavigator({
     DrawHome: {
-        screen: HomePage
+        screen: DrawerHomePage
     },
     MyOrder: {
         title: "我的订单",

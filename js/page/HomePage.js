@@ -17,8 +17,8 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTIm
 export default class HomePage extends Component {
 
     static navigationOptions = {
+        title:'首页',
         drawerLabel: '首页',
-        header: null,
     };
 
     constructor(props) {
@@ -47,7 +47,7 @@ export default class HomePage extends Component {
                     <TouchableOpacity
                         onPress={() => {
                             //点击打开抽屉
-                            this.props.navigation.navigate('DrawerOpen')
+                            this.props.navigation.openDrawer();
                         }}>
                         <Image
                             source={require('../../img/icon_menu.png')}

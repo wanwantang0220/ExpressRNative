@@ -1,10 +1,10 @@
 
 import HomePage from "./page/HomePage";
-import {StackNavigator} from "react-navigation";
+import {createStackNavigator, StackNavigator} from "react-navigation";
 import WaitingOrderPager from "./page/WaitingOrderPager";
 import AddressEditPage from "./page/address/AddressEditPage";
 
-const DrawHomePage = StackNavigator({
+const DrawHomePage = createStackNavigator({
     Home: {
         screen: HomePage
     },
