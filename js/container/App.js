@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {createStackNavigator, StackNavigator} from 'react-navigation';
-import LaunchPage from "../LaunchPage";
 import LoginPage from "../LoginPage";
 import SettingPage from "../page/SettingPage";
 import MyOrderListPage from "../page/MyOrderListPage";
@@ -10,11 +9,15 @@ import AddressEditPage from "../page/address/AddressEditPage";
 import WaitingOrderPager from "../page/WaitingOrderPager";
 import {BaseStyles} from "../style/BaseStyle";
 import DrawerPage from "../DrawerPage";
+import SplashPage from "../SplashPage";
 
 
 const App = createStackNavigator({
-    Launch: {
-        screen: LaunchPage,
+    Splash:{
+        screen:SplashPage
+    },
+    Drawer:{
+        screen:DrawerPage
     },
     MyOrder: {
         title: "我的订单",
@@ -27,13 +30,11 @@ const App = createStackNavigator({
         screen: SettingPage
     },
     Login: {
-        screen: LoginPage,
-        navigationOptions: ({navigation}) => ({header: null, gesturesEnable: true}),
-        headerMode: 'none'
-
+        screen: LoginPage
     },
     Home: {
-        screen: HomePage
+        screen: HomePage,
+        headerMode: 'none'
     },
     WaitingOrder:{
         screen:WaitingOrderPager
@@ -43,16 +44,22 @@ const App = createStackNavigator({
     }
 },
     {
-        initialRouteName: 'Launch',
+        initialRouteName: 'Splash',
         navigationOptions: {    //不要在此处设置 否则后面全部被覆盖
-            headerStyle: [{backgroundColor: 'white',borderBottomColor:'white'}],
+            headerStyle: [{backgroundColor: '#000000',borderBottomColor:'#000000'}],
             headerBackTitle: null,
             headerTintColor: '#ffffff',// 返回箭头颜色
+            headerTitleStyle: { //定义title的样式
+                flex: 1,
+                textAlign: "center",
+                fontWeight: 'bold',
+                alignSelf:'center',
+                fontSize: 18
+            },
             showIcon: true,
             swipeEnabled: true,//是否可以滑动返回
             animationEnabled: true,//是否带动画
             gesturesEnabled: true,// 是否支持手势返回
-            headerTitleStyle: {fontSize: 18, color: BaseStyles.white, alignSelf:'center'},//定义title的样式
             cardStyle: {
                 backgroundColor: 'transparent',
             },

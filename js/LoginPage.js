@@ -39,7 +39,9 @@ class LoginPage extends Component {
         if(nextProps.status === 'success' && nextProps.isSuccess){
             const resetAction = StackActions.reset({
                 index:0,
-                actions:[NavigationActions.navigate({routerName:'Home'})]
+                actions: [
+                    NavigationActions.navigate({routeName: 'Drawer'})
+                ]
             });
             console.log("status", nextProps.status);
             this.props.navigation.dispatch(resetAction);
@@ -97,32 +99,8 @@ class LoginPage extends Component {
         let {loginIn} = this.props;
         loginIn(object);
 
-        // this.httpManager.requestLogin(object, (response) => {
-        //
-        //     console.log("response.object.staffInfo", response.object.staffInfo);
-        //     if (response.errCode === "000000") {
-        //         this.setState({
-        //             userinfo: response.object.staffInfo
-        //         });
-        //         storage.save('userInfo', response.object.staffInfo);
-        //         storage.save('sessionId',response.object.sessionId);
-        //         storage.save('ssoToken',response.object.ssoToken);
-        //         this.onLoginSuccess();
-        //     } else {
-        //         alert(responseText.errDesc);
-        //     }
-        //
-        // });
     };
 
-    onLoginSuccess() {
-        const {navigator} = this.props;
-        if (navigator) {
-            navigator.push({
-                component: DrawerPage,
-            });
-        }
-    }
 }
 
 const mapStateToProps = (state) =>({
@@ -137,14 +115,6 @@ const mapDispatchToProps =(dispatch) =>({
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(LoginPage)
-
-
-
-
-
-
-
-
 
 
 const styles = StyleSheet.create({

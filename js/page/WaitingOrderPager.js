@@ -6,39 +6,40 @@ import React, {Component} from 'react';
 import {Dimensions, Image, StyleSheet, View, Text, TouchableOpacity} from "react-native";
 import {deviceWidth} from "../util/ScreenUtil";
 import HttpManager from "../data/http/HttpManager";
+import {connect} from "react-redux";
+import waitorderAction from "../reducers/rootReducer";
 
-const itemHight = 200;
-const itemCount = 20;
+class WaitingOrderPager extends Component {
 
-export default class WaitingOrderPager extends Component {
-
-    static navigationOptions = ({navigation}) =>({
+    static navigationOptions = ({navigation}) => ({
         //标题
-        title:"待接单",
+        title: "待接单",
         drawerLabel: '待接单',
-        headerTitleStyle:{
+        headerTitleStyle: {
             flex: 1,
-            textAlign:"center",
+            textAlign: "center",
         },
-        headerRight:<View/>
+        headerRight: <View/>
     });
 
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            refreshing : true,
-            isInit : false,
-            mData:{}
+        this.state = {
+            refreshing: true,
+            isInit: false,
+            mData: []
         };
-        this.httpManager  = new HttpManager();
-
-        this.requestData();
     }
+
     componentWillUpdate() {
     };
 
     componentDidUpdate() {
+    }
+
+    shouldComponentUpdate() {
+        
     }
 
     render() {
@@ -55,14 +56,28 @@ export default class WaitingOrderPager extends Component {
      */
     requestData() {
 
+
+        let {waitorderList} = this.props;
         let object = {
             "object": {}
         };
-        this.httpManager.getWaitOrder(object, (response) =>{
-            console.log("response", response);
-        });
+
+        waitorderList(object);
     }
 }
+
+const mapStateToProps = (state) => ({
+    status: 'loading',
+    isSuccess: false,
+    list: []
+});
+
+
+const mapDispatchToProps = (dispatch) => ({
+    waitorderList: param => dispatch(waitorderAction.waitorderList(param))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(WaitingOrderPager);
+
 
 const styles = StyleSheet.create({
     container: {

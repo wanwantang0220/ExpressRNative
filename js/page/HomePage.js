@@ -16,10 +16,37 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTIm
 
 export default class HomePage extends Component {
 
-    static navigationOptions = {
+    static navigationOptions = ({navigation}) => ({
+        // header:null,
         title:'首页',
         drawerLabel: '首页',
-    };
+        headerTitleStyle: {
+            flex: 1,
+            textAlign: "center",
+            fontWeight: 'bold',
+        },
+        headerTintColor: '#fff',
+        headerStyle: {
+            backgroundColor: '#000000',
+        },
+        headerLeft: <View>
+            <TouchableOpacity
+                onPress={() => {
+                    //点击打开抽屉
+                    navigation.openDrawer();
+                }}>
+                <Image
+                    source={require('../../img/icon_menu.png')}
+                    style={{ width: 26,
+                        height: 26,
+                        alignSelf: 'center',
+                        marginLeft: 20}}
+                    tintColor={White}/>
+            </TouchableOpacity>
+        </View>,
+
+        headerRight: <View/>
+    });
 
     constructor(props) {
         super(props);
@@ -42,23 +69,7 @@ export default class HomePage extends Component {
                     backgroundColor="black"
                     barStyle='light-content'
                 />
-                <NaviBarView backgroundColor="black"/>
-                <View style={[styles.toolbar, {backgroundColor: "black"}]}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            //点击打开抽屉
-                            this.props.navigation.openDrawer();
-                        }}>
-                        <Image
-                            source={require('../../img/icon_menu.png')}
-                            style={[styles.toolbar_left_img]}
-                            tintColor={White}/>
-                    </TouchableOpacity>
-                    <View style={[styles.toolbar_middle]}>
-                        <Text style={[styles.toolbar_middle_text]}>首页</Text>
-                    </View>
 
-                </View>
                 <TouchableOpacity onPress={() => {
                     //点击打开抽屉
                     this.props.navigation.navigate('DrawerOpen')

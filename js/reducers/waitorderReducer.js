@@ -1,37 +1,38 @@
 import * as types from "../constant/ActionType";
 
-
 const initialState = {
-    status:"...",
+    status: "...",
     isSuccess: false,
-    object: null,
+    list: [],
+
 };
 
-export default function loginIn(state=initialState, action) {
-    switch (action.type){
+
+export default function waitorderList(state = initialState, action) {
+
+    switch (action.type) {
         case types.LOGIN_IN_DOING:
             return {
                 ...state,
-                status:'loading',
+                status: 'loading',
                 isSuccess: false,
-                object: null,
+                list: []
             };
         case types.LOGIN_IN_DONE:
             return {
                 ...state,
-                status: 'success',
-                isSuccess: true,
-                object: action.object,
+                status:'success',
+                isSuccess:true,
+                list:action.object
             };
         case types.LOGIN_IN_ERROR:
             return {
                 ...state,
                 status: 'error',
                 isSuccess: true,
-                object: null,
+                list: [],
             };
         default:
-            console.log(state);
             return state;
     }
 }
