@@ -14,23 +14,26 @@ import {deviceHeight, deviceWidth} from "./util/ScreenUtil";
 import {White} from "./style/BaseStyle";
 import DrawerPage from "./DrawerPage";
 import EditView from "./component/EditView";
-import HttpManager from "./data/http/HttpManager";
 import {storage} from './data/storage/Storage';
 import {connect} from "react-redux";
 import * as loginAction from './actions/loginAction';
 import {StackActions,NavigationActions} from "react-navigation";
 
+//生产环境测试账号 8181135  365853
+//beta 环境测试账号 8181006   a123123
+const USER_NAME = "8181006";
+const  PASSWORD = "a123123";
 
 class LoginPage extends Component {
 
+    //8181006 a123123
     constructor(props) {
         super(props);
         this.state = {
-            userName: "8181135",
-            password: "365853",
+            userName: USER_NAME,
+            password: PASSWORD,
             userinfo: {}
         };
-        this.httpManager = new HttpManager();
     }
 
 
@@ -62,13 +65,13 @@ class LoginPage extends Component {
                     <View style={{flex: 1}}/>
                     <View style={{flex: 1}}>
                         <EditView
-                            name='8181135'
+                            name={USER_NAME}
                             onChangeText={(text) => {
                                 this.userName = text;
                             }}/>
 
                         <EditView
-                            name='365853'
+                            name={PASSWORD}
                             onChangeText={(text) => {
                                 this.password = text;
                             }}/>
@@ -88,8 +91,8 @@ class LoginPage extends Component {
 
     pressLogin = () => {
         let params = {
-            "username": "8181135",//this.userName,
-            "password": "365853" //this.password
+            "username": USER_NAME,//this.userName,
+            "password": PASSWORD ,//this.password
         };
         let object = {
             "object": params

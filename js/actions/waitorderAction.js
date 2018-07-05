@@ -12,7 +12,8 @@ export function waitorderList(params) {
         let result = postNetData(url,params)
             .then((response)=>{
                 if (response != null) {
-                    if (responseText.errCode === RESULT_OK) {
+                    console.log('response', response.object);
+                    if (response.errCode === RESULT_OK) {
                         dispatch(onSuccess(true,response.object));
                     }else{
                         dispatch(onError(false));
@@ -33,7 +34,6 @@ function onLoading() {
 }
 
 function onSuccess(isSuccess, object) {
-    console.log('success');
     return {
         type: types.LOGIN_IN_DONE,
         object: object,
@@ -41,7 +41,6 @@ function onSuccess(isSuccess, object) {
 }
 
 function onError(isSuccess) {
-    console.log('error');
     return {
         type: types.LOGIN_IN_ERROR,
     }

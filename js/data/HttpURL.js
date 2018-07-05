@@ -1,6 +1,7 @@
 /*基础链接头*/
-export const BaseUrl = "https://manager.xilaikd.com/xilaireceiver_s";
+// export const BaseUrl = "https://manager.xilaikd.com/xilaireceiver_s";
 // const BaseUrl = "http://10.10.10.166:1882";
+export const BaseUrl = "http://10.20.0.48:1881";
 
 //登录
 export const LOGIN = "/user/login";

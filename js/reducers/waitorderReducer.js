@@ -3,7 +3,7 @@ import * as types from "../constant/ActionType";
 const initialState = {
     status: "...",
     isSuccess: false,
-    list: [],
+    object: null,
 
 };
 
@@ -16,22 +16,25 @@ export default function waitorderList(state = initialState, action) {
                 ...state,
                 status: 'loading',
                 isSuccess: false,
-                list: []
+                object: null
             };
+            break;
         case types.LOGIN_IN_DONE:
             return {
                 ...state,
                 status:'success',
                 isSuccess:true,
-                list:action.object
+                object:action.object
             };
+            break;
         case types.LOGIN_IN_ERROR:
             return {
                 ...state,
                 status: 'error',
                 isSuccess: true,
-                list: [],
+                object:null,
             };
+            break;
         default:
             return state;
     }

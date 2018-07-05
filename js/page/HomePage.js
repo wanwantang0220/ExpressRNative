@@ -12,7 +12,6 @@ import {deviceWidth} from "../util/ScreenUtil";
 import {storage} from '../data/storage/Storage';
 import HomeCell from "../component/HomeCell";
 import HttpManager from "../data/http/HttpManager";
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 export default class HomePage extends Component {
 

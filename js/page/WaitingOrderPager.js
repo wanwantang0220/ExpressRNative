@@ -7,7 +7,8 @@ import {Dimensions, Image, StyleSheet, View, Text, TouchableOpacity} from "react
 import {deviceWidth} from "../util/ScreenUtil";
 import HttpManager from "../data/http/HttpManager";
 import {connect} from "react-redux";
-import waitorderAction from "../reducers/rootReducer";
+import * as waitorderAction from "../actions/waitorderAction";
+import {SUCCESS} from "../constant/Contants";
 
 class WaitingOrderPager extends Component {
 
@@ -30,23 +31,38 @@ class WaitingOrderPager extends Component {
             isInit: false,
             mData: []
         };
+        this.requestData();
     }
 
-    componentWillUpdate() {
-    };
 
-    componentDidUpdate() {
+    componentDidMount() {
+        console.log('wait-order-page   debug','componentDidMount')
     }
 
-    shouldComponentUpdate() {
-        
+    componentWillReceiveProps(nextProps){
+        console.log('wait-order-page   debug','componentWillReceiveProps');
+
+        if (nextProps.status === SUCCESS && nextProps.isSuccess) {
+            this.setState({mData: nextProps.object.list});
+            console.log('list', nextProps.object.list);
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('wait-order-page   debug','shouldComponentUpdate')
+
+        if (nextProps.status === SUCCESS && nextProps.isSuccess) {
+            return false;
+        }
+        return true;
+
     }
 
     render() {
 
         return (
             <View>
-                <Text>待接单</Text>
+                <Text/>
             </View>
         )
     }
@@ -67,9 +83,9 @@ class WaitingOrderPager extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    status: 'loading',
-    isSuccess: false,
-    list: []
+    status: state.waitorderList.status,
+    isSuccess: state.waitorderList.isSuccess,
+    object: state.waitorderList.object,
 });
 
 
