@@ -1,5 +1,5 @@
 import {deviceWidth} from "../util/ScreenUtil";
-import {BlackColor, White} from "./BaseStyle";
+import {BlackColor, ColorStart, White} from "./BaseStyle";
 import {
     Dimensions, Image, StyleSheet, View, Text, StatusBar, TextInput, TouchableOpacity,
     PixelRatio
@@ -104,6 +104,39 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
 
+    },
+    waitorder_bg:{
+        width: deviceWidth-20,
+        height: 200,
+        backgroundColor: '#ffffff',
+        shadowColor: '#CFCFCF',
+        borderRadius: 5,
+        elevation: 3,
+        marginTop:10,
+        marginStart:10,
+        marginEnd:10,
+        marginBottom:5
+    },
+    waitorder_print_bg:{
+        width: 80,
+        height: 40,
+        backgroundColor: '#ffffffff',
+        shadowColor: ColorStart,
+        borderRadius: 5,
+        elevation: 3,
+        marginTop:10,
+        marginStart:10,
+        marginEnd:10,
+        marginBottom:5
+    },
+    waitorder_print_text:{
+        color: White,
+        textAlign: 'center',
+        fontSize: 16,
+        fontFamily: 'Gill Sans',
+        margin: 10,
+        backgroundColor: 'transparent'
     }
+
 });
 export default styles;

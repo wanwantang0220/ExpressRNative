@@ -5,8 +5,11 @@
 /** @namespace responseText.object.ssoToken */
 /** @namespace response.totalRow */
 /** @namespace item.orderNo */
-
-
+/** @namespace item.senderName */
+/** @namespace item.bookedFrom */
+/** @namespace item.bookedTo */
+/** @namespace item.senderProvinceCityCountyName */
+/** @namespace item.senderAddressDetail */
 
 
 export const SUCCESS = "success";

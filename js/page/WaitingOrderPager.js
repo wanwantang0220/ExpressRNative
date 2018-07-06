@@ -15,6 +15,7 @@ import {PAGE_SIZE, START_PAGE, SUCCESS} from "../constant/Contants";
 // import RefreshListView from "../component/refresh/RefreshListView";
 import WaitOrderItemCell from "../component/WaitOrderItemCell";
 import RefreshState from "../component/refresh/RefreshState";
+import {SeparatorColor, White} from "../style/BaseStyle";
 
 class WaitingOrderPager extends Component {
 
@@ -118,7 +119,7 @@ class WaitingOrderPager extends Component {
         const list = this.state.mData;
 
         return (
-            <View style={[styles.container]}>
+            <View style={[styles.curcontainer]}>
 
                 <ScrollView style={styles.scrollview_container}
                             showsVerticalScrollIndicator={false}
@@ -168,7 +169,8 @@ class WaitingOrderPager extends Component {
 
     refresh() {
         this.setState({
-            refreshing: true
+            refreshing: true,
+            mData: [],
         });
         this.requestRefreshData()
     }
@@ -182,8 +184,9 @@ class WaitingOrderPager extends Component {
     };
 
     renderItem = (item) => {
+        const itm = item;
         return (
-            <WaitOrderItemCell item={item.item}/>
+            <WaitOrderItemCell item={item}/>
         )
     };
 
@@ -241,10 +244,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(WaitingOrderPager);
 
 
 const styles = StyleSheet.create({
-    container: {
+    curcontainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:White
     },
     scrollview_container:{
         flex: 1,
