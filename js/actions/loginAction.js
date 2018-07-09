@@ -1,6 +1,5 @@
-import {BaseUrl} from "../data/HttpURL";
+import {BaseUrl, LOGIN, RESULT_OK} from "../data/HttpURL";
 import JsonUtil from "../data/http/JsonUtil";
-import {LOGIN, RESULT_OK} from "../data/HttpURL";
 import {storage} from "../data/storage/Storage";
 import * as types from "../constant/ActionType";
 
@@ -37,6 +36,11 @@ export function login(params) {
                 dispatch(verCodeError(false));
             }).done();
     };
+
+}
+
+
+export function acceptOrder(params) {
 
 }
 

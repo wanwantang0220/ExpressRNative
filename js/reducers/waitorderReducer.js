@@ -4,7 +4,6 @@ const initialState = {
     status: "...",
     isSuccess: false,
     object: null,
-
 };
 
 
@@ -22,9 +21,9 @@ export default function waitorderList(state = initialState, action) {
         case types.LOGIN_IN_DONE:
             return {
                 ...state,
-                status:'success',
-                isSuccess:true,
-                object:action.object
+                status: 'success',
+                isSuccess: true,
+                object: action.object
             };
             break;
         case types.LOGIN_IN_ERROR:
@@ -32,7 +31,7 @@ export default function waitorderList(state = initialState, action) {
                 ...state,
                 status: 'error',
                 isSuccess: true,
-                object:null,
+                object: null,
             };
             break;
         default:

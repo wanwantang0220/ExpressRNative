@@ -1,16 +1,15 @@
 import React, {PureComponent} from 'react';
-import {Text, View} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import styles from "../style/Css";
 import {deviceWidth} from "../util/ScreenUtil";
 import {BackgroundColorLight, ColorStart, SeparatorColor} from "../style/BaseStyle";
 import Line from "./Line";
+import PropTypes from 'prop-types';
 
 export default class WaitOrderItemCell extends PureComponent {
 
     static propTypes = {
-
-        // clickAction: PropTypes.func,
-
+        onAcceptOrder: PropTypes.func,
     };
 
 
@@ -22,8 +21,9 @@ export default class WaitOrderItemCell extends PureComponent {
 
     render() {
 
-        let {item} = this.props;
+        let {item,onAcceptOrder} = this.props;
         console.log('item', item);
+
         return (
             <View style={{width: deviceWidth,}}>
                 <View style={[styles.waitorder_bg]}>
@@ -50,15 +50,16 @@ export default class WaitOrderItemCell extends PureComponent {
                     <Line color={BackgroundColorLight}/>
                     <View style={{flex: 1, flexDirection: 'row', height: 30, marginTop: 10, marginStart: 10}}>
                         <Text style={{flex: 4, fontSize: 10}}>下单时间：{item.createTime}</Text>
-                        <View style={[styles.waitorder_print_bg, {flex: 1}]}>
+                        <TouchableOpacity style={[styles.waitorder_print_bg, {flex: 1}]}
+                                          onPress={()=>{onAcceptOrder()}}>
                             <Text style={{
                                 fontSize: 10, fontWeight: 'bold', color: ColorStart, textAlign: 'center',
-                                textShadowOffset: {width: 1, hegith: 1},
+                                textShadowOffset: {width: 0.5, hegith: 0.5},
                                 textShadowRadius: 1,
                                 textShadowColor: 'grey',
                                 alignItems: 'center'
                             }}>接单</Text>
-                        </View>
+                        </TouchableOpacity>
 
                     </View>
 

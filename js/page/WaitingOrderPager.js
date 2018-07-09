@@ -38,7 +38,7 @@ class WaitingOrderPager extends Component {
             refreshing: true,
             startPage: START_PAGE,   // 从第几页开始加载
             pageSize: PAGE_SIZE,   // 每页加载多少条数据
-            isLoadMore:''
+            isLoadMore: ''
         };
     }
 
@@ -69,13 +69,13 @@ class WaitingOrderPager extends Component {
 
             // 根据已经加载的条数和总条数的比较，判断是否还有下一页
             let footerState = RefreshState.Idle;
-            let footer='';
+            let footer = '';
             let startPage = this.state.startPage;
             if (currentCount + mlist.length <= totalCount) {
-                if(startPage === START_PAGE){
+                if (startPage === START_PAGE) {
                     footerState = RefreshState.NoMoreData;
                     footer = '没有更多数据了';
-                }else{
+                } else {
                     // 还有数据可以加载
                     footerState = RefreshState.CanLoadMore;
                     // 下次加载从第几条数据开始
@@ -92,7 +92,7 @@ class WaitingOrderPager extends Component {
                 mData: mData,
                 startPage: startPage,
                 refreshing: false,
-                isLoadMore:footer,
+                isLoadMore: footer,
             });
             console.log('list', nextProps.object.list);
 
@@ -125,33 +125,33 @@ class WaitingOrderPager extends Component {
                             showsVerticalScrollIndicator={false}
                             refreshControl={this.refreshControlView()}>
 
-                        <FlatList
-                            data={this.state.mData}
-                            keyExtractor={(item, index) => index}
-                            renderItem={({item})=>(this.renderItem(item))}
-                            showsVerticalScrollIndicator={false}
-                        />
+                    <FlatList
+                        data={this.state.mData}
+                        keyExtractor={(item, index) => index}
+                        renderItem={({item}) => (this.renderItem(item))}
+                        showsVerticalScrollIndicator={false}
+                    />
                     {/*加载更多*/}
                     <View style={styles.commentary_item_loadmore_view}>{this.getCommentaryItemLoadView()}</View>
                 </ScrollView>
 
                 {/*<RefreshListView*/}
-                    {/*ref={(ref) => {*/}
-                        {/*this.listView = ref*/}
-                    {/*}}*/}
-                    {/*colors={['red', '#ffd500', '#0080ff', '#99e600']}*/}
-                    {/*data={list}*/}
-                    {/*renderItem={this.renderItem}*/}
-                    {/*keyExtractor={(item) => {*/}
-                        {/*return item.uuid || item.orderNo;*/}
-                    {/*}}*/}
-                    {/*ListEmptyComponent={this.renderEmptyView}*/}
-                    {/*onHeaderRefresh={() => {*/}
-                        {/*this.requestRefreshData()*/}
-                    {/*}}*/}
-                    {/*onFooterRefresh={() => {*/}
-                        {/*this.requestRefreshData()*/}
-                    {/*}}>*/}
+                {/*ref={(ref) => {*/}
+                {/*this.listView = ref*/}
+                {/*}}*/}
+                {/*colors={['red', '#ffd500', '#0080ff', '#99e600']}*/}
+                {/*data={list}*/}
+                {/*renderItem={this.renderItem}*/}
+                {/*keyExtractor={(item) => {*/}
+                {/*return item.uuid || item.orderNo;*/}
+                {/*}}*/}
+                {/*ListEmptyComponent={this.renderEmptyView}*/}
+                {/*onHeaderRefresh={() => {*/}
+                {/*this.requestRefreshData()*/}
+                {/*}}*/}
+                {/*onFooterRefresh={() => {*/}
+                {/*this.requestRefreshData()*/}
+                {/*}}>*/}
                 {/*</RefreshListView>*/}
             </View>
         )
@@ -185,10 +185,20 @@ class WaitingOrderPager extends Component {
 
     renderItem = (item) => {
         const itm = item;
+        const {acceptOrder} = this.props.acceptOrder;
         return (
-            <WaitOrderItemCell item={item}/>
+            <WaitOrderItemCell item={item} onAcceptOrder={this.handAcceptOrder(item.uuid)}/>
         )
     };
+
+
+    handAcceptOrder(uuid){
+        let {acceptOrder} = this.props;
+        let object = {
+            "object": uuid
+        };
+        acceptOrder();
+    }
 
     /**
      *
@@ -223,7 +233,8 @@ class WaitingOrderPager extends Component {
     getCommentaryItemLoadView() {
 
         return (
-            <TouchableOpacity onPress={()=>{}}>
+            <TouchableOpacity onPress={() => {
+            }}>
                 <Text style={[styles.commentary_item_loadmore_text]}>{this.state.isLoadMore}</Text>
             </TouchableOpacity>
         )
@@ -238,7 +249,8 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
-    waitorderList: param => dispatch(waitorderAction.waitorderList(param))
+    waitorderList: param => dispatch(waitorderAction.waitorderList(param)),
+    acceptOrder: param => dispatch(waitorderAction.acceptOrder(param))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(WaitingOrderPager);
 
@@ -251,17 +263,17 @@ const styles = StyleSheet.create({
         // backgroundColor:White,
         backgroundColor: SeparatorColor
     },
-    scrollview_container:{
+    scrollview_container: {
         flex: 1,
     },
-    commentary_item_loadmore_view:{
-        width:deviceWidth,
-        height:56,
+    commentary_item_loadmore_view: {
+        width: deviceWidth,
+        height: 56,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    commentary_item_loadmore_text:{
-        fontSize:12,
-        color:ColorTextGrey
+    commentary_item_loadmore_text: {
+        fontSize: 12,
+        color: ColorTextGrey
     }
 });
