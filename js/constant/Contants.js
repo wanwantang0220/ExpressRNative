@@ -10,6 +10,8 @@
 /** @namespace item.bookedTo */
 /** @namespace item.senderProvinceCityCountyName */
 /** @namespace item.senderAddressDetail */
+/** @namespace item.createTime */
+
 
 
 export const SUCCESS = "success";

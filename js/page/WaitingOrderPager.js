@@ -15,7 +15,7 @@ import {PAGE_SIZE, START_PAGE, SUCCESS} from "../constant/Contants";
 // import RefreshListView from "../component/refresh/RefreshListView";
 import WaitOrderItemCell from "../component/WaitOrderItemCell";
 import RefreshState from "../component/refresh/RefreshState";
-import {SeparatorColor, White} from "../style/BaseStyle";
+import {BackgroundColorLight, ColorTextGrey, SeparatorColor, White} from "../style/BaseStyle";
 
 class WaitingOrderPager extends Component {
 
@@ -248,7 +248,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:White
+        // backgroundColor:White,
+        backgroundColor: SeparatorColor
     },
     scrollview_container:{
         flex: 1,
@@ -260,6 +261,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     commentary_item_loadmore_text:{
-        fontSize:16,
+        fontSize:12,
+        color:ColorTextGrey
     }
 });

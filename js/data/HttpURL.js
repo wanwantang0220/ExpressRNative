@@ -15,6 +15,9 @@ export const ADDRESS_ADD = "/addressBook/create";
 export const ADDRESS_DELETE = "/addressBook/remove";
 //待接单
 export const WAIT_ACCEPT_ORDER = "/order/queryWaitAcceptOrder";
+//接单
+export const ACCEPT_ORDER = "/order/acceptOrder";
+
 //待打单
 export const WAIT_PRINT_ORDER = "/order/queryWaitPrintOrder";
 //消息

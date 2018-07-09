@@ -1,5 +1,5 @@
 import {deviceWidth} from "../util/ScreenUtil";
-import {BlackColor, ColorStart, White} from "./BaseStyle";
+import {BackgroundColorLight, BlackColor, ColorStart, White} from "./BaseStyle";
 import {
     Dimensions, Image, StyleSheet, View, Text, StatusBar, TextInput, TouchableOpacity,
     PixelRatio
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginRight: 50
     },
-    btn_touchableopacity:{
+    btn_touchableopacity: {
         width: 280,
         height: 35,
         borderColor: '#ffffff',
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1 / PixelRatio.get(),
         borderTopWidth: 1 / PixelRatio.get(),
     },
-    btn_text:{
+    btn_text: {
         color: White,
         textAlign: 'center',
         fontSize: 16,
@@ -97,39 +97,38 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor: 'transparent'
     },
-    address_edit_lineargradient:{
+    address_edit_lineargradient: {
         borderRadius: 25,
-        width:300,
-        height:38,
+        width: 300,
+        height: 38,
         alignSelf: 'center',
         justifyContent: 'center',
 
     },
-    waitorder_bg:{
-        width: deviceWidth-20,
-        height: 200,
+    waitorder_bg: {
+        width: deviceWidth - 20,
         backgroundColor: '#ffffff',
-        shadowColor: '#CFCFCF',
+        shadowColor: BackgroundColorLight,
         borderRadius: 5,
         elevation: 3,
-        marginTop:10,
-        marginStart:10,
-        marginEnd:10,
-        marginBottom:5
+        marginTop: 10,
+        marginStart: 10,
+        marginEnd: 10,
+        marginBottom: 5
     },
-    waitorder_print_bg:{
-        width: 80,
-        height: 40,
+    waitorder_print_bg: {
+        width: 60,
+        height: 20,
         backgroundColor: '#ffffffff',
         shadowColor: ColorStart,
-        borderRadius: 5,
         elevation: 3,
-        marginTop:10,
-        marginStart:10,
+        borderColor: BackgroundColorLight,
+        justifyContent: 'center',
+        borderRadius: 30,
         marginEnd:10,
-        marginBottom:5
+        alignItems: 'center'
     },
-    waitorder_print_text:{
+    waitorder_print_text: {
         color: White,
         textAlign: 'center',
         fontSize: 16,
