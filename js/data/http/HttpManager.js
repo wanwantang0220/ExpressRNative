@@ -4,11 +4,15 @@ import JsonUtil from "./JsonUtil";
 
 
 /*基础链接头*/
-const BaseUrl = "https://manager.xilaikd.com/xilaireceiver_s";
+// const BaseUrl = "https://manager.xilaikd.com/xilaireceiver_s";
 // const BaseUrl = "http://10.10.10.166:1882";
+export const BaseUrl = "http://10.20.0.48:1881";
 
 const ADDRESS_LIST = "/addressBook/queryBySearchFilter";
 const ADDRESS_EDIT = "/addressBook/update";
+
+//个人信息
+const USER_INFO_BY_UUID = "/staffMessage/findByUuid";
 
 export default class HttpManager {
 
@@ -49,6 +53,39 @@ export default class HttpManager {
                     reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
                 })
                 .done();
+        })
+    }
+
+    /***
+     * 用户信息
+     * @param param
+     * @param callback
+     * @returns {Promise<any>}
+     */
+    getUserInfo(data, callback) {
+        const url = BaseUrl + USER_INFO_BY_UUID;
+        return new Promise((resolve, reject) => {
+            this.postNetData(url, data)
+                .then((data) => {
+                    console.log("response address list ", data);
+                    if (data != null) {
+                        if (data.errCode === "000000") {
+                            callback(data.object);
+                        } else if (data.errDesc != null && data.errDesc != "") {
+                            reject(ErrorAnayle.getErrorMsg(data.errDesc))
+                        } else {
+                            reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                        }
+                    } else {
+                        reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                    }
+                }).catch((error) => {
+                if (error != null && error instanceof ErrorBean) {
+                    reject(error)
+                } else {
+                    reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                }
+            })
         })
     }
 

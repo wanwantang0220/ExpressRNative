@@ -13,6 +13,12 @@
 /** @namespace item.createTime */
 /** @namespace userinfo.perName */
 /** @namespace userinfo.parentOrgNo */
+/** @namespace data.errDesc */
+/** @namespace response.userUuid */
+/** @namespace user.orgName */
+/** @namespace user.centerName */
+/** @namespace user.orgNo */
+/** @namespace userinfo.idCard */
 
 
 export const SUCCESS = "success";

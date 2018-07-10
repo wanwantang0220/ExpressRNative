@@ -11,7 +11,7 @@ import {White} from "./style/BaseStyle";
 import {storage} from "./data/storage/Storage";
 import PersonDetialPage from "./page/PersonDetialPage";
 
-let USER_INFO='';
+let USER_INFO = '';
 const Drawer = createDrawerNavigator({
     DrawHome: {
         screen: DrawerHomePage
@@ -68,11 +68,14 @@ const Drawer = createDrawerNavigator({
                             style={{marginTop: 50, marginStart: 20}}
                             activeOpacity={0.7}
                             underlayColor='transparent'
-                            onPress={()=>{
+                            onPress={() => {
                                 const navigateAction = NavigationActions.navigate({
-                                    routeName: 'PersonDetail'
+                                    routeName: 'PersonDetail',
+                                    params: {uuid: USER_INFO.userUuid}
+
                                 });
-                                navigation.navigate(navigateAction)}}>
+                                navigation.navigate(navigateAction)
+                            }}>
                             <Image
                                 style={[styles.header]}
                                 source={require('../img/icon_header.png')}/>
