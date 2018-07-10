@@ -21,7 +21,8 @@
 /** @namespace userinfo.idCard */
 
 
-export const SUCCESS = "success";
+export const WAIT_SUCCESS = "wait_success";
+export const ACCEPT_SUCCESS = "accept_success";
 export const ERROR = "error";
 export const START_PAGE = 1;
 export const PAGE_SIZE =50;

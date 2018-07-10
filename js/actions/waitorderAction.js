@@ -10,23 +10,23 @@ export function waitorderList(object) {
     const url = BaseUrl + WAIT_ACCEPT_ORDER;
     let params = Wait_OrderList_Param;
     return dispatch => {
-        dispatch(onLoading());
+        dispatch(onWaitOrderLoading());
         let result = postNetData(url, params)
             .then((response) => {
                 if (response != null) {
                     if (response.errCode === RESULT_OK) {
-                        dispatch(onSuccess(true, response.object));
+                        dispatch(onWaitOrderSuccess(true, response.object));
                     } else {
-                        dispatch(onError(false));
+                        dispatch(onWaitOrderError(false));
                     }
                 } else {
-                    dispatch(onError(false));
+                    dispatch(onWaitOrderError(false));
                 }
             }).catch((error) => {
                 if (error != null && error instanceof ErrorBean) {
-                    dispatch(onError(false));
+                    dispatch(onWaitOrderError(false));
                 } else {
-                    dispatch(onError(false));
+                    dispatch(onWaitOrderError(false));
                 }
             })
     };
@@ -38,38 +38,57 @@ export function acceptOrder(params) {
     const url = BaseUrl + ACCEPT_ORDER;
 
     return dispatch => {
-        dispatch(onLoading());
-        let result = postNetData(params)
+        dispatch(onAcceptOrderLoading());
+        let result = postNetData(url, params)
             .then((response) => {
                 if (response != null) {
                     if (response.errCode === RESULT_OK) {
-                        dispatch(onSuccess(true, response.object));
-                        waitorderList(Wait_OrderList_Param);
+                        dispatch(onAcceptOrderSuccess(true, response.object));
+                        // waitorderList(Wait_OrderList_Param);
                     } else {
-                        dispatch(onError(false));
+                        dispatch(onAcceptOrderError(false));
                     }
                 } else {
-                    dispatch(onError(false));
+                    dispatch(onAcceptOrderError(false));
                 }
             });
     }
 }
 
-function onLoading() {
+function onWaitOrderLoading() {
     return {
-        type: types.LOGIN_IN_DOING
+        type: types.WAITING_ORDER_IN_DOING
     }
 }
 
-function onSuccess(isSuccess, object) {
+function onWaitOrderSuccess(isSuccess, object) {
     return {
-        type: types.LOGIN_IN_DONE,
+        type: types.WAITING_ORDER_IN_DONE,
         object: object,
     }
 }
 
-function onError(isSuccess) {
+function onWaitOrderError(isSuccess) {
     return {
-        type: types.LOGIN_IN_ERROR,
+        type: types.WAITING_ORDER_IN_ERROR,
+    }
+}
+
+function onAcceptOrderLoading() {
+    return {
+        type: types.ACCEPT_ORDER_IN_DOING
+    }
+}
+
+function onAcceptOrderSuccess(isSuccess, object) {
+    return {
+        type: types.ACCEPT_ORDER_IN_DONE,
+        object: object,
+    }
+}
+
+function onAcceptOrderError(isSuccess) {
+    return {
+        type: types.ACCEPT_ORDER_IN_ERROR,
     }
 }

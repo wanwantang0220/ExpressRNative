@@ -11,7 +11,7 @@ import {deviceWidth} from "../util/ScreenUtil";
 import HttpManager from "../data/http/HttpManager";
 import {connect} from "react-redux";
 import * as waitorderAction from "../actions/waitorderAction";
-import {PAGE_SIZE, START_PAGE, SUCCESS} from "../constant/Contants";
+import {ACCEPT_SUCCESS, PAGE_SIZE, START_PAGE, WAIT_SUCCESS} from "../constant/Contants";
 // import RefreshListView from "../component/refresh/RefreshListView";
 import WaitOrderItemCell from "../component/WaitOrderItemCell";
 import RefreshState from "../component/refresh/RefreshState";
@@ -52,7 +52,7 @@ class WaitingOrderPager extends Component {
     componentWillReceiveProps(nextProps) {
         console.log('wait-order-page   debug', 'componentWillReceiveProps');
 
-        if (nextProps.status === SUCCESS && nextProps.isSuccess) {
+        if (nextProps.status === WAIT_SUCCESS && nextProps.isSuccess) {
             // this.setState({mData: nextProps.object.list});
             let response = nextProps.object;
             let mlist = [];
@@ -94,8 +94,10 @@ class WaitingOrderPager extends Component {
                 refreshing: false,
                 isLoadMore: footer,
             });
-            console.log('list', nextProps.object.list);
 
+        } else if (nextProps.status === ACCEPT_SUCCESS && nextProps.isSuccess) {
+            alert("接单成功");
+            this.refresh();
         }
     }
 
@@ -117,6 +119,7 @@ class WaitingOrderPager extends Component {
 
 
         const list = this.state.mData;
+        console.log('wait-order-page   list.length ', list.length);
 
         return (
             <View style={[styles.curcontainer]}>
@@ -126,7 +129,7 @@ class WaitingOrderPager extends Component {
                             refreshControl={this.refreshControlView()}>
 
                     <FlatList
-                        data={this.state.mData}
+                        data={list}
                         keyExtractor={(item, index) => index}
                         renderItem={({item}) => (this.renderItem(item))}
                         showsVerticalScrollIndicator={false}
@@ -187,12 +190,14 @@ class WaitingOrderPager extends Component {
         const itm = item;
         const {acceptOrder} = this.props.acceptOrder;
         return (
-            <WaitOrderItemCell item={item} onAcceptOrder={()=>{this.handAcceptOrder(item.uuid)}}/>
+            <WaitOrderItemCell item={item} onAcceptOrder={() => {
+                this.handAcceptOrder(item.uuid)
+            }}/>
         )
     };
 
 
-    handAcceptOrder(uuid){
+    handAcceptOrder(uuid) {
         let {acceptOrder} = this.props;
         let object = {
             "object": uuid

@@ -104,7 +104,7 @@ export default class PersonDetialPage extends Component {
                 <View style={[styles.view_line]}/>
                 <View style={[styles.curview_40]}>
                     <Text style={[styles.text_left]}>我的收件码</Text>
-                    <Text style={[styles.text_right]}>12345</Text>
+                    <Text style={[styles.text_right]}>暂无</Text>
                 </View>
             </View>
         )

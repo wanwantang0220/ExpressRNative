@@ -26,7 +26,6 @@ export default class WaitOrderItemCell extends PureComponent {
     render() {
 
         let {item, onAcceptOrder} = this.props;
-        console.log('item', item);
 
         return (
             <View style={{width: deviceWidth,}}>
