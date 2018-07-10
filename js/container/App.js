@@ -10,6 +10,7 @@ import WaitingOrderPager from "../page/WaitingOrderPager";
 import {BaseStyles} from "../style/BaseStyle";
 import DrawerPage from "../DrawerPage";
 import SplashPage from "../SplashPage";
+import PersonDetialPage from "../page/PersonDetialPage";
 
 
 const App = createStackNavigator({
@@ -41,6 +42,9 @@ const App = createStackNavigator({
     },
     AddressEdit:{
         screen:AddressEditPage
+    },
+    PersonDetail:{
+        screen:PersonDetialPage
     }
 },
     {

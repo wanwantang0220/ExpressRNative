@@ -28,8 +28,7 @@ export function postNetData(url, params) {
                 resolve(responseData);
             })
             .catch((error) => {
-                reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
-                console.log('error', error);
+                console.log(ErrorAnayle.getErrorBean(NetWork_Request_Error));
             })
             .done();
     })

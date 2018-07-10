@@ -11,7 +11,8 @@
 /** @namespace item.senderProvinceCityCountyName */
 /** @namespace item.senderAddressDetail */
 /** @namespace item.createTime */
-
+/** @namespace userinfo.perName */
+/** @namespace userinfo.parentOrgNo */
 
 
 export const SUCCESS = "success";

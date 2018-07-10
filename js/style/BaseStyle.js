@@ -16,10 +16,12 @@ const SeparatorColor = '#e0e0e0';
 const BackgroundColor = '#F7F7F7';
 const BackgroundColorLight = '#dddfe0';
 const ColorTextGrey = '#989898';
+const ColorTextGrey2 = '#b5b5b5';
 const ColorRed = '#FF0000';
 const ColorStart = '#F24A16';
 const ColorEnd = '#BE0154';
-
+const ColorLine = '#E5E5E5';
+const ColorLineRed = '#E83F57';
 
 const BaseStyles = StyleSheet.create({
     baseWhiteText: {
@@ -54,5 +56,8 @@ export {
     BackgroundColorLight,
     ColorTextGrey,
     ColorStart,
-    ColorEnd
+    ColorEnd,
+    ColorTextGrey2,
+    ColorLine,
+    ColorLineRed
 }

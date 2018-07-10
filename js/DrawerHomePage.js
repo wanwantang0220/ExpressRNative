@@ -3,6 +3,7 @@ import HomePage from "./page/HomePage";
 import {createStackNavigator, StackNavigator} from "react-navigation";
 import WaitingOrderPager from "./page/WaitingOrderPager";
 import AddressEditPage from "./page/address/AddressEditPage";
+import PersonDetialPage from "./page/PersonDetialPage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -13,6 +14,9 @@ const DrawHomePage = createStackNavigator({
     },
     AddressEdit:{
         screen:AddressEditPage
+    },
+    PersonDetail:{
+        screen:PersonDetialPage
     }
 
 });

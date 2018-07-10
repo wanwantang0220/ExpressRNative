@@ -22,7 +22,13 @@ export function waitorderList(object) {
                 } else {
                     dispatch(onError(false));
                 }
-            });
+            }).catch((error) => {
+                if (error != null && error instanceof ErrorBean) {
+                    dispatch(onError(false));
+                } else {
+                    dispatch(onError(false));
+                }
+            })
     };
 
 }
@@ -38,7 +44,7 @@ export function acceptOrder(params) {
                 if (response != null) {
                     if (response.errCode === RESULT_OK) {
                         dispatch(onSuccess(true, response.object));
-                        // waitorderList();
+                        waitorderList(Wait_OrderList_Param);
                     } else {
                         dispatch(onError(false));
                     }

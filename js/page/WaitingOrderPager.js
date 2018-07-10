@@ -187,7 +187,7 @@ class WaitingOrderPager extends Component {
         const itm = item;
         const {acceptOrder} = this.props.acceptOrder;
         return (
-            <WaitOrderItemCell item={item} onAcceptOrder={this.handAcceptOrder(item.uuid)}/>
+            <WaitOrderItemCell item={item} onAcceptOrder={()=>{this.handAcceptOrder(item.uuid)}}/>
         )
     };
 
@@ -197,7 +197,7 @@ class WaitingOrderPager extends Component {
         let object = {
             "object": uuid
         };
-        acceptOrder();
+        acceptOrder(object);
     }
 
     /**
