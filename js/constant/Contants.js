@@ -1,5 +1,3 @@
-
-
 /** @namespace responseText.errCode */
 /** @namespace responseText.object.staffInfo */
 /** @namespace responseText.object.ssoToken */
@@ -25,4 +23,10 @@ export const WAIT_SUCCESS = "wait_success";
 export const ACCEPT_SUCCESS = "accept_success";
 export const ERROR = "error";
 export const START_PAGE = 1;
-export const PAGE_SIZE =10;
+export const PAGE_SIZE = 10;
+export const LOADING = '加载中...';
+export const LOAD_NO_MORE = '没有更多数据了';
+export const LOAD_NORMAL = '加载更多';
+export const LOAD_EMPTY = '';
+
+

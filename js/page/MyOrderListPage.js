@@ -12,7 +12,7 @@ import HttpManager from "../data/http/HttpManager";
 import theme from "../style/Theme";
 import OrderListItemCell from "../component/OrderListItemCell";
 import RefreshState from "../component/refresh/RefreshState";
-import {PAGE_SIZE, START_PAGE} from "../constant/Contants";
+import {LOAD_EMPTY, LOAD_NO_MORE, LOAD_NORMAL, LOADING, PAGE_SIZE, START_PAGE} from "../constant/Contants";
 import TitleView from "../component/TitleView";
 import MyOrderItemCell from "../component/MyOrderItemCell";
 import {deviceWidth} from "../util/ScreenUtil";
@@ -39,9 +39,9 @@ export default class MyOrderListPage extends Component {
         this.state = {
             refreshing: true,
             loadedData: false,
-            footerInfo: '',
+            footerInfo: LOAD_EMPTY,
             mList: [],
-            startPage: 1,   // 从第几页开始加载
+            startPage: START_PAGE,   // 从第几页开始加载
             pageSize: PAGE_SIZE,   // 每页加载多少条数据
             totalRow: 0
         };
@@ -92,16 +92,16 @@ export default class MyOrderListPage extends Component {
         this.setState({
             refreshing: true,
             mList: [],
-            startPage: 1,
+            startPage: START_PAGE,
             pageSize: PAGE_SIZE,
             totalRow: 0,
-            footerInfo: ''
+            footerInfo: LOAD_EMPTY
         });
         let objectChild = {
             "object": "",
             "orderBy": "",
             "pageRow": this.state.pageSize,
-            "startPage": 1
+            "startPage": this.state.startPage,
         };
         this.requestData(objectChild);
     }
@@ -134,7 +134,6 @@ export default class MyOrderListPage extends Component {
 
 
     handSelectOrder(uuid) {
-
         alert("uuid = " + uuid);
     }
 
@@ -148,7 +147,16 @@ export default class MyOrderListPage extends Component {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-                    {this.getCommentaryItemLoadView()}
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        onPress={this.loadMore.bind(this)}>
+                        <Text style={{
+                            fontSize: 12,
+                            color: ColorTextGrey
+                        }}>
+                            {this.state.footerInfo}
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             )
         } else {
@@ -159,29 +167,22 @@ export default class MyOrderListPage extends Component {
     }
 
 
-    getCommentaryItemLoadView() {
-        return (
-            <TouchableOpacity onPress={() => this.loadMore}>
-                <Text style={{
-                    fontSize: 12,
-                    color: ColorTextGrey
-                }}>
-                    {this.state.footerInfo}
-                </Text>
-            </TouchableOpacity>
-        )
-    }
-
-
     loadMore() {
-        let page = this.state.startPage + 1;
-        let objectChild = {
-            "object": "",
-            "orderBy": "",
-            "pageRow": this.state.pageSize,
-            "startPage": page
-        };
-        this.requestData(objectChild);
+        let curLoadStatus = this.state.footerInfo;
+        if (curLoadStatus != LOAD_NO_MORE) {
+            this.setState({
+                footerInfo: LOADING,
+            });
+            let page = this.state.startPage + 1;
+            let objectChild = {
+                "object": "",
+                "orderBy": "",
+                "pageRow": this.state.pageSize,
+                "startPage": page,
+            };
+            this.requestData(objectChild);
+        }
+
     }
 
 
@@ -227,9 +228,9 @@ export default class MyOrderListPage extends Component {
             let currentCount = this.state.mList.length;
             let footer = '';
             if (currentCount + dataBlob.length < totalCount) {
-                footer = '加载更多';
+                footer = LOAD_NORMAL;
             } else {
-                footer = '没有更多数据了';
+                footer = LOAD_NO_MORE;
             }
 
             if (dataBlob.length !== 0) {
@@ -239,7 +240,8 @@ export default class MyOrderListPage extends Component {
                     mList: mdata,
                     loadedData: true,
                     refreshing: false,
-                    totalRow: res.totalRow,
+                    totalRow: response.totalRow,
+                    startPage: response.startPage,
                     footerInfo: footer,
                 })
             }

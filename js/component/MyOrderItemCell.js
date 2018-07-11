@@ -42,6 +42,7 @@ export default class MyOrderItemCell extends PureComponent {
 
         return (
             <TouchableOpacity
+                activeOpacity={0.7}
                 style={{width: deviceWidth,}}
                 onPress={() => {
                     this.props.onSelectOrder()
@@ -94,7 +95,7 @@ export default class MyOrderItemCell extends PureComponent {
                             <Text
                                 style={{
                                     fontSize: 12,
-                                    marginBottom: 5, marginStart: 5,
+                                    marginStart: 5,
                                 }}>{address}</Text>
                         </View>
 
