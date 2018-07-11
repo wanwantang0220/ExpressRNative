@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {createStackNavigator, StackNavigator} from 'react-navigation';
 import LoginPage from "../LoginPage";
 import SettingPage from "../page/SettingPage";
@@ -11,52 +11,56 @@ import {BaseStyles} from "../style/BaseStyle";
 import DrawerPage from "../DrawerPage";
 import SplashPage from "../SplashPage";
 import PersonDetialPage from "../page/PersonDetialPage";
+import MessagePage from "../page/MessagePage";
 
 
 const App = createStackNavigator({
-    Splash:{
-        screen:SplashPage
+        Splash: {
+            screen: SplashPage
+        },
+        Drawer: {
+            screen: DrawerPage
+        },
+        MyOrder: {
+            screen: MyOrderListPage
+        },
+        AddressHome: {
+            screen: AddressHomePage
+        },
+        Settings: {
+            screen: SettingPage
+        },
+        Login: {
+            screen: LoginPage
+        },
+        Home: {
+            screen: HomePage,
+            headerMode: 'none'
+        },
+        WaitingOrder: {
+            screen: WaitingOrderPager
+        },
+        AddressEdit: {
+            screen: AddressEditPage
+        },
+        PersonDetail: {
+            screen: PersonDetialPage
+        },
+        Message: {
+            screen: MessagePage
+        }
     },
-    Drawer:{
-        screen:DrawerPage
-    },
-    MyOrder: {
-        screen: MyOrderListPage
-    },
-    AddressHome:{
-        screen:AddressHomePage
-    },
-    Settings: {
-        screen: SettingPage
-    },
-    Login: {
-        screen: LoginPage
-    },
-    Home: {
-        screen: HomePage,
-        headerMode: 'none'
-    },
-    WaitingOrder:{
-        screen:WaitingOrderPager
-    },
-    AddressEdit:{
-        screen:AddressEditPage
-    },
-    PersonDetail:{
-        screen:PersonDetialPage
-    }
-},
     {
         initialRouteName: 'Splash',
         navigationOptions: {    //不要在此处设置 否则后面全部被覆盖
-            headerStyle: [{backgroundColor: '#000000',borderBottomColor:'#000000'}],
+            headerStyle: [{backgroundColor: '#000000', borderBottomColor: '#000000'}],
             headerBackTitle: null,
             headerTintColor: '#ffffff',// 返回箭头颜色
             headerTitleStyle: { //定义title的样式
                 flex: 1,
                 textAlign: "center",
                 fontWeight: 'bold',
-                alignSelf:'center',
+                alignSelf: 'center',
                 fontSize: 18
             },
             showIcon: true,
@@ -67,11 +71,10 @@ const App = createStackNavigator({
                 backgroundColor: 'transparent',
             },
         },
-        navigationBarHidden:true,
+        navigationBarHidden: true,
         headerMode: 'none'
     }
-
-        );
+);
 
 
 export default App

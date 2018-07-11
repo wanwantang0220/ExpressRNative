@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     Text,
     View,
@@ -16,7 +16,7 @@ const ScrollViewPropTypes = ScrollView.propTypes;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const DEFAULT_WINDOW_MULTIPLIER = 0.50;
-const DEFAULT_NAVBAR_HEIGHT = (Platform.OS === 'ios') ? 56+20 : 56; //解觉iOS通知栏透明问题
+const DEFAULT_NAVBAR_HEIGHT = (Platform.OS === 'ios') ? 56 + 20 : 56; //解觉iOS通知栏透明问题
 
 class ParallaxScrollView extends Component {
     constructor() {
@@ -27,8 +27,8 @@ class ParallaxScrollView extends Component {
     }
 
     renderHeaderView() {
-        var { windowHeight} = this.props;
-        var { scrollY } = this.state;
+        var {windowHeight} = this.props;
+        var {scrollY} = this.state;
         if (!windowHeight) {
             return null;
         }
@@ -43,7 +43,7 @@ class ParallaxScrollView extends Component {
                         outputRange: [1, 0.2]
                     })
                 }}>
-                <View style={{height: newWindowHeight, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{height: newWindowHeight, justifyContent: 'center', alignItems: 'center',marginBottom:5}}>
                     {this.props.headerView}
                 </View>
             </Animated.View>
@@ -51,8 +51,8 @@ class ParallaxScrollView extends Component {
     }
 
     renderNavBarTitle() {
-        var { windowHeight, navBarTitleColor } = this.props;
-        var { scrollY } = this.state;
+        var {windowHeight, navBarTitleColor} = this.props;
+        var {scrollY} = this.state;
         if (!windowHeight) {
             return null;
         }
@@ -66,7 +66,7 @@ class ParallaxScrollView extends Component {
                     })
                 }}
             >
-                <Text style={{ fontSize: 18, fontWeight: '600', color: navBarTitleColor || 'white' }}>
+                <Text style={{fontSize: 18, fontWeight: '600', color: navBarTitleColor || 'white'}}>
                     {this.props.navBarTitle}
                 </Text>
             </Animated.View>
@@ -78,7 +78,7 @@ class ParallaxScrollView extends Component {
             windowHeight, leftView,
             rightView, navBarColor
         } = this.props;
-        var { scrollY } = this.state;
+        var {scrollY} = this.state;
         if (!windowHeight) {
             return null;
         }
@@ -91,18 +91,22 @@ class ParallaxScrollView extends Component {
                     flexDirection: 'row',
                     position: 'absolute',
                     zIndex: 1,
-                    paddingTop: 20,
+                    // paddingTop: 20,
                     backgroundColor: scrollY.interpolate({
                         //inputRange: [-windowHeight, windowHeight * DEFAULT_WINDOW_MULTIPLIER, windowHeight * 0.8],
-                        inputRange: [0 ,windowHeight-DEFAULT_NAVBAR_HEIGHT,windowHeight],
-                        outputRange: ['transparent',navBarColor,navBarColor]
+                        inputRange: [0, windowHeight - DEFAULT_NAVBAR_HEIGHT, windowHeight],
+                        outputRange: ['transparent', navBarColor, navBarColor]
                     })
-                }}>
-                {leftView && <View style={{
+                }}
+            >
+                {leftView &&
+                <View style={{
                     flex: 1,
                     justifyContent: 'center',
-                    alignItems: 'center'}}>
-                    {leftView}</View>
+                    alignItems: 'center'
+                }}>
+                    {leftView}
+                </View>
                 }
                 <View
                     style={{
@@ -110,7 +114,8 @@ class ParallaxScrollView extends Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         alignSelf: 'center'
-                    }}>
+                    }}
+                >
                     {this.renderNavBarTitle()}
                 </View>
                 {rightView &&
@@ -119,15 +124,17 @@ class ParallaxScrollView extends Component {
                         flex: 1,
                         justifyContent: 'center',
                         alignItems: 'center'
-                    }}>
+                    }}
+                >
                     {rightView}
-                </View>}
+                </View>
+                }
             </Animated.View>
         );
     }
 
     render() {
-        var { style, ...props } = this.props;
+        var {style, ...props} = this.props;
 
         return (
             <View style={[styles.container, style]}>
@@ -139,7 +146,7 @@ class ParallaxScrollView extends Component {
                     {...props}
                     style={styles.scrollView}
                     onScroll={Animated.event([
-                        { nativeEvent: { contentOffset: { y: this.state.scrollY } } }
+                        {nativeEvent: {contentOffset: {y: this.state.scrollY}}}
                     ])}
                     scrollEventThrottle={16}
                     showsVerticalScrollIndicator={false}
@@ -211,4 +218,4 @@ var styles = StyleSheet.create({
     }
 });
 
-export {ParallaxScrollView,DEFAULT_NAVBAR_HEIGHT}
+export {ParallaxScrollView, DEFAULT_NAVBAR_HEIGHT}

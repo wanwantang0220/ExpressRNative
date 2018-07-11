@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Image, StatusBar, Dimensions, PixelRatio,YellowBox
+    Image, StatusBar, Dimensions, PixelRatio, YellowBox
 } from 'react-native';
 import NaviBarView from "../component/NaviBarView";
 import {White} from "../style/BaseStyle";
@@ -17,7 +17,7 @@ export default class HomePage extends Component {
 
     static navigationOptions = ({navigation}) => ({
         // header:null,
-        title:'首页',
+        title: '首页',
         drawerLabel: '首页',
         headerTitleStyle: {
             flex: 1,
@@ -36,10 +36,12 @@ export default class HomePage extends Component {
                 }}>
                 <Image
                     source={require('../../img/icon_menu.png')}
-                    style={{ width: 26,
+                    style={{
+                        width: 26,
                         height: 26,
                         alignSelf: 'center',
-                        marginLeft: 20}}
+                        marginLeft: 20
+                    }}
                     tintColor={White}/>
             </TouchableOpacity>
         </View>,
@@ -49,11 +51,10 @@ export default class HomePage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state = {};
     }
 
-    componentDidMount () {
+    componentDidMount() {
     }
 
 
@@ -63,11 +64,14 @@ export default class HomePage extends Component {
 
         return (
             <View style={[styles.container]}>
+                {/*状态栏*/}
                 <StatusBar
                     animated={true}
-                    backgroundColor="black"
+                    backgroundColor='#937eff'
                     barStyle='light-content'
                 />
+
+                <NaviBarView backgroundColor='#937eff'/>
 
                 <TouchableOpacity onPress={() => {
                     //点击打开抽屉
@@ -83,7 +87,8 @@ export default class HomePage extends Component {
                         activeOpacity={0.85}
                         underlayColor='white'
                         onPress={() => this.props.navigation.navigate('WaitingOrder')}>
-                        <Text style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'}}>
+                        <Text
+                            style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'}}>
                             接单
                         </Text>
                         <Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>1/10</Text>
@@ -94,7 +99,8 @@ export default class HomePage extends Component {
                         activeOpacity={0.85}
                         underlayColor='white'
                         onPress={() => this.props.navigation.navigate('PrintOrder')}>
-                        <Text style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'}}>
+                        <Text
+                            style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'}}>
                             打单
                         </Text>
                         <Text style={{marginLeft: 15, marginTop: 5, fontSize: 14, color: '#7A7A7A'}}>1/10</Text>
@@ -107,12 +113,14 @@ export default class HomePage extends Component {
                         style={[styles.viewBg, {flex: 1, marginLeft: 15}]}
                         activeOpacity={0.85}
                         onPress={() => this.props.navigation.navigate('Maps')}>
-                        <Text style={{marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'
+                        <Text style={{
+                            marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'
                         }}>下单</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
+                        activeOpacity={0.85}
                         style={[styles.viewBg, {flex: 1, marginLeft: 10, marginRight: 15}]}
-                        onPress={() => this.props.navigation.navigate('JPush')}>
+                        onPress={() => this.props.navigation.navigate('MessageNote')}>
                         <Text style={{
                             marginLeft: 15,
                             marginTop: 15,

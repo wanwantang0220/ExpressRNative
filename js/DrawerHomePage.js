@@ -4,6 +4,8 @@ import {createStackNavigator, StackNavigator} from "react-navigation";
 import WaitingOrderPager from "./page/WaitingOrderPager";
 import AddressEditPage from "./page/address/AddressEditPage";
 import PersonDetialPage from "./page/PersonDetialPage";
+import MessagePage from "./page/MessagePage";
+import MessageNotePage from "./page/MessageNotePage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -17,6 +19,12 @@ const DrawHomePage = createStackNavigator({
     },
     PersonDetail:{
         screen:PersonDetialPage
+    },
+    Message: {
+        screen: MessagePage
+    },
+    MessageNote:{
+        screen:MessageNotePage
     }
 
 });
