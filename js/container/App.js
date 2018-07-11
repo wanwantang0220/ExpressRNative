@@ -21,7 +21,6 @@ const App = createStackNavigator({
         screen:DrawerPage
     },
     MyOrder: {
-        title: "我的订单",
         screen: MyOrderListPage
     },
     AddressHome:{

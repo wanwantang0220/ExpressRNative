@@ -36,7 +36,7 @@ class WaitingOrderPager extends Component {
         this.state = {
             mData: [],
             refreshing: true,
-            startPage: START_PAGE,   // 从第几页开始加载
+            startPage: 1,   // 从第几页开始加载
             pageSize: PAGE_SIZE,   // 每页加载多少条数据
             isLoadMore: ''
         };
@@ -187,7 +187,6 @@ class WaitingOrderPager extends Component {
     };
 
     renderItem = (item) => {
-        const itm = item;
         const {acceptOrder} = this.props.acceptOrder;
         return (
             <WaitOrderItemCell item={item} onAcceptOrder={() => {

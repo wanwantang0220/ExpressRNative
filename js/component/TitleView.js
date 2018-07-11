@@ -45,7 +45,7 @@ export default class TitleView extends Component {
                 <View style={[styles.toolbar_middle]}>
                     <Text style={[styles.toolbar_middle_text]}>{title}</Text>
                 </View>
-                <Text >测试</Text>
+                <Text ></Text>
             </View>
         );
     }

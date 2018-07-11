@@ -17,7 +17,6 @@ const Drawer = createDrawerNavigator({
         screen: DrawerHomePage
     },
     MyOrder: {
-        title: "我的订单",
         screen: MyOrderListPage
     },
     AddressHome: {

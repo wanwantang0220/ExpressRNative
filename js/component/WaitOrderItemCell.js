@@ -41,21 +41,29 @@ export default class WaitOrderItemCell extends PureComponent {
                         <Text style={{fontSize: 18, fontWeight: 'bold', color: '#000000',}}>{item.senderName}</Text>
 
                         <View style={{flex: 1, flexDirection: 'row'}}>
-                            <Image style={{width: 10, height: 10}}
-                                   source={PIC_ADDRESS}/>
+                            <Image style={{
+                                width: 10, height: 10,
+                                marginTop: 8,
+                                marginBottom: 5
+                            }}
+                                   source={PIC_ORDER}/>
                             <Text style={{
                                 fontSize: 12,
-                                marginTop: 5,
+                                marginTop: 5, marginStart: 5,
                             }}>{item.bookedFrom + "--" + item.bookedTo}</Text>
                         </View>
 
                         <View style={{flex: 1, flexDirection: 'row'}}>
-                            <Image style={{width: 10, height: 10}}
-                                   source={PIC_ORDER}/>
+                            <Image style={{
+                                width: 10, height: 10,
+                                marginTop: 3,
+                                marginBottom: 5
+                            }}
+                                   source={PIC_ADDRESS }/>
                             <Text
                                 style={{
-                                    fontSize: 12, marginTop: 5,
-                                    marginBottom: 5
+                                    fontSize: 12,
+                                    marginBottom: 5, marginStart: 5,
                                 }}>{item.senderProvinceCityCountyName + item.senderAddressDetail}</Text>
                         </View>
 

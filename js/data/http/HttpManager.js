@@ -13,6 +13,9 @@ const ADDRESS_EDIT = "/addressBook/update";
 
 //个人信息
 const USER_INFO_BY_UUID = "/staffMessage/findByUuid";
+/*我的收件*/
+const MY_ORDER_LIST = "/expressOrderDetail/searchOrdersByFilter";
+
 
 export default class HttpManager {
 
@@ -152,6 +155,39 @@ export default class HttpManager {
             })
         })
     }
+
+
+    /**
+     * 待打单列表
+     */
+    getMyOrderList(data, callback) {
+
+        const url = BaseUrl + MY_ORDER_LIST;
+
+        return new Promise((resolve, reject) => {
+            this.postNetData(url, data)
+                .then((data) => {
+                    if (data != null) {
+                        if (data.errCode === "000000") {
+                            callback(data.object);
+                        } else if (data.errDesc != null && data.errDesc != "") {
+                            reject(ErrorAnayle.getErrorMsg(data.errDesc))
+                        } else {
+                            reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                        }
+                    } else {
+                        reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                    }
+                }).catch((error) => {
+                if (error != null && error instanceof ErrorBean) {
+                    reject(error)
+                } else {
+                    reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                }
+            })
+        })
+    }
+
 }
 
 
