@@ -15,7 +15,8 @@ const ADDRESS_EDIT = "/addressBook/update";
 const USER_INFO_BY_UUID = "/staffMessage/findByUuid";
 /*我的收件*/
 const MY_ORDER_LIST = "/expressOrderDetail/searchOrdersByFilter";
-
+/*消息列表*/
+const MESSAGE_LIST = "/message/retrieveAll";
 
 export default class HttpManager {
 
@@ -186,6 +187,16 @@ export default class HttpManager {
                 }
             })
         })
+    }
+
+
+    /***
+     * 消息列表
+     * @param param
+     * @param callback
+     */
+    getMessageList(param, callback) {
+        const url = BaseUrl + MESSAGE_LIST;
     }
 
 }

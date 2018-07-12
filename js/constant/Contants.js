@@ -28,5 +28,6 @@ export const LOADING = '加载中...';
 export const LOAD_NO_MORE = '没有更多数据了';
 export const LOAD_NORMAL = '加载更多';
 export const LOAD_EMPTY = '';
+export const TOTAL_ROW = 0;
 
 
