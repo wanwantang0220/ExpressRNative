@@ -197,6 +197,29 @@ export default class HttpManager {
      */
     getMessageList(param, callback) {
         const url = BaseUrl + MESSAGE_LIST;
+
+        return new Promise((resolve,reject)=>{
+            this.postNetData(url, data)
+                .then((data) => {
+                    if (data != null) {
+                        if (data.errCode === "000000") {
+                            callback(data.object);
+                        } else if (data.errDesc != null && data.errDesc != "") {
+                            reject(ErrorAnayle.getErrorMsg(data.errDesc))
+                        } else {
+                            reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                        }
+                    } else {
+                        reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                    }
+                }).catch((error) => {
+                if (error != null && error instanceof ErrorBean) {
+                    reject(error)
+                } else {
+                    reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                }
+            })
+        });
     }
 
 }

@@ -105,8 +105,13 @@ export default class MessageNotePage extends PureComponent {
 
 
         this.httpManager.getMessageList(object,(response)=>{
+            const res = response.list;
 
-        })
+            var dataBlob = [];
+            for(let i in res){
+
+            }
+        });
     }
 
 }
