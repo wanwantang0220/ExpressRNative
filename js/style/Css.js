@@ -1,5 +1,5 @@
 import {deviceWidth} from "../util/ScreenUtil";
-import {BackgroundColorLight, BlackColor, ColorStart, White} from "./BaseStyle";
+import {BackgroundColorLight, BlackColor, ColorStart, ColorTextGrey, White} from "./BaseStyle";
 import {
     Dimensions, Image, StyleSheet, View, Text, StatusBar, TextInput, TouchableOpacity,
     PixelRatio
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         borderColor: BackgroundColorLight,
         justifyContent: 'center',
         borderRadius: 30,
-        marginEnd:10,
+        marginEnd: 10,
         alignItems: 'center'
     },
     waitorder_print_text: {
@@ -135,6 +135,42 @@ const styles = StyleSheet.create({
         fontFamily: 'Gill Sans',
         margin: 10,
         backgroundColor: 'transparent'
+    },
+    message_note_bg: {
+        width: deviceWidth - 20,
+        backgroundColor: '#ffffff',
+        shadowColor: BackgroundColorLight,
+        borderRadius: 5,
+        elevation: 3,
+        marginTop: 5,
+        marginStart: 10,
+        marginEnd: 10,
+        marginBottom: 5
+    },
+    message_note_time_bg: {
+        width: 120,
+        height: 25,
+        backgroundColor: ColorTextGrey,
+        shadowColor: BackgroundColorLight,
+        borderRadius: 20,
+        elevation: 3,
+        marginTop: 5,
+        marginBottom: 2,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    viewTextBg: {
+        width: 220,
+        height: 30,
+        backgroundColor: '#ffffff',
+        borderColor: '#080808',
+        justifyContent: 'center',
+        borderRadius: 15,
+        borderStyle: 'solid',
+        borderLeftWidth: 1 / PixelRatio.get(),
+        borderRightWidth: 1 / PixelRatio.get(),
+        borderBottomWidth: 1 / PixelRatio.get(),
+        borderTopWidth: 1 / PixelRatio.get(),
     }
 
 });

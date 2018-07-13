@@ -1,4 +1,7 @@
-import {TYPE_0, TYPE_1, TYPE_2, TYPE_3, TYPE_4, TYPE_5, TYPE_6} from "./BaseContant";
+import {
+    MESSAGE_TYPE_1, MESSAGE_TYPE_2, MESSAGE_TYPE_3, MESSAGE_TYPE_4, TYPE_0, TYPE_1, TYPE_2, TYPE_3, TYPE_4, TYPE_5,
+    TYPE_6
+} from "./BaseContant";
 
 
 export const getStatus = (orderSource) => {
@@ -22,3 +25,22 @@ export const getStatus = (orderSource) => {
             return '';
     }
 };
+
+export const getMessageTitle = (type) => {
+
+    switch (type) {
+        case MESSAGE_TYPE_1:
+            return '您有一个新订单';
+        case MESSAGE_TYPE_2:
+            return '签收成功';
+        case MESSAGE_TYPE_3:
+            return '取消订单' ;
+        case MESSAGE_TYPE_4:
+            return '您有一个新订单';
+        default:
+            return '';
+    }
+};
+
+
+

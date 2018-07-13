@@ -198,8 +198,8 @@ export default class HttpManager {
     getMessageList(param, callback) {
         const url = BaseUrl + MESSAGE_LIST;
 
-        return new Promise((resolve,reject)=>{
-            this.postNetData(url, data)
+        return new Promise((resolve, reject) => {
+            this.postNetData(url, param)
                 .then((data) => {
                     if (data != null) {
                         if (data.errCode === "000000") {
@@ -219,7 +219,7 @@ export default class HttpManager {
                     reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
                 }
             })
-        });
+        })
     }
 
 }

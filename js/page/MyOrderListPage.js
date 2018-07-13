@@ -137,6 +137,10 @@ export default class MyOrderListPage extends Component {
         alert("uuid = " + uuid);
     }
 
+    /***
+     * 底部显示
+     * @returns {*}
+     */
     footerContent() {
 
         if (!this.state.refreshing || this.state.loadedData) {

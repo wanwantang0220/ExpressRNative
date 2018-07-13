@@ -22,6 +22,9 @@ const ColorStart = '#F24A16';
 const ColorEnd = '#BE0154';
 const ColorLine = '#E5E5E5';
 const ColorLineRed = '#E83F57';
+const themeColor = '#268dcd';
+const separatorColor = '#e0e0e0';
+const backgroundColor = '#f3f3f3';
 
 const BaseStyles = StyleSheet.create({
     baseWhiteText: {
@@ -59,5 +62,8 @@ export {
     ColorEnd,
     ColorTextGrey2,
     ColorLine,
-    ColorLineRed
+    ColorLineRed,
+    themeColor,
+    separatorColor,
+    backgroundColor
 }

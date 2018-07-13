@@ -16,7 +16,12 @@ const TYPE_4 = '4';//"4","已发件（待签收）"
 const TYPE_5 = '5';//"5","已签收"
 const TYPE_6 = '6';//"6","已取消"
 
+const MESSAGE_TYPE_1 = '1';
+const MESSAGE_TYPE_2 = '2';
+const MESSAGE_TYPE_3 = '3';
+const MESSAGE_TYPE_4 = '4';
+
 export {
     Base, Wait_OrderList_Param, TYPE_0, TYPE_1, TYPE_2, TYPE_3, TYPE_4,
-    TYPE_5, TYPE_6
+    TYPE_5, TYPE_6,MESSAGE_TYPE_1,MESSAGE_TYPE_2,MESSAGE_TYPE_3,MESSAGE_TYPE_4
 }
