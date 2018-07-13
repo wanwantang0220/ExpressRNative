@@ -213,11 +213,11 @@ export default class HttpManager {
                         reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
                     }
                 }).catch((error) => {
-                if (error != null && error instanceof ErrorBean) {
-                    reject(error)
-                } else {
-                    reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
-                }
+                // if (error != null && error instanceof ErrorBean) {
+                //     reject(error)
+                // } else {
+                reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                // }
             })
         })
     }

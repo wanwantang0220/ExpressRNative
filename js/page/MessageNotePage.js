@@ -1,11 +1,15 @@
 import React, {PureComponent} from "react";
 import {View} from "react-native";
-import {PAGE_SIZE, START_PAGE} from "../constant/Contants";
+import {PAGE_SIZE, START_PAGE, TOTAL_ROW} from "../constant/Contants";
 import HttpManager from "../data/http/HttpManager";
 import RefreshListView from "../component/refresh/RefreshListView";
 import RefreshState from "../component/refresh/RefreshState";
 import {BackgroundColor} from "../style/BaseStyle";
 import MessageNoteItemCell from "../component/MessageNoteItemCell";
+import {storage} from "../data/storage/Storage";
+
+
+let USER_INFO = '';
 
 export default class MessageNotePage extends PureComponent {
 
@@ -25,9 +29,15 @@ export default class MessageNotePage extends PureComponent {
         super(props);
         this.state = {
             mList: [],
-            startPage: 0,
-            pageSize: 10,
+            startPage: START_PAGE,
+            pageSize: PAGE_SIZE,
+            totalRow: TOTAL_ROW
         };
+
+        storage.load('userInfo', (response) => {
+            USER_INFO = response;
+
+        });
 
         this.httpManager = new HttpManager();
     }
@@ -80,39 +90,54 @@ export default class MessageNotePage extends PureComponent {
     refreshList() {
         this.setState({
             startPage: START_PAGE,
-            pageSize: PAGE_SIZE,
-            mList: []
+            totalRow: TOTAL_ROW,
+            mList: [],
+        }, function () {
+            this.requestData();
         });
 
-        let objectChild = {
-            "object": {
-                "receiverUuid": "126R0O1VN6EG10TA"
-            },
-            "pageRow": this.state.pageSize,
-            "startPage": this.state.startPage
-        };
-        this.requestData(objectChild);
 
     }
 
 
+    /***
+     * setState是异步的，所以试图在setState调用之后直接使用状态将不起作用，因为更新不一定会运行。
+     * 相反，可以使用第二个参数setState作为回调： function ()
+     */
     loadList() {
-        let objectChild = {
-            "object": {
-                "receiverUuid": "126R0O1VN6EG10TA"
-            },
-            "pageRow": this.state.pageSize,
-            "startPage": this.state.startPage
-        };
 
-        this.requestData(objectChild);
+        const list = this.state.mList;
+        const total = this.state.totalRow;
+
+        if (list.length < total) {
+            let startPage = this.state.startPage + 1;
+            this.setState({
+                startPage: startPage,
+            }, function () {
+                this.requestData();
+            });
+        } else {
+
+        }
     }
 
-    requestData(objectChild) {
+    requestData() {
+        let startPage = this.state.startPage;
+        let pageSize = this.state.pageSize;
+
+        let objectChild = {
+            "object": {
+                "receiverUuid": USER_INFO.userUuid,
+            },
+            "pageRow": pageSize,
+            "startPage": startPage
+        };
+
         let object = {
             "object": objectChild
         };
 
+        console.log('startPage = ', this.state.startPage);
 
         this.httpManager.getMessageList(object, (response) => {
             const res = response.list;
@@ -139,12 +164,12 @@ export default class MessageNotePage extends PureComponent {
 
             // 根据已经加载的条数和总条数的比较，判断是否还有下一页
             let footerState = RefreshState.Idle;
-            let startPage = this.state.startPage;
+            // let startPage = this.state.startPage;
             if (currentCount + dataBlob.length < totalCount) {
                 // 还有数据可以加载
                 footerState = RefreshState.CanLoadMore;
                 // 下次加载从第几条数据开始
-                startPage = startPage + 1;
+                // startPage = startPage + 1;
             } else {
                 footerState = RefreshState.NoMoreData;
             }
@@ -152,7 +177,8 @@ export default class MessageNotePage extends PureComponent {
             let mList = this.state.mList.concat(dataBlob);
             this.setState({
                 mList: mList,
-                startPage: startPage
+                totalRow: totalCount,
+                // startPage: startPage
             });
             this.listView.endRefreshing(footerState);
 
