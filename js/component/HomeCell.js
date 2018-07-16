@@ -14,8 +14,8 @@ export default class HomeCell extends Component {
 
     // 定义相关属性类型
     static propTypes = {
-        badgeStyle: View.propTypes.style,
-        backgroundColor: View.propTypes.style,
+        badgeStyle: PropTypes.style,
+        backgroundColor: PropTypes.style,
         title: PropTypes.string,
         padding: PropTypes.number,
         renderImage: PropTypes.func,

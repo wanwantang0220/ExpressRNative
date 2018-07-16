@@ -53,7 +53,6 @@ const Drawer = createDrawerNavigator({
             USER_INFO = response;
 
         });
-        console.log('userinfo', USER_INFO);
 
         const navigation = props.navigation;
 

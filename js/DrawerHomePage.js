@@ -6,6 +6,7 @@ import AddressEditPage from "./page/address/AddressEditPage";
 import PersonDetialPage from "./page/PersonDetialPage";
 import MessagePage from "./page/MessagePage";
 import MessageNotePage from "./page/MessageNotePage";
+import OrderDetailPage from "./page/OrderDetailPage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -25,6 +26,9 @@ const DrawHomePage = createStackNavigator({
     },
     MessageNote:{
         screen:MessageNotePage
+    },
+    OrderDetail: {
+        screen: OrderDetailPage
     }
 
 });

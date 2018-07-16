@@ -17,6 +17,7 @@ import TitleView from "../component/TitleView";
 import MyOrderItemCell from "../component/MyOrderItemCell";
 import {deviceWidth} from "../util/ScreenUtil";
 import {ColorTextGrey} from "../style/BaseStyle";
+import {NavigationActions, StackActions} from "react-navigation";
 
 
 export default class MyOrderListPage extends Component {
@@ -126,7 +127,26 @@ export default class MyOrderListPage extends Component {
         return (
             <View>
                 <MyOrderItemCell item={item} onSelectOrder={() => {
-                    this.handSelectOrder(item.uuid)
+                    const resetAction = StackActions.reset({
+                        index: 0,
+                        actions: [
+                            NavigationActions.navigate({
+                                routeName: 'OrderDetail',
+                                params: {uuid: item.uuid}
+                            })
+                        ]
+                    });
+                    this.props.navigation.dispatch(resetAction);
+
+                    // const navigateAction = NavigationActions.navigate({
+                    //     routeName: 'OrderDetail',
+                    //     params: {uuid: item.uuid}
+                    //
+                    // });
+                    // this.props.navigation.navigate(navigateAction);
+                    // this.props.navigation.navigate('OrderDetail', {
+                    //     params: {uuid: item.uuid}
+                    // })
                 }}/>
             </View>
         )
@@ -134,7 +154,9 @@ export default class MyOrderListPage extends Component {
 
 
     handSelectOrder(uuid) {
-        alert("uuid = " + uuid);
+
+        this.prop.navigation.navigate('OrderDetail');
+        // alert("uuid = " + uuid);
     }
 
     /***

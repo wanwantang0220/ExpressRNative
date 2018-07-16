@@ -12,6 +12,7 @@ import DrawerPage from "../DrawerPage";
 import SplashPage from "../SplashPage";
 import PersonDetialPage from "../page/PersonDetialPage";
 import MessagePage from "../page/MessagePage";
+import OrderDetailPage from "../page/OrderDetailPage";
 
 
 const App = createStackNavigator({
@@ -48,6 +49,9 @@ const App = createStackNavigator({
         },
         Message: {
             screen: MessagePage
+        },
+        OrderDetail: {
+            screen: OrderDetailPage
         }
     },
     {
