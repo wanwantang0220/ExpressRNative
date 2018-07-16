@@ -17,6 +17,9 @@ const USER_INFO_BY_UUID = "/staffMessage/findByUuid";
 const MY_ORDER_LIST = "/expressOrderDetail/searchOrdersByFilter";
 /*消息列表*/
 const MESSAGE_LIST = "/message/retrieveAll";
+//订单详情
+export const EXPRESS_ORDER_DETAIL = "/expressOrderDetail/selectByUuid";
+
 
 export default class HttpManager {
 
@@ -220,6 +223,15 @@ export default class HttpManager {
                 // }
             })
         })
+    }
+
+    /***
+     * 订单详情
+     * @param param
+     * @param callback
+     */
+    getOrderDetail(param, callback) {
+
     }
 
 }

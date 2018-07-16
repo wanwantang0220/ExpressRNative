@@ -67,11 +67,11 @@ export default class HomePage extends Component {
                 {/*状态栏*/}
                 <StatusBar
                     animated={true}
-                    backgroundColor='#937eff'
+                    backgroundColor='#000000'
                     barStyle='light-content'
                 />
 
-                <NaviBarView backgroundColor='#937eff'/>
+                <NaviBarView backgroundColor='#000000'/>
 
                 <TouchableOpacity onPress={() => {
                     //点击打开抽屉

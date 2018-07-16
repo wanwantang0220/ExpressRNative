@@ -7,6 +7,7 @@ import RefreshState from "../component/refresh/RefreshState";
 import {BackgroundColor} from "../style/BaseStyle";
 import MessageNoteItemCell from "../component/MessageNoteItemCell";
 import {storage} from "../data/storage/Storage";
+import {NavigationActions, StackActions} from "react-navigation";
 
 
 let USER_INFO = '';
@@ -72,7 +73,7 @@ export default class MessageNotePage extends PureComponent {
 
         return (
             <MessageNoteItemCell item={item.item} onSelectItem={() => {
-                this.onSelectItem(item)
+                this.onSelectItem(item.item)
             }}/>
         )
     };
@@ -80,6 +81,7 @@ export default class MessageNotePage extends PureComponent {
 
     onSelectItem(item) {
 
+        this.props.navigation.navigate('WaitingOrder');
     }
 
     /// 渲染一个空白页，当列表无数据的时候显示。这里简单写成一个View控件

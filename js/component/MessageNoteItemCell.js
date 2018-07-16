@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
-import {Image, Text, View} from "react-native";
+import {Image, Text, TouchableOpacity, View} from "react-native";
 import {BackgroundColorLight, BlackColor, White} from "../style/BaseStyle";
 import Line from "./Line";
 import styles from "../style/Css";
@@ -28,7 +28,12 @@ export default class MessageNoteItemCell extends PureComponent {
         const title = getMessageTitle(item.type);
 
         return (
-            <View style={{width: deviceWidth, flexDirection: 'column', marginTop: 5}}>
+            <TouchableOpacity
+                activeOpacity={0.85}
+                style={{width: deviceWidth, flexDirection: 'column', marginTop: 5}}
+                onPress={() => {
+                    onSelectItem()
+                }}>
                 <View style={{width: deviceWidth, flexDirection: 'row', flex: 1, justifyContent: 'center',}}>
                     <View style={[styles.message_note_time_bg]}>
                         <Text style={{
@@ -60,11 +65,11 @@ export default class MessageNoteItemCell extends PureComponent {
                         marginBottom: 6
                     }}>
                         <Text style={{flex: 5, textAlign: 'left', fontSize: 12}}>查看订单</Text>
-                        <Image style={{flex: 1,  marginEnd: 10, width: 10, height: 10}}
+                        <Image style={{flex: 1, marginEnd: 10, width: 10, height: 10}}
                                source={PIC_ARROW_ICON}/>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 

@@ -6,27 +6,40 @@ import {createDrawerNavigator, DrawerItems, DrawerNavigator, NavigationActions, 
 import {deviceWidth} from "./util/ScreenUtil";
 import MyOrderListPage from "./page/MyOrderListPage";
 import SettingPage from "./page/SettingPage";
-import AddressHomePage from "./page/AddressHomePage";
 import {White} from "./style/BaseStyle";
 import {storage} from "./data/storage/Storage";
 import PersonDetialPage from "./page/PersonDetialPage";
+import OrderHomePage from "./OrderHomePage";
+import AddressHomePage from "./AddressHomePage";
 
 let USER_INFO = '';
 const Drawer = createDrawerNavigator({
     DrawHome: {
-        screen: DrawerHomePage
+        screen: DrawerHomePage,
+        navigationOptions: {
+            title: '首页',
+        }
     },
-    MyOrder: {
-        screen: MyOrderListPage
+    OrderHome: {
+        screen: OrderHomePage,
+        navigationOptions: {
+            title: '我的收件',
+        }
     },
     AddressHome: {
-        screen: AddressHomePage
+        screen: AddressHomePage,
+        navigationOptions: {
+            title: '地址簿',
+        }
     },
     // Address:{
     //     screen: AddressPage
     // },
     Setting: {
-        screen: SettingPage
+        screen: SettingPage,
+        navigationOptions: {
+            title: '设置',
+        }
     }
 }, {
     drawerWidth: 300,

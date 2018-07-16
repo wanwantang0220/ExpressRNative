@@ -16,7 +16,7 @@ import {LOAD_EMPTY, LOAD_NO_MORE, LOAD_NORMAL, LOADING, PAGE_SIZE, START_PAGE} f
 import TitleView from "../component/TitleView";
 import MyOrderItemCell from "../component/MyOrderItemCell";
 import {deviceWidth} from "../util/ScreenUtil";
-import {ColorTextGrey} from "../style/BaseStyle";
+import {BlackColor, ColorTextGrey, White} from "../style/BaseStyle";
 import {NavigationActions, StackActions} from "react-navigation";
 
 
@@ -27,12 +27,30 @@ export default class MyOrderListPage extends Component {
         drawerLabel: '我的收件',
         //标题
         title: "我的收件",
+        tabBarLabel: '我的收件',
         headerTitleStyle: {
             flex: 1,
             textAlign: "center",
         },
         headerRight: <View/>,
-        drawerLockMode: 'locked-closed',
+        headerLeft: <View>
+            <TouchableOpacity
+                onPress={() => {
+                    //点击打开抽屉
+                    navigation.openDrawer();
+                }}>
+                <Image
+                    source={require('../../img/icon_menu.png')}
+                    style={{
+                        width: 26,
+                        height: 26,
+                        alignSelf: 'center',
+                        marginLeft: 20
+                    }}
+                    tintColor={BlackColor}/>
+            </TouchableOpacity>
+        </View>,
+        // drawerLockMode: 'locked-closed',
     });
 
     constructor(props) {
@@ -64,9 +82,9 @@ export default class MyOrderListPage extends Component {
                     backgroundColor="black"
                     barStyle='light-content'/>
                 <NaviBarView backgroundColor="black"/>
-                <TitleView title='我的收件' onBack={() => {
-                    this.props.navigation.goBack();
-                }}/>
+                {/*<TitleView title='我的收件' onBack={() => {*/}
+                    {/*this.props.navigation.goBack();*/}
+                {/*}}/>*/}
                 <ScrollView style={styles.scrollview_container}
                             showsVerticalScrollIndicator={false}
                             refreshControl={this.refreshControlView()}>
@@ -127,16 +145,12 @@ export default class MyOrderListPage extends Component {
         return (
             <View>
                 <MyOrderItemCell item={item} onSelectOrder={() => {
-                    const resetAction = StackActions.reset({
-                        index: 0,
-                        actions: [
-                            NavigationActions.navigate({
-                                routeName: 'OrderDetail',
-                                params: {uuid: item.uuid}
-                            })
-                        ]
+
+
+                    this.props.navigation.navigate('OrderDetail', {
+                        uuid: item.uuid
                     });
-                    this.props.navigation.dispatch(resetAction);
+
 
                     // const navigateAction = NavigationActions.navigate({
                     //     routeName: 'OrderDetail',

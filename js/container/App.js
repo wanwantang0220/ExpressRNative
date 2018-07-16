@@ -3,7 +3,7 @@ import {createStackNavigator, StackNavigator} from 'react-navigation';
 import LoginPage from "../LoginPage";
 import SettingPage from "../page/SettingPage";
 import MyOrderListPage from "../page/MyOrderListPage";
-import AddressHomePage from "../page/AddressHomePage";
+import AddressHomePage from "../page/AddressPage";
 import HomePage from "../page/HomePage";
 import AddressEditPage from "../page/address/AddressEditPage";
 import WaitingOrderPager from "../page/WaitingOrderPager";
@@ -22,9 +22,9 @@ const App = createStackNavigator({
         Drawer: {
             screen: DrawerPage
         },
-        MyOrder: {
-            screen: MyOrderListPage
-        },
+        // MyOrder: {
+        //     screen: MyOrderListPage
+        // },
         AddressHome: {
             screen: AddressHomePage
         },
@@ -41,9 +41,6 @@ const App = createStackNavigator({
         WaitingOrder: {
             screen: WaitingOrderPager
         },
-        AddressEdit: {
-            screen: AddressEditPage
-        },
         PersonDetail: {
             screen: PersonDetialPage
         },
@@ -52,7 +49,9 @@ const App = createStackNavigator({
         },
         OrderDetail: {
             screen: OrderDetailPage
-        }
+        }, AddressEdit: {
+            screen: AddressEditPage
+        },
     },
     {
         initialRouteName: 'Splash',

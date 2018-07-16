@@ -8,6 +8,7 @@ import {DEFAULT_NAVBAR_HEIGHT, ParallaxScrollView} from "../component/ParallaxSc
 import {BaseStyles, GrayBlackColor, MainBg, White, WhiteTextColor} from "../style/BaseStyle";
 import {deviceHeight, deviceWidth} from "../util/ScreenUtil";
 import LinearGradient from 'react-native-linear-gradient'
+import {NavigationActions} from "react-navigation";
 
 
 const Header_Height = (deviceHeight - DEFAULT_NAVBAR_HEIGHT) / 2;
@@ -91,7 +92,10 @@ export default class MessagePage extends Component {
 
     getParallaxLeftView() {
         return (<TouchableOpacity onPress={() => {
-            this.props.navigation.goBack()
+
+            this.props.navigation.goBack(null);
+
+
         }}>
             <Image
                 style={BaseStyles.baseIcon}

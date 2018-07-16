@@ -12,8 +12,8 @@ const DrawHomePage = createStackNavigator({
     Home: {
         screen: HomePage
     },
-    WaitingOrder:{
-        screen:WaitingOrderPager
+    WaitingOrder: {
+        screen: WaitingOrderPager
     },
     AddressEdit:{
         screen:AddressEditPage

@@ -1,18 +1,17 @@
 /**
- * 我的订单
+ * 地址簿
  **/
 
 import React, {Component} from 'react';
-import {Dimensions, Image, StyleSheet, View, Text, StatusBar, TouchableOpacity} from "react-native";
+import {StatusBar, StyleSheet, View} from "react-native";
+import {BackgroundColorLight, BlackTextColor, White} from "../style/BaseStyle";
 import NaviBarView from "../component/NaviBarView";
-import {BackgroundColor, BackgroundColorLight, GrayColor, White} from "../style/BaseStyle";
-import {deviceWidth} from "../util/ScreenUtil";
 import TitleView from "../component/TitleView";
-import HttpManager from "../data/http/HttpManager";
-import RefreshListView from "../component/refresh/RefreshListView";
-import RefreshState from "../component/refresh/RefreshState";
-import AddressItemCell from "../component/AddressItemCell";
 import LinearGradient from "react-native-linear-gradient";
+import ScrollableTabView, {ScrollableTabBar} from 'react-native-scrollable-tab-view';
+import {deviceWidth} from "../util/ScreenUtil";
+import AddressReceiverPage from "./address/AddressReceiverPage";
+import AddressSenderPage from "./address/AddressSenderPage";
 
 
 export default class AddressPage extends Component {
@@ -22,6 +21,7 @@ export default class AddressPage extends Component {
         drawerLabel: '地址簿',
         //标题
         title: "地址簿",
+        // drawerLockMode:'locked-closed',
         headerTitleStyle: {
             flex: 1,
             textAlign: "center",
@@ -31,21 +31,16 @@ export default class AddressPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            mData: [],
-            startPage: 1,   // 从第几页开始加载
-            pageSize: 6,   // 每页加载多少条数据
-        };
-        this.httpManager = new HttpManager();
-
+        this.state = {};
     }
 
     componentDidMount() {
-        this.listView.beginHeaderRefresh();
     }
 
 
     render() {
+
+        const navigator = this.props.navigation;
 
         return (
             <View style={[styles.container]}>
@@ -58,149 +53,49 @@ export default class AddressPage extends Component {
                     this.props.navigation.pop();
                 }}/>
 
-                <LinearGradient colors={[ BackgroundColorLight, White]} style={styles.lineargradient}>
+                <LinearGradient colors={[BackgroundColorLight, White]} style={styles.lineargradient}>
                 </LinearGradient>
-                <RefreshListView
-                    ref={(ref) => {
-                        this.listView = ref
-                    }}
-                    colors={['red', '#ffd500', '#0080ff', '#99e600']}
-                    data={this.state.mData}
-                    renderItem={this.renderItem}
-                    keyExtractor={(item) => {
-                        return item._id || item.uuid;
-                    }}
-                    ListEmptyComponent={this.renderEmptyView}
-                    onHeaderRefresh={() => {
-                        this.requestRefreshData(true, false)
-                    }}
-                    onFooterRefresh={() => {
-                        this.requestRefreshData(false, true)
-                    }}>
-                </RefreshListView>
+
+                <ScrollableTabView
+                    tabBarInactiveTextColor={BlackTextColor} // 没有被选中的文字颜色
+                    tabBarActiveTextColor={BlackTextColor}       // 选中的文字颜色
+                    tabBarBackgroundColor={White}     // 选项卡背景颜色
+                    tabBarUnderlineStyle={{backgroundColor: '#FF0000', height: 1}}   //下划线的样式
+                    initialPage={0}
+                    renderTabBar={() =>
+                        <ScrollableTabBar
+                            style={{height: 40, borderWidth: 0, elevation: 2}}
+                            tabStyle={{height: 39}}
+                            underlineHeight={2}/>}>
+
+                    {/*<AddressAllPage tabLabel="    全部    "  navigator={navigator}/>*/}
+                    <AddressReceiverPage tabLabel="    收件    " navigator={navigator}/>
+                    <AddressSenderPage tabLabel="    发件    " navigator={navigator}/>
+                </ScrollableTabView>
+
             </View>
         )
-    }
-
-    /// 渲染一个空白页，当列表无数据的时候显示。这里简单写成一个View控件
-    renderEmptyView = (item) => {
-        return <View/>
-    };
-
-    renderItem = (item) => {
-        return (
-            <AddressItemCell address={item.item} onPress={() => {
-                alert(item.item.name);
-            }}/>
-        )
-    };
-
-
-    /**
-     *
-     * @param isrefresh  刷新
-     * @param isloadmore 加载更多
-     */
-    requestRefreshData(isrefresh, isloadmore) {
-        if (isrefresh) {
-            let startpage=1 , mdata=[];
-            this.setState({
-                mData: mdata,
-                startPage: startpage
-            });
-            this.setState({title: 'React'});
-
-            this.state.mData=[];
-            this.state.startPage=1;
-        }
-
-        let params = {
-            "addUserPhone": "18961812572",
-            // "addUserType": "2" ,
-            // "addrType":"1"
-        };
-        let object2 = {
-            "object": params,
-            "pageRow": this.state.pageSize,
-            "startPage": this.state.startPage
-        };
-        let object = {
-            "object": object2
-        };
-
-        console.log("startPage", this.state.startPage);
-
-        this.httpManager.requestAddresses(object, (response) => {
-            console.log("response", response);
-            let mlist = [];
-            for (let idx in response.list) {
-                let item = response.list[idx];
-                mlist.push(item)
-            }
-            // 获取总的条数
-            let totalCount = response.totalRow;
-
-            // 当前已经加载的条数
-            let currentCount = this.state.mData.length;
-
-            // 根据已经加载的条数和总条数的比较，判断是否还有下一页
-            let footerState = RefreshState.Idle;
-            let startPage = this.state.startPage;
-            if (currentCount + mlist.length < totalCount) {
-                // 还有数据可以加载
-                footerState = RefreshState.CanLoadMore;
-                // 下次加载从第几条数据开始
-                startPage = startPage + 1;
-            } else {
-                footerState = RefreshState.NoMoreData;
-            }
-            // 更新movieList的值
-            let mData = this.state.mData.concat(mlist);
-            this.setState({
-                mData: mData,
-                startPage: startPage
-            });
-            this.listView.endRefreshing(footerState);
-
-        });
-
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    },
-    toolbar: {
-        height: 56,
-        width: deviceWidth,
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-    toolbar_left_img: {
-        width: 26,
-        height: 26,
-        alignSelf: 'center',
-        marginLeft: 20,
-    },
-    toolbar_middle: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
-    toolbar_middle_text: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: White
+    lineStyle: {
+        width: deviceWidth / 4,
+        height: 2,
+        backgroundColor: '#FF0000',
     },
-    toolbar_right_img: {
-        width: 26,
-        height: 26,
-        alignSelf: 'center',
-        marginRight: 20,
+    textStyle: {
+        flex: 1,
+        fontSize: 20,
+        marginTop: 20,
+        textAlign: 'center',
     },
-    lineargradient:{
-        width:deviceWidth,
-        height:20
+    lineargradient: {
+        width: deviceWidth,
+        height: 20
     }
 });

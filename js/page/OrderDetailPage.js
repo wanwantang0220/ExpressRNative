@@ -19,25 +19,27 @@ export default class OrderDetailPage extends Component {
             textAlign: "center",
         },
         headerRight: <View/>
+        // header: null
     };
 
     componentDidMount() {
-        const {params} = this.props.navigation.state.params;
-        const uuid = params ? params.uuid : null;
+        const uuid = this.props.navigation.state.params.uuid;
+        // const uuid = params ? params.uuid : null;
         console.log('uuid = ', uuid);
     }
 
     render() {
 
+        const {navigation} = this.props.navigation;
         return (
             <View style={[styles.container]}>
                 {/*<StatusBar*/}
-                {/*animated={true}*/}
-                {/*backgroundColor="black"*/}
-                {/*barStyle='light-content'/>*/}
+                    {/*animated={true}*/}
+                    {/*backgroundColor="black"*/}
+                    {/*barStyle='light-content'/>*/}
                 {/*<NaviBarView backgroundColor="black"/>*/}
                 {/*<TitleView title='订单详情' onBack={() => {*/}
-                {/*this.props.navigation.goBack();*/}
+                    {/*this.props.navigation.goBack(null);*/}
                 {/*}}/>*/}
 
             </View>

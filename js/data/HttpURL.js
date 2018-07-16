@@ -23,5 +23,10 @@ export const WAIT_PRINT_ORDER = "/order/queryWaitPrintOrder";
 //消息
 export const GET_STATE_INFO = "/order/getStateInfo";
 
+//订单详情
+export const EXPRESS_ORDER_DETAIL = "/expressOrderDetail/selectByUuid";
+
 //返回成功
 export const RESULT_OK = "000000";
+
+
