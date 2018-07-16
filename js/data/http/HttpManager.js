@@ -231,7 +231,27 @@ export default class HttpManager {
      * @param callback
      */
     getOrderDetail(param, callback) {
+        const url = BaseUrl + EXPRESS_ORDER_DETAIL;
 
+        return new Promise((resolve, reject) => {
+
+            this.postNetData(url, param)
+                .then((data) => {
+                    if (data != null) {
+                        if (data.errCode === "000000") {
+                            callback(data.object);
+                        } else if (data.errDesc != null && data.errDesc != "") {
+                            reject(ErrorAnayle.getErrorMsg(data.errDesc));
+                        } else {
+                            reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                        }
+                    } else {
+                        reject(ErrorAnayle.getErrorBean(NetWork_Request_Error))
+                    }
+                }).catch((error) => {
+                reject(ErrorAnayle.getErrorBean(NetWork_Request_Error));
+            })
+        });
     }
 
 }
