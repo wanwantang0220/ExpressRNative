@@ -1,4 +1,3 @@
-
 import HomePage from "./page/HomePage";
 import {createStackNavigator, StackNavigator} from "react-navigation";
 import WaitingOrderPager from "./page/WaitingOrderPager";
@@ -7,6 +6,7 @@ import PersonDetialPage from "./page/PersonDetialPage";
 import MessagePage from "./page/MessagePage";
 import MessageNotePage from "./page/MessageNotePage";
 import OrderDetailPage from "./page/OrderDetailPage";
+import ScanCameraPage from "./page/ScanCameraPage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -15,20 +15,23 @@ const DrawHomePage = createStackNavigator({
     WaitingOrder: {
         screen: WaitingOrderPager
     },
-    AddressEdit:{
-        screen:AddressEditPage
+    AddressEdit: {
+        screen: AddressEditPage
     },
-    PersonDetail:{
-        screen:PersonDetialPage
+    PersonDetail: {
+        screen: PersonDetialPage
     },
     Message: {
         screen: MessagePage
     },
-    MessageNote:{
-        screen:MessageNotePage
+    MessageNote: {
+        screen: MessageNotePage
     },
     OrderDetail: {
         screen: OrderDetailPage
+    },
+    ScanCamera: {
+        screen: ScanCameraPage
     }
 
 });

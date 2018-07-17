@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Image, StatusBar, Dimensions, PixelRatio, YellowBox
+    Image, StatusBar, Dimensions, PixelRatio, YellowBox, Button
 } from 'react-native';
 import NaviBarView from "../component/NaviBarView";
 import {White} from "../style/BaseStyle";
@@ -138,6 +138,23 @@ export default class HomePage extends Component {
                                       onPress={() => this.props.navigation.navigate('Bluetooth')}>
                         <Text style={{color: '#333333', textAlign: 'center',}}>2018/5/28 </Text>
                     </TouchableOpacity>
+                </View>
+
+                <View style={{flexDirection: 'row', width: deviceWidth, marginTop: 10}}>
+                    <Button style={{flex: 1, marginStart: 10, marginEnd: 10}}
+                            onPress={() => this.props.navigation.navigate('ScanCamera')}
+                            title='扫描'>
+
+                    </Button>
+                    <Button style={{flex: 1, marginStart: 10, marginEnd: 10}}
+                            onPress={() => this.props.navigation.navigate('ScanCamera')}
+                            title='扫描2'>
+
+                    </Button>
+                    <Button style={{flex: 1, marginStart: 10, marginEnd: 10}}
+                            onPress={() => this.props.navigation.navigate('ScanCamera')}
+                            title='扫描3'>
+                    </Button>
                 </View>
             </View>
         );

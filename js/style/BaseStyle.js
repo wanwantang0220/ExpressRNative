@@ -25,6 +25,37 @@ const ColorLineRed = '#E83F57';
 const themeColor = '#268dcd';
 const separatorColor = '#e0e0e0';
 const backgroundColor = '#f3f3f3';
+//通用颜色
+const white_fff = '#fff';
+const    black_000='#000';
+const    gray_e9e9e9='#e9e9e9';
+
+    //App 主色调
+const   green_00C853= '#67D5B5';
+const    red_E53935='#EE7785';
+const    blue_009688='#C89EC4';
+const    yellow_ffc962= '#ffc962';
+const    blue_00B0FF= '#84B1ED';
+
+    //OFO
+const    yellow_FFD900='#FFD900';
+const   black_0000004D='#0000004D';
+
+    //Twitter
+const   blue_1DA1F2='#1DA1F2';
+const   blue_1DA1F266='#1DA1F266';
+
+    //QQBrowser
+const    blue_4187E8='#4187E8';
+const    black_00000080='#00000088';
+
+    //WeChat
+const    black_393A3F='#393A3F';
+const   green_65E102='#65E102';
+const   gray_C0C0C0='#C0C0C0';
+
+    //DingTalk
+    white_F4F0E9='#F4F0E9';
 
 const BaseStyles = StyleSheet.create({
     baseWhiteText: {
@@ -42,6 +73,24 @@ const BaseStyles = StyleSheet.create({
 });
 
 export {
+    white_fff,
+    black_000,
+    gray_e9e9e9,
+    green_00C853,
+    red_E53935,
+    blue_009688,
+    yellow_ffc962,
+    blue_00B0FF,
+    yellow_FFD900,
+    black_0000004D,
+    blue_1DA1F2,
+    blue_1DA1F266,
+    blue_4187E8,
+    black_00000080,
+    black_393A3F,
+    green_65E102,
+    gray_C0C0C0,
+
     MainBg,
     GrayColor,
     GrayBlackColor,

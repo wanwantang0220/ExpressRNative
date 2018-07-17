@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
         height: 30,
         backgroundColor: '#ffffff',
         borderColor: BlackColor,
-        justifyContent: 'right',
+        justifyContent: 'flex-end',
         borderRadius: 30,
         borderStyle: 'solid',
         borderLeftWidth: 1 / PixelRatio.get(),
