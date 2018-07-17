@@ -17,6 +17,10 @@
 /** @namespace user.centerName */
 /** @namespace user.orgNo */
 /** @namespace userinfo.idCard */
+/** @namespace orderInfo.receiverName */
+/** @namespace orderInfo.receiverPhone */
+/** @namespace orderInfo.receiverProvinceCityCountyName */
+/** @namespace orderInfo.receiverAddressDetail */
 
 
 export const WAIT_SUCCESS = "wait_success";

@@ -171,6 +171,41 @@ const styles = StyleSheet.create({
         borderRightWidth: 1 / PixelRatio.get(),
         borderBottomWidth: 1 / PixelRatio.get(),
         borderTopWidth: 1 / PixelRatio.get(),
+    },
+    order_address_view: {
+        flexDirection: 'row',
+        marginBottom: 10,
+        marginTop: 10,
+        marginStart: 10
+    },
+    order_address_name_text: {
+        marginStart: 10,
+        fontSize: 16,
+        color: BlackColor
+    },
+    order_address_text: {
+        marginTop: 5,
+        marginStart: 10,
+        fontSize: 14,
+        color: ColorTextGrey
+    },
+    order_detail_text: {
+        marginTop: 5,
+        fontSize: 12,
+        color: ColorTextGrey
+    },
+    order_cancle_view: {
+        width: 100,
+        height: 30,
+        backgroundColor: '#ffffff',
+        borderColor: BlackColor,
+        justifyContent: 'right',
+        borderRadius: 30,
+        borderStyle: 'solid',
+        borderLeftWidth: 1 / PixelRatio.get(),
+        borderRightWidth: 1 / PixelRatio.get(),
+        borderBottomWidth: 1 / PixelRatio.get(),
+        borderTopWidth: 1 / PixelRatio.get(),
     }
 
 });
