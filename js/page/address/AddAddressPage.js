@@ -38,7 +38,8 @@ export default class AddAddressPage extends Component {
             name: '',
             phone: '',
             proviceCityRegionTxt: '',
-            addrDetail: ''
+            addrDetail: '',
+            addrType: ''
         };
         storage.load("userInfo", (data) => {
             this.setState({
@@ -57,7 +58,7 @@ export default class AddAddressPage extends Component {
 
         return (
             <View style={{flex: 1}}>
-                <View style={[styles.address_edit_cardview]}>
+                <View style={[styles.add_address_bg]}>
                     <View style={[styles.address_edit_item]}>
                         <Text style={[styles.address_edit_item_left]}>姓名</Text>
                         <TextInput style={[styles.address_edit_item_right]}
@@ -89,7 +90,16 @@ export default class AddAddressPage extends Component {
                                    underlineColorAndroid="transparent"
                                    onChangeText={(text) => this.setState({addrDetail: text})}/>
                     </View>
+
+                    <View style={[styles.address_edit_item]}>
+                        <Text style={[styles.address_edit_item_left]}>地址类型</Text>
+                        <TextInput style={[styles.address_edit_item_right]}
+                                   value={this.state.addrDetail}
+                                   underlineColorAndroid="transparent"
+                                   onChangeText={(text) => this.setState({addrDetail: text})}/>
+                    </View>
                 </View>
+
 
                 <LinearGradient colors={[ColorStart, ColorEnd]}
                                 style={[styles.address_edit_lineargradient, {marginTop: 30}]}
@@ -101,7 +111,6 @@ export default class AddAddressPage extends Component {
                     </TouchableOpacity>
                 </LinearGradient>
 
-                <Text onPress={this.goBack.bind(this)}>返回</Text>
             </View>
         )
     }

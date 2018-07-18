@@ -206,6 +206,10 @@ const styles = StyleSheet.create({
         borderRightWidth: 1 / PixelRatio.get(),
         borderBottomWidth: 1 / PixelRatio.get(),
         borderTopWidth: 1 / PixelRatio.get(),
+    },
+    add_address_bg:{
+        backgroundColor:White,
+        marginTop:10,
     }
 
 });
