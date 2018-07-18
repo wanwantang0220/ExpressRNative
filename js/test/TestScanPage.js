@@ -3,18 +3,18 @@
  **/
 
 import React, {Component} from 'react';
-import {Platform, Text, View, Animated, ActivityIndicator, StyleSheet, Image,Easing} from "react-native";
+import {Platform, Text, View, Animated, ActivityIndicator, StyleSheet, Image, Easing} from "react-native";
 import Camera from "react-native-camera";
 import {deviceWidth} from "../util/ScreenUtil";
 import {black_000, black_00000080, blue_4187E8, white_fff, yellow_FFD900} from "../style/BaseStyle";
 
-export default class ScanTestPage extends Component {
+export default class TestScanPage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             maskColor: '#0000004D',
-            cornerColor:yellow_FFD900,
+            cornerColor: yellow_FFD900,
             borderColor: '#000000',
             rectHeight: 200,
             rectWidth: 200,
@@ -22,7 +22,7 @@ export default class ScanTestPage extends Component {
             cornerBorderWidth: 4,
             cornerBorderLength: 20,
             isLoading: false,
-            cornerOffsetSize: 0,
+            cornerOffsetSize: 10,
             isCornerOffset: false,
             bottomMenuHeight: 0,
             scanBarAnimateTime: 2500,
@@ -67,8 +67,8 @@ export default class ScanTestPage extends Component {
         };
 
         return (
-            <View style={{flex: 1}}>
-                <Camera style={{flex: 1}}>
+            <View style={{flex: 1, backgroundColor: '#0000004D',}}>
+                <Camera style={{flex: 1, backgroundColor: '#0000004D',}}>
                     <View
                         onLayout={({nativeEvent: e}) => this.measureTotalSize(e)}
                         style={[styles.container, this.getBottomMenuHeight()]}>
@@ -169,8 +169,9 @@ export default class ScanTestPage extends Component {
                                     styles.rightMask,
                                     {
                                         height: this.getSideMaskHeight(),
-                                        width: this.getSideMaskWidth(),
-                                    }]}/>
+                                        // width: this.getSideMaskWidth(),
+                                    }
+                                ]}/>
 
                                 {/*遮罩-下*/}
                                 <View style={[
@@ -179,7 +180,8 @@ export default class ScanTestPage extends Component {
                                     {
                                         top: this.getBottomMaskHeight(),
                                         width: this.state.topWidth,
-                                    }]}/>
+                                    }
+                                ]}/>
 
                                 {/*提示文字*/}
                                 <View style={{position: 'absolute', bottom: this.state.hintTextPosition}}>
@@ -320,9 +322,9 @@ export default class ScanTestPage extends Component {
     //获取左右两边遮罩宽度
     getSideMaskWidth() {
         if (this.state.isCornerOffset) {
-            return this.state.leftWidth + this.state.cornerOffsetSize;
+            return this.state.rectWidth - this.state.cornerOffsetSize * 2;
         } else {
-            return this.state.leftWidth;
+            return this.state.rectWidth;
         }
     }
 

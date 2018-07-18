@@ -8,7 +8,7 @@ import MessageNotePage from "./page/MessageNotePage";
 import OrderDetailPage from "./page/OrderDetailPage";
 import ScanCameraPage from "./page/ScanCameraPage";
 import AddAddressPage from "./page/address/AddAddressPage";
-import TestPage from "./test/TestPage";
+import TestPage from "./test/TestScanPage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
