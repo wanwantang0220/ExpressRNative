@@ -112,10 +112,10 @@ export default class HomePage extends Component {
                     <TouchableOpacity
                         style={[styles.viewBg, {flex: 1, marginLeft: 15}]}
                         activeOpacity={0.85}
-                        onPress={() => this.props.navigation.navigate('Maps')}>
+                        onPress={() => this.props.navigation.navigate('AddAddress')}>
                         <Text style={{
                             marginLeft: 15, marginTop: 15, fontSize: 20, fontWeight: 'bold', color: '#333333'
-                        }}>下单</Text>
+                        }}>下单（新增地址）</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         activeOpacity={0.85}
@@ -140,22 +140,28 @@ export default class HomePage extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{flexDirection: 'row', width: deviceWidth, marginTop: 10}}>
-                    <Button style={{flex: 1, marginStart: 10, marginEnd: 10}}
-                            onPress={() => this.props.navigation.navigate('ScanCamera')}
-                            title='扫描'>
-
-                    </Button>
-                    <Button style={{flex: 1, marginStart: 10, marginEnd: 10}}
-                            onPress={() => this.props.navigation.navigate('ScanCamera')}
-                            title='扫描2'>
-
-                    </Button>
-                    <Button style={{flex: 1, marginStart: 10, marginEnd: 10}}
-                            onPress={() => this.props.navigation.navigate('ScanCamera')}
-                            title='扫描3'>
-                    </Button>
+                <View style={{width: deviceWidth, flexDirection: 'row'}}>
+                    <TouchableOpacity style={[styles.viewTextBg, {marginTop: 20, marginLeft: 50}]}
+                                      onPress={() => this.props.navigation.navigate('ScanCamera')}>
+                        <Text style={{color: '#333333', textAlign: 'center',}}>扫描 </Text>
+                    </TouchableOpacity>
                 </View>
+                {/*<View style={{flexDirection: 'row', width: deviceWidth, marginTop: 10}}>*/}
+                {/*<Button style={{flex: 1, marginStart: 10, marginEnd: 10}}*/}
+                {/*onPress={() => this.props.navigation.navigate('ScanCamera')}*/}
+                {/*title='扫描'>*/}
+
+                {/*</Button>*/}
+                {/*<Button style={{flex: 1, marginStart: 10, marginEnd: 10}}*/}
+                {/*onPress={() => this.props.navigation.navigate('ScanCamera')}*/}
+                {/*title='扫描2'>*/}
+
+                {/*</Button>*/}
+                {/*<Button style={{flex: 1, marginStart: 10, marginEnd: 10}}*/}
+                {/*onPress={() => this.props.navigation.navigate('ScanCamera')}*/}
+                {/*title='扫描3'>*/}
+                {/*</Button>*/}
+                {/*</View>*/}
             </View>
         );
     }

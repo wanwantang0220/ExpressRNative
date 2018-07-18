@@ -13,6 +13,8 @@ import SplashPage from "../SplashPage";
 import PersonDetialPage from "../page/PersonDetialPage";
 import MessagePage from "../page/MessagePage";
 import OrderDetailPage from "../page/OrderDetailPage";
+import ScanCameraPage from "../page/ScanCameraPage";
+import AddAddressPage from "../page/address/AddAddressPage";
 
 
 const App = createStackNavigator({
@@ -49,9 +51,17 @@ const App = createStackNavigator({
         },
         OrderDetail: {
             screen: OrderDetailPage
-        }, AddressEdit: {
+        },
+        AddressEdit: {
             screen: AddressEditPage
         },
+        AddAddress: {
+            screen: AddAddressPage
+        },
+        ScanCamera: {
+            screen: ScanCameraPage
+        }
+
     },
     {
         initialRouteName: 'Splash',
