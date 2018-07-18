@@ -1,29 +1,13 @@
-/**
- * 我的订单
- **/
-
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {
     View, Animated, InteractionManager, Easing, Platform,
-    Image, Text, TouchableOpacity, StyleSheet, ImageBackground
+    Image, Text, TouchableOpacity
 } from 'react-native';
 import Camera from 'react-native-camera';
-import {deviceHeight, deviceWidth} from "../util/ScreenUtil";
-import Toast from "react-native-simple-toast";
-import px2dp from "../style/px2dp";
-import {White} from "../style/BaseStyle";
+import {deviceWidth} from "../util/ScreenUtil";
 
-export default class ScanCameraPage extends Component {
-    static navigationOptions = ({navigation}) => ({
-        //标题
-        title: "二维码",
-        drawerLabel: '二维码',
-        headerTitleStyle: {
-            flex: 1,
-            textAlign: "center",
-        },
-        headerRight: <View/>
-    });
+
+export default class ScanCode extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -49,28 +33,29 @@ export default class ScanCameraPage extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={curstyles.container}>
                 {/*导航条*/}
-                {/*{this.renderNavBar()}*/}
+                {this.renderNavBar()}
                 <Camera
                     ref={(cam) => {
                         this.camera = cam;
                     }}
-                    style={styles.preview}
+                    style={curstyles.preview}
                     aspect={this.state.camera.aspect}
                     onBarCodeRead={this.barcodeReceived.bind(this)}
-                    barCodeTypes={['qr']}>
+                    barCodeTypes={['qr']}
+                >
                     <View style={{
-                        height: Platform.OS == 'ios' ? (deviceHeight - 264) / 3 : (deviceHeight - 244) / 3,
+                        height: Platform.OS == 'ios' ? (height - 264) / 3 : (height - 244) / 3,
                         width: deviceWidth,
                         backgroundColor: 'rgba(0,0,0,0.5)',
                     }}>
                     </View>
                     <View style={{flexDirection: 'row'}}>
-                        <View style={styles.itemStyle}/>
-                        <ImageBackground style={styles.rectangle}
-                                         source={require('../../img/viewfinder.png')}>
-                            <Animated.View style={[styles.animatiedStyle, {
+                        <View style={curstyles.itemStyle}/>
+                        <Image style={curstyles.rectangle}
+                               source={require('../../img/icon_header.png')}>
+                            <Animated.View style={[curstyles.animatiedStyle, {
                                 transform: [{
                                     translateY: this.state.anim.interpolate({
                                         inputRange: [0, 1],
@@ -79,19 +64,13 @@ export default class ScanCameraPage extends Component {
                                 }]
                             }]}>
                             </Animated.View>
-                        </ImageBackground>
-                        <View style={styles.itemStyle}/>
+                        </Image>
+                        <View style={curstyles.itemStyle}/>
                     </View>
-                    <View style={{
-                        flex: 1,
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                        width: deviceWidth,
-                        alignItems: 'center'
-                    }}>
-                        <Text style={styles.textStyle}>将二维码放入框内,即可自动扫描</Text>
+                    <View style={{flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', width: deviceWidth, alignItems: 'center'}}>
+                        <Text style={curstyles.textStyle}>将二维码放入框内,即可自动扫描</Text>
                     </View>
                 </Camera>
-
             </View>
         )
     }
@@ -111,32 +90,25 @@ export default class ScanCameraPage extends Component {
     // 导航条
     renderNavBar() {
         return (
-            <View style={styles.navBarStyle}>
+            <View style={curstyles.navBarStyle}>
                 <TouchableOpacity
                     onPress={() => {
                         this.props.navigator.pop()
                     }}
-                    style={styles.leftViewStyle}>
+                    style={curstyles.leftViewStyle}>
                     <Image source={{uri: 'nav_return'}}
                            style={{height: 20, width: 20}}/>
                 </TouchableOpacity>
-                <Text style={[styles.navTitleStyle, {marginTop: Platform.OS == 'ios' ? 12 : 0, fontSize: 20}]}>
+                <Text style={[curstyles.navTitleStyle, {marginTop: Platform.OS == 'ios' ? 12 : 0, fontSize: 20}]}>
                     二维码
                 </Text>
             </View>
         )
     }
-
-
-    barcodeReceived(e) {
-        Toast.show('Type: ' + e.type + '\nData: ' + e.data);
-        this.props.navigation.goBack();
-        //console.log(e)
-    }
 }
 
 
-const styles = StyleSheet.create({
+const curstyles = StyleSheet.create({
     itemStyle: {
         backgroundColor: 'rgba(0,0,0,0.5)',
         width: (deviceWidth - 200) / 2,
@@ -187,4 +159,3 @@ const styles = StyleSheet.create({
         width: 200,
     }
 });
-

@@ -8,6 +8,7 @@ import MessageNotePage from "./page/MessageNotePage";
 import OrderDetailPage from "./page/OrderDetailPage";
 import ScanCameraPage from "./page/ScanCameraPage";
 import AddAddressPage from "./page/address/AddAddressPage";
+import TestPage from "./test/TestPage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -37,6 +38,9 @@ const DrawHomePage = createStackNavigator({
     AddAddress: {
         screen: AddAddressPage
     },
+    Test:{
+        screen:TestPage
+    }
 
 });
 

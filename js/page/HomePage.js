@@ -135,7 +135,7 @@ export default class HomePage extends Component {
                 </View>
                 <View style={{width: deviceWidth, flexDirection: 'row'}}>
                     <TouchableOpacity style={[styles.viewTextBg, {marginTop: 20, marginLeft: 50}]}
-                                      onPress={() => this.props.navigation.navigate('Bluetooth')}>
+                                      onPress={() => this.props.navigation.navigate('Test')}>
                         <Text style={{color: '#333333', textAlign: 'center',}}>2018/5/28 </Text>
                     </TouchableOpacity>
                 </View>

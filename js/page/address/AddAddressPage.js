@@ -117,7 +117,6 @@ export default class AddAddressPage extends Component {
         const proviceCityRegionTxt = this.state.proviceCityRegionTxt;
         const addrDetail = this.state.addrDetail;
 
-
         const addUserName = this.state.userinfo.perName;
         const addUserPhone = this.state.userinfo.phone;
 
