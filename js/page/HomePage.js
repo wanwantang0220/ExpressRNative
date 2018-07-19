@@ -146,22 +146,14 @@ export default class HomePage extends Component {
                         <Text style={{color: '#333333', textAlign: 'center',}}>扫描 </Text>
                     </TouchableOpacity>
                 </View>
-                {/*<View style={{flexDirection: 'row', width: deviceWidth, marginTop: 10}}>*/}
-                {/*<Button style={{flex: 1, marginStart: 10, marginEnd: 10}}*/}
-                {/*onPress={() => this.props.navigation.navigate('ScanCamera')}*/}
-                {/*title='扫描'>*/}
 
-                {/*</Button>*/}
-                {/*<Button style={{flex: 1, marginStart: 10, marginEnd: 10}}*/}
-                {/*onPress={() => this.props.navigation.navigate('ScanCamera')}*/}
-                {/*title='扫描2'>*/}
 
-                {/*</Button>*/}
-                {/*<Button style={{flex: 1, marginStart: 10, marginEnd: 10}}*/}
-                {/*onPress={() => this.props.navigation.navigate('ScanCamera')}*/}
-                {/*title='扫描3'>*/}
-                {/*</Button>*/}
-                {/*</View>*/}
+                <View style={{width: deviceWidth, flexDirection: 'row'}}>
+                    <TouchableOpacity style={[styles.viewTextBg, {marginTop: 20, marginLeft: 50}]}
+                                      onPress={() => this.props.navigation.navigate('Demo')}>
+                        <Text style={{color: '#333333', textAlign: 'center',}}>Demo </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }

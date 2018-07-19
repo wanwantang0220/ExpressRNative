@@ -23,16 +23,7 @@ export default class RadioView extends PureComponent {
 
                 <TouchableOpacity
                     onPress={this.pressed.bind(this)}
-                    style={{
-                        backgroundColor: color,
-                        width: 20,
-                        height: 20,
-                        borderRadius: 50,
-                        borderColor: '#d9d9d9',
-                        borderWidth: 1
-                    }}
-                >
-
+                    style={{backgroundColor: color, width: 20, height: 20, borderRadius: 50, borderColor: '#d9d9d9', borderWidth: 1}}>
                 </TouchableOpacity>
             </View>
         )

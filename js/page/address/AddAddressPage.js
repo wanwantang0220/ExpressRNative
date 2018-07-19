@@ -68,6 +68,7 @@ export default class AddAddressPage extends Component {
                         <Text style={[styles.address_edit_item_left]}>姓名</Text>
                         <TextInput style={[styles.address_edit_item_right]}
                                    value={this.state.name}
+                                   placeholder='请填写姓名'
                                    underlineColorAndroid="transparent"
                                    onChangeText={(text) => this.setState({name: text})}/>
                     </View>
@@ -76,6 +77,7 @@ export default class AddAddressPage extends Component {
                         <Text style={[styles.address_edit_item_left]}>联系方式</Text>
                         <TextInput style={[styles.address_edit_item_right]}
                                    value={this.state.phone}
+                                   placeholder='请填写联系方式'
                                    underlineColorAndroid="transparent"
                                    onChangeText={(text) => this.setState({phone: text})}/>
                     </View>
@@ -92,22 +94,27 @@ export default class AddAddressPage extends Component {
                         <Text style={[styles.address_edit_item_left]}>详细地址</Text>
                         <TextInput style={[styles.address_edit_item_right]}
                                    value={this.state.addrDetail}
+                                   placeholder='请填写详细地址'
                                    underlineColorAndroid="transparent"
                                    onChangeText={(text) => this.setState({addrDetail: text})}/>
                     </View>
                     <Line color={BackgroundColorLight}/>
                     <View style={[styles.address_edit_item]}>
-                        <Text style={[styles.address_edit_item_left,{marginRight:20}]}>地址类型</Text>
+                        <Text style={[styles.address_edit_item_left, {marginRight: 20}]}>地址类型</Text>
                         <RadioView
                             id={1} onCheck={this.checkCallBack} radius={16}
-                                   bgc={ColorLineRed} checked={this.state.flag === 1}/>
-                        <Text style={{marginStart: 5, color: BlackTextColor, fontSize: 14,textAlign:'center',
-                            textAlignVertical:'center',marginRight:10}}>收件地址</Text>
+                            bgc={ColorLineRed} checked={this.state.flag === 1}/>
+                        <Text style={{
+                            marginStart: 5, color: BlackTextColor, fontSize: 14, textAlign: 'center',
+                            textAlignVertical: 'center', marginRight: 10
+                        }}>收件地址</Text>
 
                         <RadioView id={2} onCheck={this.checkCallBack} radius={16}
                                    bgc={ColorLineRed} checked={this.state.flag === 2}/>
-                        <Text style={{marginStart: 5, color: BlackTextColor, fontSize: 14,
-                            textAlignVertical:'center',marginRight:10}}>发件地址</Text>
+                        <Text style={{
+                            marginStart: 5, color: BlackTextColor, fontSize: 14,
+                            textAlignVertical: 'center', marginRight: 10
+                        }}>发件地址</Text>
 
                     </View>
                 </View>

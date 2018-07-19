@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
         height: 45,
         textAlign: 'left',
         textAlignVertical: 'center',
+        marginStart:10
     },
     address_edit_viewTextBg: {
         width: 280,
@@ -237,7 +238,19 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         borderColor: ColorTextGrey,
         borderWidth: 1
-    }
+    },
+    mine_item:{
+        width:deviceWidth,
+        height:50,
+        flexDirection:'row',
+        alignItems: 'center',
+    },
+    mine_item_text:{
+        textAlign:'left',
+        fontSize:14,
+        color:BlackColor,
+        marginStart:10,
+    },
 
 });
 export default styles;

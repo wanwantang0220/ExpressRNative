@@ -9,6 +9,8 @@ import OrderDetailPage from "./page/OrderDetailPage";
 import ScanCameraPage from "./page/ScanCameraPage";
 import AddAddressPage from "./page/address/AddAddressPage";
 import TestPage from "./test/TestScanPage";
+import DemoPage from "./test/DemoPage";
+import PopupDialogPage from "./page/Demo/PopupDialogPage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -38,8 +40,14 @@ const DrawHomePage = createStackNavigator({
     AddAddress: {
         screen: AddAddressPage
     },
-    Test:{
-        screen:TestPage
+    Test: {
+        screen: TestPage
+    },
+    Demo: {
+        screen: DemoPage
+    },
+    PopupDialog: {
+        screen: PopupDialogPage
     }
 
 });
