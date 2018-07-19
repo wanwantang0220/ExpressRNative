@@ -3,7 +3,7 @@
  **/
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import PopupDialog, {DialogButton, FadeAnimation, ScaleAnimation, SlideAnimation,} from 'react-native-popup-dialog';
 import DialogTitle from "react-native-popup-dialog/src/components/DialogTitle";
 
@@ -36,13 +36,28 @@ export default class PopupDialogPage extends Component {
                     <DialogButton text='Show - Default Aanimation'
                                   onPress={this.showFadeAanimatinDialog}/>
 
-
                     <DialogButton text='Show - Scale Animation'
                                   onPress={this.showScaleAnimationDialog}/>
 
                     <DialogButton text='Show - Slide Animation'
                                   onPress={this.showSlideAnimationDialog}/>
                 </View>
+
+                <PopupDialog
+                    ref={(fadeAnimationDialog) => {
+                        this.fadeAnimationDialog = fadeAnimationDialog;
+                    }}
+                    dialogTitle={<DialogTitle title="Popup Dialog - Default Animation"/>}>
+                    <View style={styles.dialogContentView}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                this.fadeAnimationDialog.dismiss()
+                            }}>
+                            <Text>Default Animation</Text>
+                        </TouchableOpacity>
+
+                    </View>
+                </PopupDialog>
 
                 <PopupDialog
                     ref={(popupDialog) => {
@@ -57,8 +72,7 @@ export default class PopupDialogPage extends Component {
                         }}
                         key='button-1'
                     />,
-                    ]}
-                >
+                    ]}>
                     <View style={styles.dialogContentView}>
                         <DialogButton
                             text="Show Dialog - Default Animation"
@@ -72,23 +86,14 @@ export default class PopupDialogPage extends Component {
                     ref={(popupDialog) => {
                         this.slideAnimationDialog = popupDialog;
                     }}
-                    dialogAnimation={slideAnimation}
-                >
+                    dialogAnimation={slideAnimation}>
+
                     <View style={styles.dialogContentView}>
                         <Text>Slide Animation</Text>
                     </View>
                 </PopupDialog>
 
-                <PopupDialog
-                    ref={(fadeAnimationDialog) => {
-                        this.fadeAnimationDialog = fadeAnimationDialog;
-                    }}
-                    dialogTitle={<DialogTitle title="Popup Dialog - Default Animation"/>}
-                >
-                    <View style={styles.dialogContentView}>
-                        <Text>Default Animation</Text>
-                    </View>
-                </PopupDialog>
+
             </View>
         )
     }
@@ -106,6 +111,11 @@ export default class PopupDialogPage extends Component {
 
     showSlideAnimationDialog = () => {
         this.slideAnimationDialog.show();
+    }
+
+    popupDiscuss = () => {
+        console.log('popup', 'popupDiscuss');
+        this.fadeAnimationDialog.dismiss();
     }
 
 }
