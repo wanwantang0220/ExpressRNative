@@ -60,9 +60,10 @@ export default class ScanCameraPage extends Component {
                         this.camera = cam;
                     }}
                     style={scan_styles.preview}
+                    barcodeScannerEnabled={true}
                     aspect={this.state.camera.aspect}
                     onBarCodeRead={this.barcodeReceived.bind(this)}
-                    barCodeTypes = {['qr']}
+                    // barCodeTypes = {[Camera.constants.BarCodeType.qr]}
                 >
                     <View style = {{height: Platform.OS == 'ios' ? (height-264)/3:(height-244)/3,width:width,backgroundColor:'rgba(0,0,0,0.5)',}}>
                     </View>
