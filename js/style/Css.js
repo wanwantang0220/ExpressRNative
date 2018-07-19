@@ -1,5 +1,8 @@
 import {deviceWidth} from "../util/ScreenUtil";
-import {BackgroundColorLight, BlackColor, ColorStart, ColorTextGrey, White} from "./BaseStyle";
+import {
+    BackgroundColorLight, BlackColor, BlackTextColor, ColorEnd, ColorLineRed, ColorStart, ColorTextGrey, ColorTextGrey2,
+    White
+} from "./BaseStyle";
 import {
     Dimensions, Image, StyleSheet, View, Text, StatusBar, TextInput, TouchableOpacity,
     PixelRatio
@@ -44,10 +47,11 @@ const styles = StyleSheet.create({
     address_edit_item_left: {
         width: 60,
         height: 45,
-        color: BlackColor,
+        color: BlackTextColor,
         fontWeight: 'bold',
         textAlign: 'left',
         textAlignVertical: 'center',
+        fontSize:14
     },
     address_edit_item_right: {
         width: deviceWidth - 90,
@@ -207,9 +211,32 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1 / PixelRatio.get(),
         borderTopWidth: 1 / PixelRatio.get(),
     },
-    add_address_bg:{
-        backgroundColor:White,
-        marginTop:10,
+    add_address_bg: {
+        backgroundColor: White,
+        marginTop: 10,
+        paddingStart: 10,
+        paddingEnd: 10
+    },
+    shortLine: {
+        width: deviceWidth - 20,
+        marginStart: 10,
+        marginEnd: 10
+    },
+    radio_press: {
+        backgroundColor: ColorLineRed,
+        width: 20,
+        height: 20,
+        borderRadius: 50,
+        borderColor: ColorEnd,
+        borderWidth: 1
+    },
+    radio_unpress: {
+        backgroundColor: ColorTextGrey2,
+        width: 20,
+        height: 20,
+        borderRadius: 50,
+        borderColor: ColorTextGrey,
+        borderWidth: 1
     }
 
 });
