@@ -6,6 +6,8 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import PopupDialog, {DialogButton, FadeAnimation, ScaleAnimation, SlideAnimation,} from 'react-native-popup-dialog';
 import DialogTitle from "react-native-popup-dialog/src/components/DialogTitle";
+import {ColorLineRed, ThemeColor} from "../../style/BaseStyle";
+import {deviceWidth} from "../../util/ScreenUtil";
 
 const slideAnimation = new SlideAnimation({slideFrom: 'bottom'});
 const scaleAnimation = new ScaleAnimation();
@@ -30,8 +32,8 @@ export default class PopupDialogPage extends Component {
     render() {
 
         return (
-            <View style={{flex: 1}}>
-                <View style={styles.container}>
+            <View style={{flex: 1,}}>
+                <View>
 
                     <DialogButton text='Show - Default Aanimation'
                                   onPress={this.showFadeAanimatinDialog}/>
@@ -42,13 +44,16 @@ export default class PopupDialogPage extends Component {
                     <DialogButton text='Show - Slide Animation'
                                   onPress={this.showSlideAnimationDialog}/>
                 </View>
+                {/*<View style={{ backgroundColor: ColorLineRed, marginStart: 20, marginEnd: 20}}>*/}
 
                 <PopupDialog
+                    width={deviceWidth - 40}
+                    style={{backgroundColor: ColorLineRed, marginStart: 20, marginEnd: 20}}
                     ref={(fadeAnimationDialog) => {
                         this.fadeAnimationDialog = fadeAnimationDialog;
                     }}
                     dialogTitle={<DialogTitle title="Popup Dialog - Default Animation"/>}>
-                    <View style={styles.dialogContentView}>
+                    <View style={[styles.dialogContentView]}>
                         <TouchableOpacity
                             onPress={() => {
                                 this.fadeAnimationDialog.dismiss()
@@ -58,7 +63,7 @@ export default class PopupDialogPage extends Component {
 
                     </View>
                 </PopupDialog>
-
+                {/*</View>*/}
                 <PopupDialog
                     ref={(popupDialog) => {
                         this.scaleAnimationDialog = popupDialog;
@@ -127,9 +132,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     dialogContentView: {
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: ThemeColor
     },
     navigationBar: {
         borderBottomColor: '#b5b5b5',

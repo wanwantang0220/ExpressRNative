@@ -14,7 +14,8 @@ export default class DemoPage extends Component {
 
     static navigationOptions = {
         //标题
-        drawerLabel: '我的',
+        drawerLabel: 'Demo',
+        title:'Demo'
     };
 
 
