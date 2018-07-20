@@ -37,7 +37,7 @@ export default class AddressSelect extends Component {
         //LayoutAnimation - layout动画
         //安卓平台使用 LayoutAnimation 动画必须加上这么一句代码 UIManager.setLayoutAnimationEnabledExperimental
         if (Platform.OS === 'android') {
-            UIManager.setLayoutAnimationEnabledExperimental(true)
+            // UIManager.setLayoutAnimationEnabledExperimental(true)
         }
         const { lastAddress } = props;
         let selectAddress = this.initAddress(lastAddress);
