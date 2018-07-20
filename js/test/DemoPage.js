@@ -15,7 +15,7 @@ export default class DemoPage extends Component {
     static navigationOptions = {
         //标题
         drawerLabel: 'Demo',
-        title:'Demo'
+        title: 'Demo'
     };
 
 
@@ -29,14 +29,14 @@ export default class DemoPage extends Component {
                     <MineItem content="Popup Dialog"
                               onPress={() => this.props.navigation.navigate('PopupDialog')}/>
                     <View style={[styles.view_line]}/>
-                    <MineItem content="地址簿"
-                              onPress={() => this.props.navigation.navigate('AddressList')}/>
+                    <MineItem content="省市区选择"
+                              onPress={() => this.props.navigation.navigate('ProvinceCity')}/>
                     <View style={[styles.view_line]}/>
-                    <MineItem content="优惠券"
-                              onPress={() => this.props.navigation.navigate('CouponList')}/>
+                    <MineItem content="CommonDialog"
+                              onPress={() => this.props.navigation.navigate('CommonDialog')}/>
                     <View style={[styles.view_line]}/>
                     <MineItem content="设置"
-                              onPress={() => this.props.navigation.navigate('Settings')}/>
+                              onPress={() => this.props.navigation.navigate('')}/>
                 </View>
             </View>
         )
