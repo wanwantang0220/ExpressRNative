@@ -13,6 +13,7 @@ import DemoPage from "./test/DemoPage";
 import PopupDialogPage from "./page/Demo/PopupDialogPage";
 import ProvinceCityPage from "./page/Demo/ProvinceCityPage";
 import CommonDialogPage from "./page/Demo/CommonDialogPage";
+import MapPage from "./page/Demo/MapPage";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -56,6 +57,9 @@ const DrawHomePage = createStackNavigator({
     },
     CommonDialog: {
         screen:CommonDialogPage
+    },
+    GMap:{
+        screen:MapPage
     }
 
 });

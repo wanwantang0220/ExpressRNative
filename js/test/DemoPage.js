@@ -35,8 +35,8 @@ export default class DemoPage extends Component {
                     <MineItem content="CommonDialog"
                               onPress={() => this.props.navigation.navigate('CommonDialog')}/>
                     <View style={[styles.view_line]}/>
-                    <MineItem content="设置"
-                              onPress={() => this.props.navigation.navigate('')}/>
+                    <MineItem content="GMap"
+                              onPress={() => this.props.navigation.navigate('GMap')}/>
                 </View>
             </View>
         )
