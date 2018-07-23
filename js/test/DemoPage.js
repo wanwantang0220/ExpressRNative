@@ -3,11 +3,12 @@
  **/
 
 import React, {Component} from 'react';
-import {Image, Text, View} from "react-native";
+import {Image, ScrollView, Text, View} from "react-native";
 import styles from "../style/Css";
 import LinearGradient from "react-native-linear-gradient";
-import {BackgroundColorLight, White} from "../style/BaseStyle";
+import {BackgroundColorLight, BlackColor, ColorTextGrey2, White} from "../style/BaseStyle";
 import MineItem from "../component/MineItem";
+import Line from "../component/Line";
 
 
 export default class DemoPage extends Component {
@@ -22,23 +23,44 @@ export default class DemoPage extends Component {
     render() {
 
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
-                <LinearGradient colors={[BackgroundColorLight, White]} style={styles.lineargradient}/>
-                <View style={{}}>
+                <View style={{backgroundColor: White, flex: 1, flexDirection: 'column'}}>
                     <MineItem content="Popup Dialog"
                               onPress={() => this.props.navigation.navigate('PopupDialog')}/>
-                    <View style={[styles.view_line]}/>
+                    <Line color={ColorTextGrey2}/>
                     <MineItem content="省市区选择"
                               onPress={() => this.props.navigation.navigate('ProvinceCity')}/>
-                    <View style={[styles.view_line]}/>
+                    <Line color={ColorTextGrey2}/>
                     <MineItem content="CommonDialog"
                               onPress={() => this.props.navigation.navigate('CommonDialog')}/>
-                    <View style={[styles.view_line]}/>
+                    <Line color={ColorTextGrey2}/>
                     <MineItem content="GMap"
                               onPress={() => this.props.navigation.navigate('GMap')}/>
+                    <Line color={ColorTextGrey2}/>
+                    <MineItem content="Animated详解"
+                              onPress={() => this.props.navigation.navigate('Animated')}/>
+                    <Line color={ColorTextGrey2}/>
+                    <MineItem content="Animated详解2"
+                              onPress={() => this.props.navigation.navigate('Animated2')}/>
+                    <Line color={ColorTextGrey2}/>
+                    <MineItem content="GMap"
+                              onPress={() => this.props.navigation.navigate('GMap')}/>
+                    <Line color={ColorTextGrey2}/>
+                    <MineItem content="GMap"
+                              onPress={() => this.props.navigation.navigate('GMap')}/>
+                    <Line color={ColorTextGrey2}/>
+                    <MineItem content="GMap"
+                              onPress={() => this.props.navigation.navigate('GMap')}/>
+                    <Line color={ColorTextGrey2}/>
+                    <MineItem content="GMap"
+                              onPress={() => this.props.navigation.navigate('GMap')}/>
+                    <Line color={ColorTextGrey2}/>
+                    <MineItem content="GMap"
+                              onPress={() => this.props.navigation.navigate('GMap')}/>
+
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }

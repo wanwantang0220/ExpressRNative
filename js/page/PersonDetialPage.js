@@ -188,10 +188,10 @@ const styles = StyleSheet.create({
 
     },
     view_line: {
-        height: 1,
+        height: 2,
         width: deviceWidth - 40,
         marginStart: 20,
         marginEnd: 20,
-        backgroundColor: ColorLine,
+        backgroundColor: ColorTextGrey2,
     }
 });

@@ -14,6 +14,8 @@ import PopupDialogPage from "./page/Demo/PopupDialogPage";
 import ProvinceCityPage from "./page/Demo/ProvinceCityPage";
 import CommonDialogPage from "./page/Demo/CommonDialogPage";
 import MapPage from "./page/Demo/MapPage";
+import AnimatedPage from "./page/Demo/AnimatedPage";
+import AnimatedPage2 from "./page/Demo/AnimatedPage2";
 
 const DrawHomePage = createStackNavigator({
     Home: {
@@ -56,10 +58,16 @@ const DrawHomePage = createStackNavigator({
         screen: ProvinceCityPage
     },
     CommonDialog: {
-        screen:CommonDialogPage
+        screen: CommonDialogPage
     },
-    GMap:{
-        screen:MapPage
+    GMap: {
+        screen: MapPage
+    },
+    Animated: {
+        screen: AnimatedPage
+    },
+    Animated2: {
+        screen: AnimatedPage2
     }
 
 });
