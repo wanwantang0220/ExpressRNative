@@ -13,7 +13,6 @@ import {
     Text
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-// import AREA_JSON from '../../../assets/province.json';
 import AREA_JSON from '../../../assets/area.json';
 import SelectCityTabBar from "./SelectCityTabBar";
 const { height, width } = Dimensions.get('window');
@@ -31,6 +30,7 @@ export default class AddressSelect extends Component {
         },
         lastAddress: null,
     };
+
 
     constructor(props) {
         super(props);
@@ -219,4 +219,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#333333'
     },
-}
+});

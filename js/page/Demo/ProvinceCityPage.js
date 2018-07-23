@@ -30,7 +30,8 @@ export default class ProvinceCityPage extends Component {
                 <Text>地址选择</Text>
                 <AddressSelect
                     commitFun={(area) => this.onSelectArea(area)}
-                    dissmissFun={() => {}}
+                    dissmissFun={() => {
+                    }}
                 />
             </TouchableOpacity>
         )
@@ -42,9 +43,9 @@ export default class ProvinceCityPage extends Component {
     }
 
 
-    onSelectArea(area){
+    onSelectArea(area) {
 
-        alert('area');
+        alert(area[0].label + area[1].label + area[2].label);
     }
 
 

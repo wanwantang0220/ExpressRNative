@@ -3,7 +3,6 @@ package com.expressrnative;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.reactnativecomponent.amaplocation.RCTAMapLocationPackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
@@ -26,7 +25,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RCTAMapLocationPackage(),
             new RNCameraPackage(),
             new LinearGradientPackage()
       );
